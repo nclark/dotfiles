@@ -1,0 +1,63 @@
+# vim: set filetype=ruby :
+Pry.config.editor = "/usr/bin/vim"
+
+# Prompt with ruby version
+Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
+
+require 'hirb'
+
+# Toys methods
+# Stolen from https://gist.github.com/807492
+class Array
+  def self.toy(n=10, &block)
+    block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
+  end
+end
+
+class Hash
+  def self.toy(n=10)
+    Hash[Array.toy(n).zip(Array.toy(n){|c| (96+(c+1)).chr})]
+  end
+end
+
+def pm(obj, *options) # Print methods
+  methods = obj.methods
+  methods -= Object.methods unless options.include? :more
+  filter  = options.select {|opt| opt.kind_of? Regexp}.first
+  methods = methods.select {|name| name =~ filter} if filter
+
+  data = methods.sort.collect do |name|
+    method = obj.method(name)
+    if method.arity == 0
+      args = "()"
+    elsif method.arity > 0
+      n = method.arity
+      args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")})"
+    elsif method.arity < 0
+      n = -method.arity
+      args = "(#{(1..n).collect {|i| "arg#{i}"}.join(", ")}, ...)"
+    end
+    klass = $1 if method.inspect =~ /Method: (.*?)#/
+      [name.to_s, args, klass]
+  end
+  max_name = data.collect {|item| item[0].size}.max
+  max_args = data.collect {|item| item[1].size}.max
+  data.each do |item|
+    print item[0].to_s.rjust(max_name)
+    print item[1].ljust(max_args)
+    print item[2]
+    print "\n\r"
+  end
+  data.size
+end
+
+def vi(*args)
+  edit(args)
+end
+
+# loading rails configuration if it is running as a rails console
+load File.dirname(__FILE__) + '/.railsrc' if defined?(Rails) && Rails.env
+
+if defined?(Rails) && Rails.env
+  extend Rails::ConsoleMethods
+end
