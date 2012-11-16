@@ -1,0 +1,3 @@
+{
+  "run_list": [ "recipe[vim]", "recipe[zsh]", "recipe[rails]", "recipe[misc]" ]
+}
