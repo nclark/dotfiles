@@ -1,0 +1,179 @@
+"""
+""" Still need to import a bunch of customizations
+""" https://github.com/nclark/dotfiles/blob/47cc9e3fea39f011be28782a32937f336b135f1f
+"""
+
+" General options
+set tabstop=2
+set shiftwidth=2
+set expandtab
+set ruler
+set number
+set noballooneval " something i copied from janus was making tooltips
+		  " talking about ri documentation pop up
+
+" Autosave
+autocmd BufLeave,FocusLost * silent! wall
+
+" Font and colors
+set guifont=Bitstream\ Vera\ Sans\ Mono:h18
+colorscheme solarized
+set background=light
+
+" status line
+set laststatus=2
+
+set statusline=%f\ %m\ %r
+set statusline+=Line:%l/%L[%p%%]
+set statusline+=Col:%v
+set statusline+=Buf:#%n
+
+
+" Shut up the damn bells!
+"set vb t_vb=
+
+" Window options
+set fuopt=maxhorz,maxvert    " make fullscreen work better
+au GUIEnter * set fullscreen " enter fullscreen on startup
+set guioptions=egmt          " turn off scrollbar and toolbar
+
+" Plugin config
+
+"" CtrlP prompt mappings
+""" <CR> opens in new tab
+""" C-<CR> opens in current window
+""" C-x opens in horizontal split
+""" C-v opens in vertical split (default)
+let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': ['<c-cr>'], 'AcceptSelection("t")': ['<cr>'], 'AcceptSelection("h")': ['<c-x>'] }
+
+"" CtrlP File finder
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files -c -o --exclude-standard']
+
+" Keymap
+
+"" misc
+"nmap <esc> :noh<return><esc> " escape clears highlighting after a search
+
+" select put text, via http://stackoverflow.com/a/4775281/955926
+nnoremap <expr> gV "`[".getregtype(v:register)[0]."`]"
+
+"" Tab keys
+macmenu Window.Select\ Next\ Tab key=<nop>
+macmenu Window.Select\ Previous\ Tab key=<nop>
+nmap <D-1> 1gt
+nmap <D-2> 2gt
+nmap <D-3> 3gt
+nmap <D-4> 4gt
+nmap <D-5> 5gt
+nmap <D-6> 6gt
+nmap <D-7> 7gt
+nmap <D-8> 8gt
+nmap <D-9> 9gt
+nmap <D-LEFT> <Esc>:tabprev<CR>
+nmap <D-RIGHT> <Esc>:tabnext<CR>
+imap <D-1> <Esc>1gt<CR>
+imap <D-2> <Esc>2gt<CR>
+imap <D-3> <Esc>3gt<CR>
+imap <D-4> <Esc>4gt<CR>
+imap <D-5> <Esc>5gt<CR>
+imap <D-6> <Esc>6gt<CR>
+imap <D-7> <Esc>7gt<CR>
+imap <D-8> <Esc>8gt<CR>
+imap <D-9> <Esc>9gt<CR>
+imap <D-LEFT> <Esc>:tabprev<CR>
+imap <D-RIGHT> <Esc>:tabnext<CR>
+
+"" Indentation mappings
+" Stollen from janus
+vmap <D-]> >gv
+vmap <D-[> <gv
+
+nmap <D-]> >>
+nmap <D-[> <<
+
+omap <D-]> >>
+omap <D-[> <<
+
+imap <D-]> <Esc>>>i
+imap <D-[> <Esc><<i
+
+"" Moving stuff around mappings
+" Stollen from janus
+" Bubble single lines
+nmap <D-Up> [e
+nmap <D-Down> ]e
+nmap <D-k> [e
+nmap <D-j> ]e
+
+" Bubble multiple lines
+vmap <D-Up> [egv
+vmap <D-Down> ]egv
+vmap <D-k> [egv
+vmap <D-j> ]egv
+
+"" Command-F for git grep
+macmenu &Edit.Find.Find\.\.\. key=<nop>
+map <D-f> :GitGrep<space>
+imap <D-f> <Esc>:GitGrep<space>
+
+"" leader-f for ack
+imap <leader>f <Esc>:Ack<space>
+nmap <leader>f :Ack<space>
+
+"" Cmd-a for git blame
+imap <C-a> <Esc>:Gblame<CR>
+nmap <C-a> :Gblame<CR>
+
+" Command-E for Ctrlp's MRU
+nmap <D-E> :CtrlPMRUFiles<CR>
+imap <D-E> :CtrlPMRUFiles<CR>
+
+" D-/ for NERDCommenter
+map <D-/> <plug>NERDCommenterToggle<CR>
+imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+
+" markdown preview
+map <leader>m :Mm<CR>
+
+"" Reload Google Chrome on Mac from Vim.
+""" Adapted from:  https://github.com/gcollazo/BrowserRefresh-Sublime/
+function! ChromeReload()
+python << EOF
+from subprocess import call
+browser = """
+tell application "Google Chrome" to tell the active tab of its first window
+    reload
+end tell
+tell application "Google Chrome" to activate
+"""
+call(['osascript', '-e', browser])
+EOF
+endfunction
+
+macmenu &Tools.Spelling.To\ Next\ error key=<nop>
+inoremap <D-;> <Esc>:call ChromeReload()<CR>
+nnoremap <D-;> :call ChromeReload()<CR>
+
+"" rails routes
+""" https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
+
+function! ShowRoutes()
+  " Requires 'scratch' plugin
+  :topleft 100 :split __Routes__
+  " Make sure Vim doesn't write __Routes__ as a file
+  :set buftype=nofile
+  " Delete everything
+  :normal 1GdG
+  " Put routes output in buffer
+  :0r! rake -s routes
+  " Size window to number of lines (1 plus rake output length)
+  :exec ":normal " . line("$") . "_ "
+  " Move cursor to bottom
+  :normal 1GG
+  " Delete empty trailing line
+  :normal dd
+endfunction
+
+inoremap <leader>rr <Esc>:call ShowRoutes()<CR>
+nnoremap <leader>rr :call ShowRoutes()<CR>
+
