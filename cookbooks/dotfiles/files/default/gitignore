@@ -1,0 +1,14 @@
+doc
+pkg
+*.swp
+*.patch
+*.gem
+*.sh
+.DS_Store
+tags
+log/*
+public/uploads/*
+NERD_tree*
+.sass-cache/*
+/Users/nclark/workspace/kidzui/bender/console/*
+

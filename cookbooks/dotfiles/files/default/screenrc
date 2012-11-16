@@ -1,0 +1,8 @@
+hardstatus on
+hardstatus alwayslastline
+hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %m/%d %C%a "
+termcapinfo xterm* ti@:te@
+defscrollback 7000
+startup_message off
+vbell off
+
