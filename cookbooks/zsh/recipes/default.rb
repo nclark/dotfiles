@@ -1,12 +1,12 @@
+%w(.zsh .zsh/misc .zsh/support .zsh/vendor).each do |dir|
+  directory "#{ENV['HOME']}/#{dir}"
+end
+
 %w(zshrc zshenv zlogin).each do |file_name|
   cookbook_file "#{ENV['HOME']}/.#{file_name}" do
     owner ENV['USER']
     source file_name
   end
-end
-
-%w(.zsh .zsh/misc .zsh/support .zsh/vendor).each do |dir|
-  directory "#{ENV['HOME']}/#{dir}"
 end
 
 %w(aliases autocomplete compinstall env functions).each do |file_name|
