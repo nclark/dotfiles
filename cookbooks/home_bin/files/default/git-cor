@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# check out remote
+
+git pull
+git co --track -b $1 origin/$1
+

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+DIR="$1"
+BARE="${DIR}.git"
+TGZ="${BARE}.tar.gz"
+
+
+/bin/echo -n "Cloning bare repo..."
+git clone --bare ${DIR} ${BARE} >&/dev/null
+touch ${BARE}/git-daemon-export-ok
+/bin/echo 'done'
+
+/bin/echo -n "Creating tar archive..."
+tar czf ${TGZ} ${BARE} >&/dev/null
+/bin/echo 'done'
+
+/bin/echo -n "Copying tar archive to remote host..."
+scp ${TGZ} nclark@thrownproject.org:/git >&/dev/null
+/bin/echo 'done'
+
+/bin/echo -n "Extracting tar archive on remote host..."
+ssh nclark@thrownproject.com "cd /git ; tar xzvf ${TGZ} ; rm -rf ${TGZ}" >&/dev/null
+/bin/echo 'done'
+
+rm -rf ${TGZ}
+mv ${DIR} orig.${DIR}
+
+/bin/echo ""
+/bin/echo "Cloning remote repository."
+git clone ssh://nclark@thrownproject.org/git/${BARE}
+cd ${DIR}
+git remote show origin
+

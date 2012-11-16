@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+if ARGV[0]
+  if ARGV[0] =~ /-/
+    cmd = "ssh -i ~/.ec2/kidzui.pem -t root@bender-master ssh root@#{ARGV[0]}"
+  elsif ARGV[0]
+    cmd = "ssh -i ~/.ec2/kidzui.pem -t root@bender-master ssh root@bender-#{ARGV[0]}"
+  end
+else
+  cmd = "ssh -i ~/.ec2/kidzui.pem root@bender-master"
+end
+
+system(cmd)
+
