@@ -1,6 +1,6 @@
 desc 'setup my public dotfiles'
 task :setup do
-
+  system("chef-solo -c config/solo.rb -j config/node.json")
 end
 
 namespace :setup do
