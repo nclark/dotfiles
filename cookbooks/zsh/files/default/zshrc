@@ -1,0 +1,26 @@
+## includes
+source ~/.zsh/env
+source ~/.zsh/compinstall
+
+source ~/.zsh/aliases
+source ~/.zsh/autocomplete
+source ~/.zsh/functions
+
+source ~/.zsh/misc/ec2
+
+source ~/.private/zsh
+
+## prompt
+setopt prompt_subst
+
+PS1='[%n]%15<...<%~%<<% $(git_prompt_info) # '
+
+## history
+bindkey '^R' history-incremental-search-backward
+
+## colors
+eval `gdircolors ~/.dir_colors`
+
+## rvm
+source $HOME/.rvm/scripts/rvm
+

@@ -1,0 +1,10 @@
+# export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/nclark/pk-*.pem)"
+# export EC2_CERT="$(/bin/ls $HOME/.ec2/nclark/cert-*.pem)"
+
+export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/kidzui/pk-*.pem)"
+export EC2_CERT="$(/bin/ls $HOME/.ec2/kidzui/cert-*.pem)"
+
+export EC2_HOME="/usr/local/Cellar/ec2-api-tools/1.5.5.0/jars"
+export EC2_AMITOOL_HOME="/usr/local/Cellar/ec2-api-tools/1.5.5.0/jars"
+export AWS_RDS_HOME=/usr/local/Cellar/rds-command-line-tools/1.2.006/jars
+export AWS_IAM_HOME="/usr/local/Cellar/aws-iam-tools/HEAD/jars"

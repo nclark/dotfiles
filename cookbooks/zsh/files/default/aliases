@@ -1,0 +1,40 @@
+# colorized cat... neat
+# https://twitter.com/paul_irish/status/257310654631919616
+alias c='pygmentize -O style=monokai -f console256 -g'
+
+# core-util aliases
+alias less='less -r'
+alias ll='gls --color -aFhl'
+alias ls='gls --color'
+
+
+# various network stuf
+alias git-instaweb='git instaweb --httpd=webrick'
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"' 
+alias tp='ssh nclark@thrownproject.com'
+alias tpd='ssh deploy@thrownproject.com'
+alias xget='ssh frontrow@appletv.local "cd Movies/new ; source ~/.profile ; get $1"'
+
+# needs sudo
+alias svc='sudo /usr/local/bin/svc'
+alias svstat='sudo /usr/local/bin/svstat'
+alias svs='sudo /usr/local/bin/svstat /service/*'
+
+alias ghost='sudo /usr/bin/ghost'
+
+# rails stuff
+alias r=rails
+alias mr='rake routes | mate'
+alias rc='pry -r ./config/environment'
+alias spec='spec --drb --color'
+
+# everything else
+alias m='mvim'
+alias wiki='links -dump "http://en.wikipedia.org/wiki/$1" | less'
+alias iftop='sudo iftop -i en1'
+alias blueon='blueutil power 1'
+alias blueoff='blueutil power 0'
+
+# longor passwerds
+alias pwgen='/usr/local/bin/pwgen 15'
+
