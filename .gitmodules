@@ -1,0 +1,3 @@
+[submodule "cookbooks/private"]
+	path = cookbooks/private
+	url = git@github.com:nclark/dotfiles-private.git
