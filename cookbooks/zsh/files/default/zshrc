@@ -8,7 +8,7 @@ source ~/.zsh/functions
 
 source ~/.zsh/misc/ec2
 
-source ~/.private/zsh
+source ~/.zsh/private
 
 ## prompt
 setopt prompt_subst
