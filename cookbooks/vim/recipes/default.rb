@@ -49,5 +49,19 @@ plugins.each do |name, url|
   end
 end
 
-# update plugins ?
+execute "build YouCompleteMe" do
+  cwd ENV['HOME']
+  command <<-EOS
+    mkdir ycm_build
+    cd ycm_build
+    cmake -G "Unix Makefiles" . ~/.vim/bundle/YouCompleteMe/cpp
+    make ycm_core
+    cd ..
+    rm -rf ycm_core
+  EOS
+
+  not_if { File.exist?("#{ENV['HOME']}/.vim/bundle/YouCompleteMe/python/ycm_core.so") }
+end
+
+
 
