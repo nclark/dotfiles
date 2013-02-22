@@ -25,7 +25,7 @@
     "YouCompleteMe":        "https://github.com/Valloric/YouCompleteMe.git",
     "vcl-vim-plugin":       "https://github.com/smerrill/vcl-vim-plugin.git",
     "vim-markdown-preview": "https://github.com/nelstrom/vim-markdown-preview.git",
-    "vim-slim":             "https://github.com/bbommarito/vim-slim.git",
+    //"vim-slim":             "https://github.com/bbommarito/vim-slim.git",
     "vim-powerline":        "https://github.com/Lokaltog/vim-powerline.git"
   }
 }
