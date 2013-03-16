@@ -2,7 +2,7 @@
   directory "#{ENV['HOME']}/#{dir}"
 end
 
-%w(zshrc zshenv zlogin).each do |file_name|
+%w(zshrc zlogin).each do |file_name|
   cookbook_file "#{ENV['HOME']}/.#{file_name}" do
     owner ENV['USER']
     source file_name
