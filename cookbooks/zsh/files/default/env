@@ -3,7 +3,7 @@ local=/usr/local/bin
 local_sbin=/usr/local/sbin
 flex=/usr/local/flex/bin
 
-PATH=$local:$local_sbin:$home:$PATH:$flex
+PATH=$local:$local_sbin:$home:$PATH:$flex:./bin
 
 JAVA_HOME="/Library/Java/Home"
 EDITOR=/usr/bin/vim
