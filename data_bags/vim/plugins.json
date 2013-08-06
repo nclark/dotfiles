@@ -25,6 +25,9 @@
     "vcl-vim-plugin":       "https://github.com/smerrill/vcl-vim-plugin.git",
     "vim-markdown-preview": "https://github.com/nelstrom/vim-markdown-preview.git",
     "vim-slim":             "https://github.com/slim-template/vim-slim.git",
-    "vim-powerline":        "https://github.com/Lokaltog/vim-powerline.git"
+    "vim-powerline":        "https://github.com/Lokaltog/vim-powerline.git",
+    "vim-elixir":           "https://github.com/elixir-lang/vim-elixir.git",
+    "funcoo":               "https://github.com/rizzatti/funcoo.vim.git",
+    "dash":                 "https://github.com/rizzatti/dash.vim.git"
   }
 }

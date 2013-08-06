@@ -83,6 +83,10 @@ imap <D-9> <Esc>9gt<CR>
 imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
+"" Dash integration
+nmap <C-d> <Esc>:Dash!<CR>
+imap <C-D> <Esc>:Dash!<CR>
+
 "" Indentation mappings
 " Stollen from janus
 vmap <D-]> >gv
