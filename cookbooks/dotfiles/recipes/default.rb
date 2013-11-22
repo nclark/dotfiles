@@ -1,4 +1,4 @@
-%w(dir_colors gitconfig.example gitignore inputrc screenrc).each do |file_name|
+%w(dir_colors gitconfig.example gitignore inputrc screenrc sqliterc).each do |file_name|
   cookbook_file "#{ENV['HOME']}/.#{file_name}" do
     owner ENV['USER']
     source file_name
