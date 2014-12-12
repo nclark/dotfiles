@@ -21,6 +21,13 @@ filetype plugin indent on
 " Shut up the damn bells!
 set noeb vb t_vb=
 
+" add tags.gem to tagstack
+set tags+=gems.tags
+
+" add shortcut for Tagbar
+nmap <Leader>t :TagbarToggle<CR>
+imap <Leader>t <Esc>:TagbarToggle<CR>
+
 " Keymap
 imap jj <Esc>                           " jj to exit insert mode
 nmap <Leader>f ggVG=<CR>                " format code
