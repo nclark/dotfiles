@@ -28,6 +28,9 @@
     "vim-powerline":        "https://github.com/Lokaltog/vim-powerline.git",
     "vim-elixir":           "https://github.com/elixir-lang/vim-elixir.git",
     "funcoo":               "https://github.com/rizzatti/funcoo.vim.git",
-    "dash":                 "https://github.com/rizzatti/dash.vim.git"
+    "dash":                 "https://github.com/rizzatti/dash.vim.git",
+    "vim-emblem":           "https://github.com/heartsentwined/vim-emblem.git",
+    "vim-projectionist":    "https://github.com/tpope/vim-projectionist.git",
+    "tagbar":               "https://github.com/majutsushi/tagbar.git"
   }
 }
