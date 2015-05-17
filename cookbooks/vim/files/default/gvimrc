@@ -181,3 +181,10 @@ endfunction
 inoremap <leader>rr <Esc>:call ShowRoutes()<CR>
 nnoremap <leader>rr :call ShowRoutes()<CR>
 
+" import go packages
+inoremap <leader>gi <Esc>:GoImports<CR>
+nnoremap <leader>gi :GoImports<CR>
+
+" import on save
+let g:go_fmt_command = "goimports"
+
