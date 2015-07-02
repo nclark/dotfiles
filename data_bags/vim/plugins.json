@@ -32,6 +32,8 @@
     "vim-emblem":           "https://github.com/heartsentwined/vim-emblem.git",
     "vim-projectionist":    "https://github.com/tpope/vim-projectionist.git",
     "tagbar":               "https://github.com/majutsushi/tagbar.git",
-    "handlebars":           "https://github.com/mustache/vim-mustache-handlebars.git"
+    "handlebars":           "https://github.com/mustache/vim-mustache-handlebars.git",
+    "go-vim":               "https://github.com/fatih/vim-go",
+    "tabular":              "https://github.com/godlygeek/tabular.git"
   }
 }

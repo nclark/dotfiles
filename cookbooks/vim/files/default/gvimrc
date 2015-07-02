@@ -87,6 +87,12 @@ imap <D-RIGHT> <Esc>:tabnext<CR>
 nmap <C-d> <Esc>:Dash!<CR>
 imap <C-D> <Esc>:Dash!<CR>
 
+"" Tabularize
+imap <leader>a <Esc>:Tabularize /=<CR>
+nmap <leader>a :Tabularize /=<CR>
+imap <leader>A <Esc>:Tabularize /
+nmap <leader>A :Tabularize /
+
 "" Indentation mappings
 " Stollen from janus
 vmap <D-]> >gv
