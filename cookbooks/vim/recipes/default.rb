@@ -43,7 +43,7 @@ plugins = data_bag_item("vim", "plugins")['plugins']
 plugins.each do |name, url|
   execute "add #{name} vim plugin" do
     cwd "#{ENV['HOME']}/.vim/bundle"
-    command %Q|git submodule add #{url} #{name} ; git commit -m "added #{name} plugin"|
+    command %Q|git submodule add #{url} #{name} --force ; git commit -m "added #{name} plugin"|
 
     not_if { File.directory?("#{ENV['HOME']}/.vim/bundle/#{name}") }
   end
