@@ -6,4 +6,5 @@ flex=/usr/local/flex/bin
 PATH=$local:$local_sbin:$home:$PATH:$flex:./bin
 
 JAVA_HOME="/Library/Java/Home"
-EDITOR=/usr/bin/vim
+EDITOR=/usr/local/bin/vim
+export GOPATH=/Users/nclark/workspace/_gopath
