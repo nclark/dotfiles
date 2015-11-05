@@ -84,8 +84,8 @@ imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
 "" Dash integration
-nmap <C-d> <Esc>:Dash!<CR>
-imap <C-D> <Esc>:Dash!<CR>
+nmap <C-d> <Esc>:Dash<CR>
+imap <C-D> <Esc>:Dash<CR>
 
 "" Tabularize
 imap <leader>a <Esc>:Tabularize /=<CR>
