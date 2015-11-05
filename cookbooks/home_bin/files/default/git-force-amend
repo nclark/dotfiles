@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git add .
+git commit --amend --allow-empty -m ''
+git put --force
+
