@@ -7,7 +7,6 @@ alias less='less -r'
 alias ll='gls --color -aFhl'
 alias ls='gls --color'
 
-
 # various network stuf
 alias git-instaweb='git instaweb --httpd=webrick'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"' 
@@ -28,13 +27,21 @@ alias mr='rake routes | mate'
 alias rc='pry -r ./config/environment'
 alias spec='spec --drb --color'
 
+# longor passwerds
+alias pwgen='/usr/local/bin/pwgen 15'
+
+# AWS
+alias awsc='aws codecommit'
+alias cf='aws cloudformation'
+
+# Vagrant
+alias vssh='vagrant ssh'
+alias v='vagrant'
+
 # everything else
 alias m='mvim'
 alias wiki='links -dump "http://en.wikipedia.org/wiki/$1" | less'
 alias iftop='sudo iftop -i en1'
 alias blueon='blueutil power 1'
 alias blueoff='blueutil power 0'
-
-# longor passwerds
-alias pwgen='/usr/local/bin/pwgen 15'
-
+alias killswp='find . | grep swp ; echo deleting... ; find . | grep swp | xargs rm -rf ; find . | grep swp'
