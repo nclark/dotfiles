@@ -24,3 +24,4 @@ eval `gdircolors ~/.dir_colors`
 ## rvm
 source $HOME/.rvm/scripts/rvm
 
+eval "$(direnv hook zsh)"
