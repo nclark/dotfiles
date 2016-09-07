@@ -13,17 +13,17 @@ require 'hirb'
 
 # Array.sum - sick of typing this shit
 #
-
 class Array
   def sum
-    self.each.map {|i| i.to_f}.inject(0) {|acc, i| acc += i ; acc}
+    sum = self.each.map {|i| i.to_f}.inject(0) {|acc, i| acc += i ; acc}
+
+    sum % 1 == 0 ? sum.to_i : sum.to_f
   end
 end
 
 # 
 # Toys methods - https://gist.github.com/807492
 #
-
 class Array
   def self.toy(n=10, &block)
     block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
@@ -68,10 +68,6 @@ def pm(obj, *options) # Print methods
     print "\n\r"
   end
   data.size
-end
-
-def vi(*args)
-  edit(args)
 end
 
 # loading rails configuration if it is running as a rails console
