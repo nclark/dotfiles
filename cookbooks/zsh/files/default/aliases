@@ -21,7 +21,10 @@ alias svs='sudo /usr/local/bin/svstat /service/*'
 
 alias ghost='sudo /usr/bin/ghost'
 
-# rails stuff
+# ruby stuff
+alias irb=`which pry`
+
+## rails stuff
 alias r=rails
 alias mr='rake routes | mate'
 alias rc='pry -r ./config/environment'

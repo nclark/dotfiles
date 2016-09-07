@@ -1,13 +1,29 @@
+#
 # vim: set filetype=ruby :
-Pry.config.editor = "/usr/bin/vim"
+#
+
+# on new installations: `rvm gemset use default ; gem install pry hirb`
+
+Pry.config.editor = '/usr/local/bin/vim'
 
 # Prompt with ruby version
 Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " }, proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
 
 require 'hirb'
 
-# Toys methods
-# Stolen from https://gist.github.com/807492
+# Array.sum - sick of typing this shit
+#
+
+class Array
+  def sum
+    self.each.map {|i| i.to_f}.inject(0) {|acc, i| acc += i ; acc}
+  end
+end
+
+# 
+# Toys methods - https://gist.github.com/807492
+#
+
 class Array
   def self.toy(n=10, &block)
     block_given? ? Array.new(n,&block) : Array.new(n) {|i| i+1}
@@ -20,6 +36,9 @@ class Hash
   end
 end
 
+#
+# Print Methods - https://github.com/jasoncodes/dotfiles/blob/master/config/irbrc
+#
 def pm(obj, *options) # Print methods
   methods = obj.methods
   methods -= Object.methods unless options.include? :more
