@@ -34,6 +34,8 @@
     "tagbar":               "https://github.com/majutsushi/tagbar.git",
     "handlebars":           "https://github.com/mustache/vim-mustache-handlebars.git",
     "go-vim":               "https://github.com/fatih/vim-go",
-    "tabular":              "https://github.com/godlygeek/tabular.git"
+    "tabular":              "https://github.com/godlygeek/tabular.git",
+    "vim-json":             "https://github.com/elzr/vim-json.git",
+    "vim-typescript":       "https://github.com/leafgarland/typescript-vim.git"
   }
 }
