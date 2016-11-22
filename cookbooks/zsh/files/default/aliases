@@ -48,3 +48,5 @@ alias iftop='sudo iftop -i en1'
 alias blueon='blueutil power 1'
 alias blueoff='blueutil power 0'
 alias killswp='find . | grep swp ; echo deleting... ; find . | grep swp | xargs rm -rf ; find . | grep swp'
+alias myip='curl -H "X-Api-Key: ${MYIP_APIKEY}" "https://3n7drb8jth.execute-api.us-east-1.amazonaws.com/dev/myip"'
+
