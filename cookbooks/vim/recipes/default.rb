@@ -49,6 +49,18 @@ plugins.each do |name, url|
   end
 end
 
+harmony_test_nav_dir = "#{ENV['HOME']}/.vim/bundle/harmony-test-nav/plugin"
+
+directory harmony_test_nav_dir do
+  recursive true
+end
+
+cookbook_file "#{harmony_test_nav_dir}/HarmonyTestNav.vim" do
+  owner ENV['USER']
+  source "vim/plugin/HarmonyTestNav.vim"
+end
+
+
 execute "build YouCompleteMe" do
   cwd ENV['HOME']
   command <<-EOS
