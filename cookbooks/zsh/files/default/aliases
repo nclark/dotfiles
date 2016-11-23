@@ -18,11 +18,10 @@ alias xget='ssh frontrow@appletv.local "cd Movies/new ; source ~/.profile ; get 
 alias svc='sudo /usr/local/bin/svc'
 alias svstat='sudo /usr/local/bin/svstat'
 alias svs='sudo /usr/local/bin/svstat /service/*'
-
 alias ghost='sudo /usr/bin/ghost'
 
 # ruby stuff
-alias irb=`which pry`
+
 
 ## rails stuff
 alias r=rails
@@ -44,9 +43,7 @@ alias v='vagrant'
 # everything else
 alias m='mvim'
 alias wiki='links -dump "http://en.wikipedia.org/wiki/$1" | less'
-alias iftop='sudo iftop -i en1'
-alias blueon='blueutil power 1'
-alias blueoff='blueutil power 0'
+alias iftop='sudo iftop -i en0'
 alias killswp='find . | grep swp ; echo deleting... ; find . | grep swp | xargs rm -rf ; find . | grep swp'
-alias myip='curl -H "X-Api-Key: ${MYIP_APIKEY}" "https://3n7drb8jth.execute-api.us-east-1.amazonaws.com/dev/myip"'
+alias myip='curl -H "X-Api-Key: ${MYIP_APIKEY}" "https://kiq5hgphi5.execute-api.us-east-1.amazonaws.com/dev/myip" ; echo'
 
