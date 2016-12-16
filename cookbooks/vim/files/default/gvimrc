@@ -83,6 +83,10 @@ imap <D-9> <Esc>9gt<CR>
 imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
+"" Hide/show Nerd tree
+nmap <D-D> :NERDTreeTabsToggle<CR>
+imap <D-D> <Esc>:NERDTreeTabsToggle<CR>
+
 "" Dash integration
 nmap <C-d> <Esc>:Dash<CR>
 imap <C-D> <Esc>:Dash<CR>

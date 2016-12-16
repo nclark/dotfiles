@@ -36,6 +36,9 @@
     "go-vim":               "https://github.com/fatih/vim-go",
     "tabular":              "https://github.com/godlygeek/tabular.git",
     "vim-json":             "https://github.com/elzr/vim-json.git",
-    "vim-typescript":       "https://github.com/leafgarland/typescript-vim.git"
+    "vim-typescript":       "https://github.com/leafgarland/typescript-vim.git",
+    "nerdtree":             "https://github.com/scrooloose/nerdtree.git",
+    "vim-nerdtree-tabs":    "https://github.com/jistr/vim-nerdtree-tabs.git"
+
   }
 }
