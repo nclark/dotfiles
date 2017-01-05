@@ -42,4 +42,5 @@
   api-token = [api token]
 [gist]
   private = yes
-
+[grep]
+	lineNumber = true
