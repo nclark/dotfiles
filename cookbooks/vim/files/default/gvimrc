@@ -16,7 +16,8 @@ set noballooneval " something i copied from janus was making tooltips
 autocmd BufLeave,FocusLost * silent! wall
 
 " Font and colors
-set guifont=Bitstream\ Vera\ Sans\ Mono:h18
+"set guifont=Bitstream\ Vera\ Sans\ Mono:h18
+set guifont=Go\ Mono:h18
 colorscheme solarized
 set background=light
 
