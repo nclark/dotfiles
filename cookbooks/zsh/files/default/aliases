@@ -3,7 +3,6 @@
 alias c='pygmentize -O style=monokai -f console256 -g'
 
 # core-util aliases
-alias less='less -r'
 alias ll='gls --color -aFhl'
 alias ls='gls --color'
 
