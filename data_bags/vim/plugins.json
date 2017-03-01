@@ -40,7 +40,8 @@
     "nerdtree":             "https://github.com/scrooloose/nerdtree.git",
     "vim-nerdtree-tabs":    "https://github.com/jistr/vim-nerdtree-tabs.git",
     "vim-jsx-improve":      "https://github.com/neoclide/vim-jsx-improve.git",
-    "vim-jsx-pretty":      "https://github.com/MaxMEllon/vim-jsx-pretty.git",
-    "vim-rubocop":          "https://github.com/ngmy/vim-rubocop.git"
+    "vim-jsx-pretty" :      "https://github.com/MaxMEllon/vim-jsx-pretty.git",
+    "vim-rubocop":          "https://github.com/ngmy/vim-rubocop.git",
+    "railscasts-theme":     "https://github.com/jpo/vim-railscasts-theme.git"
   }
 }
