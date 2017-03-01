@@ -47,7 +47,6 @@ imap <C-l> <Esc><C-W>l<CR>
 set foldenable
 set foldmethod=indent
 set foldlevel=100
-set foldopen-=search
 set foldopen-=undo
 
 " Start pathogen
