@@ -49,6 +49,10 @@ set foldmethod=indent
 set foldlevel=100
 set foldopen-=undo
 
+" git diff
+inoremap <leader>d <Esc>:Gvdiff<CR>
+nnoremap <leader>d :Gvdiff<CR>
+
 " Start pathogen
 call pathogen#infect()
 
