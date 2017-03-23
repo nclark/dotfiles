@@ -1,12 +1,8 @@
 home=/Users/nclark/bin
 local=/usr/local/bin
 local_sbin=/usr/local/sbin
-flex=/usr/local/flex/bin
-gopath=/usr/local/gopath
 
-PATH=$local:$local_sbin:$home:$PATH:$flex:$gopath/bin:./bin
+PATH=$local:$local_sbin:$home:$PATH:./bin
 
 JAVA_HOME="/Library/Java/Home"
 EDITOR=/usr/local/bin/vim
-export GOPATH=$gopath
-
