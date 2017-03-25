@@ -165,7 +165,7 @@ call(['osascript', '-e', browser])
 EOF
 endfunction
 
-macmenu &Tools.Spelling.To\ Next\ error key=<nop>
+macmenu &Tools.Spelling.To\ Next\ Error key=<nop>
 inoremap <D-;> <Esc>:call ChromeReload()<CR>
 nnoremap <D-;> :call ChromeReload()<CR>
 
