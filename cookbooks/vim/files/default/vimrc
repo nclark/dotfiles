@@ -10,7 +10,7 @@
 set showcmd
 set ruler
 set textwidth=100
-
+set formatoptions-=t " sick of autowrap. !!fmt for life
 " Leader
 let mapleader=";"
 
