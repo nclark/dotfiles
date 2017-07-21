@@ -150,6 +150,11 @@ imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 " markdown preview
 map <leader>m :Mm<CR>
 
+" open tag in new tab
+" https://stackoverflow.com/a/6069388
+nnoremap <silent><Leader><C-]> <C-w><C-]><C-w>T
+
+
 "" Reload Google Chrome on Mac from Vim.
 """ Adapted from:  https://github.com/gcollazo/BrowserRefresh-Sublime/
 function! ChromeReload()
