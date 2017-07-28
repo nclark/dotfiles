@@ -16,7 +16,6 @@
   br = branch
   cp = cherry-pick
   mv = br -M
-  put = push origin HEAD
   pop = reset HEAD^ ; status -a
   psh = add * ; commit -a -m '***** WORKING CHANGES *****'
   slog = log --pretty=format:'%h - %an, %ar : %s'

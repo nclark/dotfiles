@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require 'uri'
+
+origin = `git config --get remote.origin.url`.chomp
+
+`git push origin HEAD`
+
+if origin =~ /github/
+  branch = `git rev-parse --abbrev-ref HEAD`.chomp
+  uri    = URI.parse("https://#{origin.gsub(':', '/')}")
+  path   = uri.path.gsub('.git', '')
+
+  puts "\nCompare: https://github.com#{path}/compare/#{branch}?expand=1"
+end
