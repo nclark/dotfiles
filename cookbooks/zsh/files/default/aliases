@@ -5,6 +5,7 @@ alias c='pygmentize -O style=monokai -f console256 -g'
 # core-util aliases
 alias ll='gls --color -aFhl'
 alias ls='gls --color'
+alias pwd='ruby -e "puts ENV[%q>PWD>].chomp.gsub(/\s/, %q>\\ >)"'
 
 # various network stuf
 alias git-instaweb='git instaweb --httpd=webrick'
