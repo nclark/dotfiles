@@ -3,7 +3,7 @@ directory "#{ENV['HOME']}/bin" do
 end
 
 commands = %w(bssh git-archive-branch git-cor git-create-archive git-fuckit) +
-           %w(git-gist-diff git-pop git-psh git put git-reset-branch git-reset-remote-branch) + 
+           %w(git-gist-diff git-pop git-psh git-put git-reset-branch git-reset-remote-branch) + 
            %w(git-tracker-branch git-x git-force-amend git-rally-branch) +
            %w(mk_remote_repo pom tcd)
 
