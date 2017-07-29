@@ -34,7 +34,7 @@ alias spec='spec --drb --color'
 
 # longor passwerds
 # alias pwgen='/usr/local/bin/pwgen 15'
-alias pwgen='/usr/local/bin/pwgen -y --symbols --ambiguous'
+alias pwgen='/usr/local/bin/pwgen -y --symbols --ambiguous 15'
 
 # AWS
 alias awsc='aws codecommit'
