@@ -38,9 +38,18 @@
 # cmd-shift-D to toggle tree instead of `editor:duplicate-lines`
 'atom-workspace atom-text-editor:not([mini])': 'shift-cmd-D': 'tree-view:toggle'
 
+# cmd-shift-E for recent files
+'atom-workspace':
+  'cmd-shift-E': 'recent-files-fuzzy-finder:toggle-finder'
+
 ##
 ## CUSTOM
 ##
 
 # cmd-shift-space for pallete
 '.platform-darwin, .platform-darwin .command-palette atom-text-editor':'shift-cmd-space': 'command-palette:toggle'
+
+'.platform-darwin atom-text-editor':
+  # vim-like ctag navigation
+  'ctrl-]': 'atom-ctags:go-to-declaration'
+  'ctrl-t': 'atom-ctags:return-from-declaration'
