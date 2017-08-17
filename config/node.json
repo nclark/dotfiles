@@ -1,3 +1,3 @@
 {
-  "run_list": [ "recipe[zsh]", "recipe[vim]", "recipe[atom]", "recipe[ruby]", "recipe[dotfiles]", "recipe[home_bin]", "recipe[private]" ]
+  "run_list": [ "recipe[zsh]", "recipe[nvim]", "recipe[vim]", "recipe[atom]", "recipe[ruby]", "recipe[dotfiles]", "recipe[home_bin]", "recipe[private]" ]
 }
