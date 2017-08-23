@@ -31,7 +31,10 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 
-nnoremap <leader>C :e ~/.config/nvim/init.vim<CR>
+nnoremap <leader>ci :e ~/.config/nvim/init.vim<CR>
+nnoremap <leader>cb :e ~/.config/nvim/bundles.vim<CR>
+nnoremap <leader>ck :e ~/.config/nvim/keymap.vim<CR>
+nnoremap <leader>cp :e ~/.config/nvim/plugin-config.vim<CR>
 
 "" plugins
 

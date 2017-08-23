@@ -31,6 +31,9 @@ autocmd BufLeave,FocusLost * silent! wall
 " source neovim config when it changes
 augroup AutoCommands
   autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+  autocmd BufWritePost ~/.config/nvim/bundles.vim source ~/.config/nvim/bundles.vim
+  autocmd BufWritePost ~/.config/nvim/keymap.vim source ~/.config/nvim/keymap.vim
+  autocmd BufWritePost ~/.config/nvim/plugin-config.vim source ~/.config/nvim/plugin-config.vim
 augroup END
 
 source ~/.config/nvim/plugin-config.vim
