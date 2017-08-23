@@ -20,5 +20,5 @@ end
 
 cookbook_file "#{ENV['HOME']}/bin/vim-update-dotfiles" do
   source 'update-dotfiles.sh'
-  mode '0755
+  mode '0755'
 end
