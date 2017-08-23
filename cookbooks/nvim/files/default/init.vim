@@ -5,7 +5,9 @@ endif
 source ~/.config/nvim/bundles.vim
 
 let mapleader=";"
-filetype plugin indent on
+filetype on
+filetype indent on
+filetype plugin on
 syntax on
 colorscheme NeoSolarized
 set showcmd
