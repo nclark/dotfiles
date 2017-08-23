@@ -1,32 +1,24 @@
-set runtimepath+=/Users/nclark/.dein/repos/github.com/Shougo/dein.vim
-if dein#load_state('/Users/nclark/.config/nvim/bundle')
-  call dein#begin('/Users/nclark/.config/nvim/bundle')
-  call dein#add('/Users/nclark/.dein/repos/github.com/Shougo/dein.vim')
+ 
+"   " Unite and plugins
+"   lambdalisue/unite-grep-vcs
+"   Shougo/vimproc.vim
+"   Shougo/neosnippet.vim
+"   Shougo/neosnippet-snippets
 
-  call dein#add('icymind/NeoSolarized')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('tpope/vim-rails')
-  call dein#add('w0rp/ale')
-  call dein#add('dyng/ctrlsf.vim')
-  call dein#add('tjennings/git-grep-vim')
-  call dein#add('easymotion/vim-easymotion')
-  call dein#add('tpope/vim-surround')
+call plug#begin('~/.vim/plugged')
 
-  " Unite and plugins
-  call dein#add('Shougo/unite.vim')
-  " call dein#add('lambdalisue/unite-grep-vcs')
-  " call dein#add('Shougo/vimproc.vim')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+Plug 'icymind/NeoSolarized'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-fugitive'
+Plug 'w0rp/ale'
+Plug 'dyng/ctrlsf.vim'
+Plug 'tjennings/git-grep-vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
 
-  call dein#end()
-  call dein#save_state()
-endif
-
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
