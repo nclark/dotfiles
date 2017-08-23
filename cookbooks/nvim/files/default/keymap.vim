@@ -38,6 +38,10 @@ nnoremap <leader>cp :e ~/.config/nvim/plugin-config.vim<CR>
 
 "" plugins
 
+""" NERDCommenter
+map <D-/> <plug>NERDCommenterToggle<CR>
+imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
+
 """ CtrlP
 " Command-E or Ctrl-E for MRU
 nmap <S-D-e> :CtrlPMRUFiles<CR>
@@ -48,7 +52,6 @@ imap <S-C-e> :CtrlPMRUFiles<CR>
 " Ctrl-B for buffer nav
 nmap <S-C-b> :CtrlPBuffer<CR>
 imap <S-C-b> :CtrlPBuffer<CR>
-
 
 """ GitGrep
 " Cmd-F
