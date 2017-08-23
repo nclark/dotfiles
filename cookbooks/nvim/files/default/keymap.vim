@@ -63,6 +63,9 @@ imap <D-S-f> <Esc>:CtrlSF<CR>
 """ Ale (linter)
 nmap <Leader>l :ALEToggle<CR>
 
+""" vim-fugitive
+nmap <C-A> :Gblame<CR>
+
 """ Command-Control-Right|Left to navigate jumplist
 nnoremap <D-C-Left> <C-O>
 nnoremap <D-C-Right> <C-I>
