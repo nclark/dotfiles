@@ -2,6 +2,8 @@ if &compatible
   set nocompatible
 endif
 
+set encoding=utf8
+
 source ~/.config/nvim/bundles.vim
 
 let mapleader=";"
@@ -9,7 +11,10 @@ filetype on
 filetype indent on
 filetype plugin on
 syntax on
+
+set termguicolors
 colorscheme NeoSolarized
+
 set showcmd
 set ruler
 set textwidth=100
