@@ -38,6 +38,10 @@ nnoremap <leader>cp :e ~/.config/nvim/plugin-config.vim<CR>
 
 "" plugins
 
+""" NERDTree
+nnoremap <D-S-d> :NERDTreeTabsToggle<CR>
+inoremap <D-S-d> <Esc>:NERDTreeTabsToggle<CR>
+
 """ NERDCommenter
 map <D-/> <plug>NERDCommenterToggle<CR>
 imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
