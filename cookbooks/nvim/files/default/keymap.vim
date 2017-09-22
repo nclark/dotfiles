@@ -25,12 +25,18 @@ imap <D-9> <Esc>9gt<CR>
 imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
+" wtf does this do 
 tnoremap <esc><esc> <C-\><C-n>
 tnoremap <C-h> <C-\><C-n><C-w>h
 tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 
+" split resizing
+nnoremap <C-,> <C-w><
+nnoremap <C-.> <C-w>>
+
+" config editing
 nnoremap <leader>ci :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cb :e ~/.config/nvim/bundles.vim<CR>
 nnoremap <leader>ck :e ~/.config/nvim/keymap.vim<CR>
@@ -76,3 +82,7 @@ nmap <C-A> :Gblame<CR>
 """ Command-Control-Right|Left to navigate jumplist
 nnoremap <D-C-Left> <C-O>
 nnoremap <D-C-Right> <C-I>
+
+""""" snippets
+imap <leader>bb ::Kernel.byebug
+nmap <leader>bb i::Kernel.byebug<Esc>

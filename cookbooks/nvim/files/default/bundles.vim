@@ -9,9 +9,9 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'icymind/NeoSolarized'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'scrooloose/nerdcommenter'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,9 +20,13 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-fugitive'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tjennings/git-grep-vim'
+Plug 'leafgarland/typescript-vim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
+
+
+Plug 'vimwiki/vimwiki'
 
 " Plug 'w0rp/ale'
 " Plug 'easymotion/vim-easymotion'

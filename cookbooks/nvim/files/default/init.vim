@@ -43,5 +43,8 @@ augroup AutoCommands
   autocmd BufWritePost ~/.config/nvim/plugin-config.vim source ~/.config/nvim/plugin-config.vim
 augroup END
 
+" WIP - autowrap markdow files
+" au BufRead, BufNewFile *.md setlocal tw=72 fo=cqt wm=0
+
 source ~/.config/nvim/plugin-config.vim
 source ~/.config/nvim/keymap.vim
