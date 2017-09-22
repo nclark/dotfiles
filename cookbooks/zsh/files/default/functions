@@ -55,3 +55,10 @@ new-feature() {
   touch features/$1.feature
   touch features/step_definitions/$1_steps.rb
 }
+
+x-times() {
+  count=$1
+  shift
+
+  for i in `seq 1 $count`; do $@; done
+}
