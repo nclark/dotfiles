@@ -29,3 +29,15 @@ cookbook_file "#{ENV['HOME']}/bin/vim-update-dotfiles" do
   source 'update-dotfiles.sh'
   mode '0755'
 end
+
+directory "#{ENV['HOME']}/Dropbox/vimwiki/templates" do
+  recursive true
+  mode '0755'
+  owner ENV['USER']
+  action :create
+end
+
+cookbook_file "#{ENV['HOME']}/Dropbox/vimwiki/templates/default.tpl" do
+  source 'vimwiki/templates/default.tpl'
+  mode '0755'
+end
