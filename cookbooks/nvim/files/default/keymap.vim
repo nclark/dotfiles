@@ -53,11 +53,17 @@ map <D-/> <plug>NERDCommenterToggle<CR>
 imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
 
 """ CtrlP
-" Command-E or Ctrl-E for MRU
+" Command-Shift-e for CtrlPMRUFiles
 nmap <S-D-e> :CtrlPMRUFiles<CR>
 imap <S-D-e> :CtrlPMRUFiles<CR>
 nmap <S-C-e> :CtrlPMRUFiles<CR>
 imap <S-C-e> :CtrlPMRUFiles<CR>
+
+" Cmd-Shift-b for CtrlPBuffer
+nmap <S-D-b> :CtrlPBuffer<CR>
+imap <S-D-b> :CtrlPBuffer<CR>
+nmap <S-C-b> :CtrlPBuffer<CR>
+imap <S-C-b> :CtrlPBuffer<CR>
 
 " Ctrl-B for buffer nav
 nmap <S-C-b> :CtrlPBuffer<CR>
@@ -72,6 +78,7 @@ imap <D-f> <Esc>:GitGrep
 " Cmd-Shift-F for CtrlSF
 nmap <D-S-f> :CtrlSF<CR>
 imap <D-S-f> <Esc>:CtrlSF<CR>
+
 
 """ Ale (linter)
 nmap <Leader>l :ALEToggle<CR>
