@@ -26,21 +26,25 @@ imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
 " wtf does this do 
-tnoremap <esc><esc> <C-\><C-n>
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+" tnoremap <esc><esc> <C-\><C-n>
+" tnoremap <C-h> <C-\><C-n><C-w>h
+" tnoremap <C-j> <C-\><C-n><C-w>j
+" tnoremap <C-k> <C-\><C-n><C-w>k
+" tnoremap <C-l> <C-\><C-n><C-w>l
 
 " split resizing
-nnoremap <C-,> <C-w><
-nnoremap <C-.> <C-w>>
+nnoremap <C-.> <C-w><
+nnoremap <C-,> <C-w>>
 
 " config editing
 nnoremap <leader>ci :e ~/.config/nvim/init.vim<CR>
 nnoremap <leader>cb :e ~/.config/nvim/bundles.vim<CR>
 nnoremap <leader>ck :e ~/.config/nvim/keymap.vim<CR>
 nnoremap <leader>cp :e ~/.config/nvim/plugin-config.vim<CR>
+
+" copy to system keyboard
+vnoremap <C-S-c> "*y<CR>
+vnoremap <D-S-c> "*y<CR>
 
 "" plugins
 

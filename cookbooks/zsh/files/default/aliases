@@ -58,3 +58,7 @@ alias killswp='find . | grep swp ; echo deleting... ; find . | grep swp | xargs 
 alias myip='curl -H "X-Api-Key: ${MYIP_APIKEY}" "https://kiq5hgphi5.execute-api.us-east-1.amazonaws.com/dev/myip" ; echo'
 alias lt='tail -f /service/myorthomd-web/log/main/current | tai64nlocal'
 alias wlt='tail -f /service/myorthomd-worker/log/main/current | tai64nlocal'
+
+# djo stuff
+alias puma-byebug='START_BYEBUG=true bundle exec puma -C ./config/puma.dev.rb'
+alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
