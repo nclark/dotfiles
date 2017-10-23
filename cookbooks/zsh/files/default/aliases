@@ -14,6 +14,8 @@ alias tp='ssh nclark@thrownproject.com'
 alias tpd='ssh deploy@thrownproject.com'
 alias xget='ssh frontrow@appletv.local "cd Movies/new ; source ~/.profile ; get $1"'
 
+alias vi='nvim'
+
 # needs sudo
 alias svc='sudo /usr/local/bin/svc'
 alias svstat='sudo /usr/local/bin/svstat'
