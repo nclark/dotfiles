@@ -33,8 +33,7 @@ alias rc='pry -r ./config/environment'
 alias spec='spec --drb --color'
 
 # longor passwerds
-# alias pwgen='/usr/local/bin/pwgen 15'
-alias pwgen='/usr/local/bin/pwgen -y --symbols --ambiguous 15'
+alias pwgen='/usr/local/bin/pwgen -C -y --symbols --ambiguous 15'
 
 # AWS
 alias awsc='aws codecommit'
