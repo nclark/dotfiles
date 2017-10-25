@@ -61,5 +61,5 @@ alias lt='tail -f /service/myorthomd-web/log/main/current | tai64nlocal'
 alias wlt='tail -f /service/myorthomd-worker/log/main/current | tai64nlocal'
 
 # djo stuff
-alias puma-byebug='START_BYEBUG=true bundle exec puma -C ./config/puma.dev.rb'
+alias puma-byebug='START_BYEBUG=true bundle exec puma -C ./config/puma.dev.rb -p 4002 -b "unix:///tmp/puma-byebug.sock"'
 alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
