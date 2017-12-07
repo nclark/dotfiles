@@ -2,6 +2,6 @@
 
 require 'yaml'
 
-database = YAML.load(File.open('config/database.yml'))['development']['database']
+config = YAML.load(File.open('config/database.yml'))['development']
 
-system "mysql -uroot #{database}"
+system "mysql -u#{config['username']} -p#{config['password']} -h#{config['host']} #{config['database']}"

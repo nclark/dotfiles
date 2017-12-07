@@ -38,7 +38,8 @@ alias spec='spec --drb --color'
 alias pwgen='/usr/local/bin/pwgen -C -y --symbols --ambiguous 15'
 
 # AWS
-alias awsc='aws codecommit'
+alias awsc='aws codecommit --profile git'
+alias codecommit='aws codecommit --profile git'
 alias cf='aws cloudformation'
 
 # Vagrant

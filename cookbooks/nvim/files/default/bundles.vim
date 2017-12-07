@@ -21,6 +21,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'dyng/ctrlsf.vim'
 Plug 'tjennings/git-grep-vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'kchmck/vim-coffee-script'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'

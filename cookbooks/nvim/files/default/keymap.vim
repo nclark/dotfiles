@@ -51,6 +51,8 @@ vnoremap <D-S-c> "*y<CR>
 """ NERDTree
 nnoremap <D-S-d> :NERDTreeTabsToggle<CR>
 inoremap <D-S-d> <Esc>:NERDTreeTabsToggle<CR>
+nnoremap <D-S-r> :NERDTreeFind<CR>
+inoremap <D-S-r> <Esc>:NERDTreeFind<CR>
 
 """ NERDCommenter
 map <D-/> <plug>NERDCommenterToggle<CR>
