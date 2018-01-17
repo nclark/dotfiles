@@ -1,0 +1,5 @@
+#
+# vim: set filetype=ruby :
+#
+
+# on new installations: `rvm gemset use default ; gem install pry hirb`
