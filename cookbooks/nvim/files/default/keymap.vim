@@ -33,8 +33,8 @@ imap <D-RIGHT> <Esc>:tabnext<CR>
 " tnoremap <C-l> <C-\><C-n><C-w>l
 
 " split resizing
-nnoremap <C-.> <C-w><
-nnoremap <C-,> <C-w>>
+nnoremap <C-.> <C-w>>
+nnoremap <C-,> <C-w><
 
 " config editing
 nnoremap <leader>ci :e ~/.config/nvim/init.vim<CR>
