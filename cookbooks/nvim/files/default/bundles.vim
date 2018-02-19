@@ -25,14 +25,12 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'elixir-editors/vim-elixir'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'fishbullet/deoplete-ruby'
-
-
 Plug 'vimwiki/vimwiki'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
 
 " Plug 'w0rp/ale'
 " Plug 'easymotion/vim-easymotion'
-" Plug 'tpope/vim-surround'
-" Plug 'tpope/vim-endwise'
 
 call plug#end()
 
