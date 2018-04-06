@@ -99,3 +99,7 @@ nnoremap <D-C-Right> <C-I>
 """"" snippets
 imap <leader>bb ::Kernel.byebug
 nmap <leader>bb i::Kernel.byebug<Esc>
+
+""" tabar
+imap <D-B> i:TagbarToggle<CR><Esc>
+nmap <D-B> :TagbarToggle<CR>

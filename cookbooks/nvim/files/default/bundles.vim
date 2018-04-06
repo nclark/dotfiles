@@ -32,5 +32,13 @@ Plug 'tpope/vim-surround'
 " Plug 'w0rp/ale'
 " Plug 'easymotion/vim-easymotion'
 
+" ctags and tagbar
+Plug 'majutsushi/tagbar'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
+
+" misc
+Plug 'robertmeta/nofrils'
+
 call plug#end()
 
