@@ -14,6 +14,7 @@ alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias tp='ssh nclark@thrownproject.com'
 alias tpd='ssh deploy@thrownproject.com'
 alias xget='ssh frontrow@appletv.local "cd Movies/new ; source ~/.profile ; get $1"'
+alias localtunnel='/usr/local/bin/lt'
 
 alias vi='nvim'
 
