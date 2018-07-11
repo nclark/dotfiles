@@ -48,3 +48,4 @@ augroup END
 
 source ~/.config/nvim/plugin-config.vim
 source ~/.config/nvim/keymap.vim
+source ~/.config/nvim/elixirtmp.vim
