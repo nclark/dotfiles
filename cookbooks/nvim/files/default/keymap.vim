@@ -107,3 +107,8 @@ nmap <D-B> :TagbarToggle<CR>
 " open ctag in tab/vertical split
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <leader><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+imap <leader>h <Esc>:noh<CR>i
+nmap <leader>h :noh<CR>
+
+
