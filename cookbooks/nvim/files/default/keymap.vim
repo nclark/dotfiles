@@ -111,4 +111,14 @@ map <leader><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 imap <leader>h <Esc>:noh<CR>i
 nmap <leader>h :noh<CR>
 
+""" vim-test
+" for entering into normal mode from the test runner window (for scrolling)
+if has('nvim')
+  tmap <Esc> <C-\><C-n>
+end
 
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>  
+nmap <silent> t<C-g> :TestVisit<CR>

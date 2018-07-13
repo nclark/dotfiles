@@ -1,12 +1,6 @@
- 
-"   " Unite and plugins
-"   lambdalisue/unite-grep-vcs
-"   Shougo/vimproc.vim
-"   Shougo/neosnippet.vim
-"   Shougo/neosnippet-snippets
-
 call plug#begin('~/.vim/plugged')
 
+" organize this shit
 Plug 'icymind/NeoSolarized'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdcommenter'
@@ -29,11 +23,13 @@ Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'terryma/vim-multiple-cursors'
+
+" elixir
 Plug 'tpope/vim-projectionist'
 Plug 'andyl/vim-projectionist-elixir'
 
-" Plug 'w0rp/ale'
-" Plug 'easymotion/vim-easymotion'
+" test running
+Plug 'janko-m/vim-test'
 
 " ctags and tagbar
 Plug 'majutsushi/tagbar'
@@ -42,6 +38,10 @@ Plug 'xolox/vim-easytags'
 
 " misc
 Plug 'robertmeta/nofrils'
+
+" i forget what these are
+" Plug 'w0rp/ale'
+" Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
