@@ -25,12 +25,11 @@ imap <D-9> <Esc>9gt<CR>
 imap <D-LEFT> <Esc>:tabprev<CR>
 imap <D-RIGHT> <Esc>:tabnext<CR>
 
-" wtf does this do 
-" tnoremap <esc><esc> <C-\><C-n>
-" tnoremap <C-h> <C-\><C-n><C-w>h
-" tnoremap <C-j> <C-\><C-n><C-w>j
-" tnoremap <C-k> <C-\><C-n><C-w>k
-" tnoremap <C-l> <C-\><C-n><C-w>l
+" copy relative path to clipboard
+nmap <Leader>cr :let @*=expand("%")<CR>
+
+" copy full path to clipboard
+nmap <Leader>cf :let @*=expand("%:p")<CR>
 
 " split resizing
 nnoremap <C-.> <C-w>>
