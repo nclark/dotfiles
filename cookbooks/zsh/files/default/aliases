@@ -36,6 +36,9 @@ alias mr='rake routes | mate'
 alias rc='pry -r ./config/environment'
 alias spec='spec --drb --color'
 
+## elixir stuff
+alias repry='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test' # re-run last `mix test` with iex and trace
+
 # longor passwerds
 alias pwgen='/usr/local/bin/pwgen -C -y --symbols --ambiguous 15'
 
@@ -67,3 +70,4 @@ alias gitx='fork'
 # djo stuff
 alias puma-byebug='START_BYEBUG=true bundle exec puma -C ./config/puma.dev.rb -p 4002 -b "unix:///tmp/puma-byebug.sock" --pidfile /tmp/puma-byebug.pid'
 alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
+

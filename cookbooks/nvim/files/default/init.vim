@@ -4,7 +4,7 @@ endif
 
 set encoding=utf8
 
-source ~/.config/nvim/bundles.vim
+source ~/.config/nvim/plugins.vim
 
 let mapleader=";"
 filetype on
@@ -25,6 +25,7 @@ set background=light
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set cursorline
 
 " folding - http://www.linode.com/wiki/index.php/Vim_Tutorial
 set foldenable
