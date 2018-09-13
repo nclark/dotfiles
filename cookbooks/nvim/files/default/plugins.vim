@@ -176,5 +176,10 @@ Plug 'xolox/vim-easytags'
 " nmap <Leader>l :ALEToggle<CR>
 "
 " Plug 'easymotion/vim-easymotion'
+"
+
+Plug 'liuchengxu/vim-which-key'
+nnoremap <silent> <leader> :WhichKey ';'<CR>
+set timeoutlen=500
 
 call plug#end()

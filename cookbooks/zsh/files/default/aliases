@@ -51,12 +51,6 @@ alias cf='aws cloudformation'
 alias vssh='vagrant ssh'
 alias v='vagrant'
 
-# docker stuff
-alias docker-clear-containers='docker rm -f $(docker ps -a -q)'
-alias docker-clear-images='docker rmi -f $(docker images -a -q)'
-alias docker-clear-volumes='docker volume rm $(docker volume ls -q)'
-alias docker-clear-networks="docker network rm $(docker network ls | tail -n+2 | awk '{if($2 !~ /bridge|none|host/){ print $1 }}')"
-
 # everything else
 alias m='vimr'
 alias wiki='links -dump "http://en.wikipedia.org/wiki/$1" | less'
