@@ -25,3 +25,6 @@ eval `gdircolors ~/.dir_colors`
 source $HOME/.rvm/scripts/rvm
 
 eval "$(direnv hook zsh)"
+
+## kiex
+test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
