@@ -14,8 +14,7 @@ def whole_branch
   system("open '#{compare_url}'")
 end
 
-def certain_commits
-  count  = ARGV[0].to_i + 1
+def get_commits(count)
   branch = `git rev-parse --abbrev-ref HEAD`.chomp
   uri    = URI.parse("https://#{@origin.gsub(':', '/')}")
   path   = uri.path.gsub('.git', '')
@@ -37,7 +36,13 @@ unless @origin =~ /github/
 end
 
 if ARGV[0]
-  certain_commits
+  if ARGV[0] == "--today"
+    count = `git reflog --since="24 hours ago" | wc -l`.chomp.to_i
+  else
+    count = ARGV[0].to_i + 1
+  end
+
+  get_commits(count)
 else
   whole_branch
 end
