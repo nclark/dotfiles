@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+def yellow(text)
+  "\e[33m#{text}\e[0m"
+end
+
+def green(text)
+  "\e[32m#{text}\e[0m"
+end
+
+def bold(text)
+  "\e[1m#{text}\e[22m"
+end
+
+all_branches = `git branch`
+current_branch = `git branch | grep '*' | cut -d" " -f2`.chomp
+protected_branches = %W(master flux staging * #{current_branch})
+archiveable_branches = all_branches.split.reject! {|branch_name| protected_branches.include?(branch_name)}
+
+archiveable_branches.each do |branch_name|
+  print "#{bold(branch_name)} - #{green('Archive? [y/N] >')} "
+
+  if STDIN.gets.chomp == 'y'
+    puts yellow("Archiving...")
+    system("git archive-branch #{branch_name}")
+    puts yellow("done.")
+  end
+end
