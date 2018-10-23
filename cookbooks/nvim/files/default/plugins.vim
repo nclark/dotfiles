@@ -109,6 +109,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails'
 
 " Plug 'elixir-editors/vim-elixir'
+Plug 'mhinz/vim-mix-format'
 
 Plug 'tpope/vim-projectionist'
 
