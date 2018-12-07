@@ -26,5 +26,5 @@ source $HOME/.rvm/scripts/rvm
 
 eval "$(direnv hook zsh)"
 
-## kiex
-test -s "$HOME/.kiex/scripts/kiex" && source "$HOME/.kiex/scripts/kiex"
+## asdf
+test -s "$HOME/.asdf/asdf.sh" && source "$HOME/.asdf/asdf.sh"
