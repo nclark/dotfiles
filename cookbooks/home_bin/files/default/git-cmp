@@ -11,7 +11,8 @@ def whole_branch
   compare_url = "https://github.com#{path}/compare/#{branch}?expand=1"
 
   puts compare_url
-  system("open '#{compare_url}'")
+  applescript = %Q|'tell Application "Google Chrome" to open location "#{compare_url}"'|
+  system("osascript -e #{applescript}")
 end
 
 def get_commits(count)
@@ -24,7 +25,8 @@ def get_commits(count)
   compare_url = "https://github.com#{path}/compare/#{last_commit_sha}...#{first_commit_sha}"
 
   puts compare_url
-  system("open '#{compare_url}'")
+  applescript = %Q|'tell Application "Google Chrome" to open location "#{compare_url}"'|
+  system("osascript -e #{applescript}")
 end
 
 @origin = `git config --get remote.origin.url`.chomp
