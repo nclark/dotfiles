@@ -166,4 +166,7 @@ Plug 'liuchengxu/vim-which-key'
 nnoremap <silent> <leader> :WhichKey ';'<CR>
 set timeoutlen=500
 
+Plug 'rizzatti/dash.vim'
+:nmap <silent> <leader>k <Plug>DashSearch
+
 call plug#end()
