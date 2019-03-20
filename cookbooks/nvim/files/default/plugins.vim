@@ -5,7 +5,7 @@ let g:deoplete#enable_at_startup = 1
 
 Plug 'slashmili/alchemist.vim' " completion sources for elixir
 
-Plug 'powerman/vim-plugin-AnsiEsc.git'
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 Plug 'ctrlpvim/ctrlp.vim'
   " Cmd-shift-e for MRU
@@ -87,6 +87,9 @@ Plug 'vim-airline/vim-airline'
   let g:airline#extensions#tabline#show_close_button = 0
   let g:airline#extensions#tabline#fnamemod = ':p:.'
 
+  " show tab number next to name instead of split count
+  let g:airline#extensions#tabline#tab_nr_type = 1
+
 
 Plug 'vim-airline/vim-airline-themes'
 
@@ -153,7 +156,7 @@ imap <S-D-b> i:TagbarToggle<CR><Esc>
 
 Plug 'xolox/vim-misc'
 
-Plug 'xolox/vim-easytags'
+" Plug 'xolox/vim-easytags'
 
 """ i forget what these are
 " Plug 'w0rp/ale'
@@ -168,5 +171,7 @@ set timeoutlen=500
 
 Plug 'rizzatti/dash.vim'
 :nmap <silent> <leader>k <Plug>DashSearch
+
+Plug 'ludovicchabant/vim-gutentags'
 
 call plug#end()
