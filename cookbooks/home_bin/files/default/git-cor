@@ -4,4 +4,5 @@
 
 git pull
 git co --track -b $1 origin/$1
+git branch --set-upstream-to=origin/$1 $1
 
