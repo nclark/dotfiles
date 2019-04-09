@@ -6,3 +6,5 @@ PATH=$local:$local_sbin:$home:$PATH:./bin
 
 JAVA_HOME="/Library/Java/Home"
 EDITOR=/usr/local/bin/vim
+export ERL_AFLAGS="-kernel shell_history enabled"
+
