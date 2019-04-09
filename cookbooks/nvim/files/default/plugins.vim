@@ -128,7 +128,7 @@ Plug 'neomake/neomake'
       let a:entry.type = type
   endfunction
   let g:neomake_elixir_credo_output_maker = {
-        \ 'exe': 'mix',
+        \ 'exe': '/Users/nclark/.asdf/shims/mix',
         \ 'args': ['credo', 'list', '%:p', '--format=oneline'],
         \ 'errorformat': '[%t] %. %f:%l:%c %m,[%t] %. %f:%l %m',
         \ 'postprocess': function('NeomakeCredoErrorType')
