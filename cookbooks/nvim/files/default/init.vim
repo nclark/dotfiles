@@ -39,9 +39,10 @@ autocmd BufLeave,FocusLost * silent! wall
 " source neovim config when it changes
 augroup AutoCommands
   autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-  autocmd BufWritePost ~/.config/nvim/bundles.vim source ~/.config/nvim/bundles.vim
+  autocmd BufWritePost ~/.config/nvim/plugins.vim source ~/.config/nvim/plugins.vim
   autocmd BufWritePost ~/.config/nvim/keymap.vim source ~/.config/nvim/keymap.vim
-  autocmd BufWritePost ~/.config/nvim/plugin-config.vim source ~/.config/nvim/plugin-config.vim
+  autocmd BufWritePost ~/.config/nvim/elixirtmp.vim source ~/.config/nvim/elixirtmp.vim
+  autocmd BufWritePost ~/.config/nvim/vimwiki.vim source ~/.config/nvim/vimwiki.vim
 augroup END
 
 " WIP - autowrap markdow files
