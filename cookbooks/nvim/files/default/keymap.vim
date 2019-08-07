@@ -58,4 +58,6 @@ map <leader><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 imap <leader>h <Esc>:noh<CR>i
 nmap <leader>h :noh<CR>
 
-""" vim-test
+""" Mix Format
+imap <leader>mf <Esc>:w<CR>:MixFormat<CR>
+nmap <leader>mf :w<CR>:MixFormat<CR>

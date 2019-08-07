@@ -1,5 +1,10 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#file#enable_buffer_path = 1
@@ -16,23 +21,6 @@ inoremap <silent><expr> <TAB>
 Plug 'slashmili/alchemist.vim' " completion sources for elixir
 
 Plug 'powerman/vim-plugin-AnsiEsc'
-
-Plug 'ctrlpvim/ctrlp.vim'
-  " Cmd-shift-e for MRU
-  nmap <S-D-e> :CtrlPMRUFiles<CR>
-  imap <S-D-e> :CtrlPMRUFiles<CR>
-  nmap <S-C-e> :CtrlPMRUFiles<CR>
-  imap <S-C-e> :CtrlPMRUFiles<CR>
-  
-  " Cmd-Shift-b for CtrlPBuffer
-  " nmap <S-D-b> :CtrlPBuffer<CR>
-  " imap <S-D-b> :CtrlPBuffer<CR>
-  " nmap <S-C-b> :CtrlPBuffer<CR>
-  " imap <S-C-b> :CtrlPBuffer<CR>
-  
-  " Ctrl-B for buffer nav
-  nmap <S-C-b> :CtrlPBuffer<CR>
-  imap <S-C-b> :CtrlPBuffer<CR>
 
 Plug 'scrooloose/nerdcommenter'
   let g:NERDSpaceDelims = 1
@@ -168,7 +156,8 @@ Plug 'xolox/vim-misc'
 
 " Plug 'xolox/vim-easytags'
 
-""" i forget what these are
+" i forget what these are
+"
 " Plug 'w0rp/ale'
 " nmap <Leader>l :ALEToggle<CR>
 "
@@ -184,4 +173,19 @@ Plug 'rizzatti/dash.vim'
 
 Plug 'ludovicchabant/vim-gutentags'
 
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+
+" FZF Files
+nnoremap <silent> <c-p> :Files<cr>
+inoremap <silent> <c-p> :Files<cr>
+
+nnoremap <S-D-e> :History<CR>
+inoremap <S-D-e> :History<CR>
+
+" FZF Buffer
+nnoremap <leader>b :Buffer<cr>
+
 call plug#end()
+
+
