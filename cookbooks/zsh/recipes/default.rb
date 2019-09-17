@@ -21,7 +21,7 @@ cookbook_file "#{ENV['HOME']}/.zsh/misc/ec2" do
   source 'misc/ec2'
 end
 
-%w(db.rb projects.rb).each do |file_name|
+%w(db.rb projects.rb puma.rb).each do |file_name|
   cookbook_file "#{ENV['HOME']}/.zsh/support/#{file_name}" do
     owner ENV['USER']
     source "support/#{file_name}"
