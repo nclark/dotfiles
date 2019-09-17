@@ -1,4 +1,8 @@
 #
 # vim: set filetype=ruby :
 
+if defined?(Rails) && Rails.application.class.name == "Myorthomd::Application"
+  load "#{ENV['HOME']}/.motionmd.rc"
+end
+
 load "#{ENV['HOME']}/.pryrc"
