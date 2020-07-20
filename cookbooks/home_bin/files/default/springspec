@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'readline'
+
+trap("SIGINT") do
+  puts
+
+  exit
+end
+
+while true do
+  spec_path = Readline.readline("> ", true)
+
+  if spec_path.chomp
+    system("spring rspec #{spec_path}")
+  else
+    puts "No spec given"
+  end
+end
+

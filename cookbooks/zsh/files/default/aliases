@@ -66,3 +66,4 @@ alias gitx='fork'
 alias puma-byebug='START_BYEBUG=true bundle exec puma -C ./config/puma.dev.rb -p 4002 -b "unix:///tmp/puma-byebug.sock" --pidfile /tmp/puma-byebug.pid'
 alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
 alias jr_prep="mix format; mix credo; mix coveralls.html"
+alias mmdpuma='$(head -1 Procfile | cut -d":" -f2)'
