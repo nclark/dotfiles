@@ -5,7 +5,7 @@ end
 commands = %w(bssh git-archive-branch git-cor git-create-archive git-fuckit) +
            %w(git-gist-diff git-pop git-psh git-put git-reset-branch git-reset-remote-branch) + 
            %w(git-tracker-branch git-x git-force-amend git-rally-branch git-cmp git-hub) +
-           %w(git-backup git-archive-branches mk_remote_repo pom tcd scrabble)
+           %w(git-backup git-archive-branches git-upstream-self mk_remote_repo pom tcd scrabble springspec)
 
 commands.each do |command_name|
   cookbook_file "#{ENV['HOME']}/bin/#{command_name}" do
