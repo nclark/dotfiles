@@ -32,6 +32,7 @@ set foldenable
 set foldmethod=indent
 set foldlevel=100
 set foldopen-=undo
+set foldminlines=0
 
 " autosave
 autocmd BufLeave,FocusLost * silent! wall
