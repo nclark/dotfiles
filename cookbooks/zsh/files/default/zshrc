@@ -27,4 +27,4 @@ source $HOME/.rvm/scripts/rvm
 eval "$(direnv hook zsh)"
 
 ## asdf
-test -s "$HOME/.asdf/asdf.sh" && source "$HOME/.asdf/asdf.sh"
+test -s "/usr/local/opt/asdf/asdf.sh" && source "/usr/local/opt/asdf/asdf.sh"
