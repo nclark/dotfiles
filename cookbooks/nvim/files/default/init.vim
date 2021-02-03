@@ -51,3 +51,8 @@ augroup END
 
 source ~/.config/nvim/keymap.vim
 source ~/.config/nvim/ftkeymap.vim
+
+" Stop NERDTree from opening when vim opens, maybe
+" https://stackoverflow.com/questions/13073310/stop-nerdtree-opening-when-vim-starts
+let g:NERDTreeHijackNetrw=0
+
