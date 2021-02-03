@@ -7,7 +7,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
 
 inoremap <silent><expr> <TAB>
 		\ pumvisible() ? "\<C-n>" :
@@ -187,5 +186,4 @@ inoremap <S-D-e> :History<CR>
 nnoremap <leader>b :Buffer<cr>
 
 call plug#end()
-
 
