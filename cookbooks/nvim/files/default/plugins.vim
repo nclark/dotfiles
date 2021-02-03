@@ -27,6 +27,7 @@ Plug 'scrooloose/nerdcommenter'
   let g:NERDDefaultAlign = 'left'
   let g:NERDTrimTrailingWhitespace = 1
   let g:NERDCommentEmptyLines = 1
+	let g:NERDTreeHijackNetrw=0
 
   map <D-/> <plug>NERDCommenterToggle<CR>
   imap <D-/> <Esc><plug>NERDCommenterToggle<CR>i
@@ -169,8 +170,7 @@ nnoremap <silent> <leader> :WhichKey ';'<CR>
 set timeoutlen=500
 
 Plug 'rizzatti/dash.vim'
-:nmap <silent> <leader>k <Plug>DashSearch
-
+nnoremap <Leader>k :Dash<CR>
 Plug 'ludovicchabant/vim-gutentags'
 
 Plug 'junegunn/fzf'
