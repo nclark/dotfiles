@@ -41,7 +41,7 @@ alias puma='ruby -r ~/.zsh/support/puma.rb'
 alias repry='fc -e - mix\ test=iex\ -S\ mix\ test\ --trace mix\ test' # re-run last `mix test` with iex and trace
 
 # longor passwerds
-alias pwgen='/usr/local/bin/pwgen -C -y --symbols --ambiguous 15'
+alias pwgen='PWGEN=$(/usr/local/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
 
 # AWS
 alias awsc='aws codecommit --profile git'
