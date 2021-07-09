@@ -43,3 +43,5 @@
   private = yes
 [grep]
 	lineNumber = true
+[init]
+	defaultBranch = master
