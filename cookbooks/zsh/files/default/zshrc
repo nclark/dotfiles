@@ -28,3 +28,6 @@ eval "$(direnv hook zsh)"
 
 ## asdf
 test -s "/usr/local/opt/asdf/asdf.sh" && source "/usr/local/opt/asdf/asdf.sh"
+
+## minikube <-> docker
+minikube status > /dev/null && eval $(minikube docker-env)

@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'tempfile'
+
 def yellow(text)
   "\e[33m#{text}\e[0m"
 end
@@ -12,17 +14,38 @@ def bold(text)
   "\e[1m#{text}\e[22m"
 end
 
-all_branches = `git branch`
-current_branch = `git branch | grep '*' | cut -d" " -f2`.chomp
-protected_branches = %W(master flux staging * #{current_branch})
-archiveable_branches = all_branches.split.reject! {|branch_name| protected_branches.include?(branch_name)}
+def write_branches
+  Tempfile.new.tap do |f|
+    `git branch`.split.reject {|e| e == '*'}.each do |branch|
+      f.write "#{branch}\n"
+    end
 
-archiveable_branches.each do |branch_name|
-  print "#{bold(branch_name)} - #{green('Archive? [y/N] >')} "
-
-  if STDIN.gets.chomp == 'y'
-    puts yellow("Archiving...")
-    system("git archive-branch #{branch_name}")
-    puts yellow("done.")
+    f.close
   end
 end
+
+def choose_branches(tempfile)
+  system "vim #{tempfile.path}"
+
+  tempfile.open
+  tempfile.read.split
+end
+
+def archive_branches(branches)
+  branches.each { |branch| puts branch }
+
+  print "\nReady to proceed [y/N] > "
+
+  if STDIN.gets.chomp == 'y'
+    branches.each do |branch|
+
+      puts yellow("Archiving...")
+      system("git archive-branch #{branch}")
+      puts yellow("done.")
+    end
+  end
+end
+
+tempfile = write_branches
+branches = choose_branches(tempfile)
+archive_branches(branches)
