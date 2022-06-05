@@ -62,3 +62,9 @@ x-times() {
 
   for i in `seq 1 $count`; do $@; done
 }
+
+archive() {
+  command="su archivebox -c 'archivebox $*'"
+
+  ssh -tt unraid.local docker exec -it archivebox $command
+}
