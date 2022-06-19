@@ -1,0 +1,16 @@
+#!/bin/sh
+
+ls -d \
+  /Applications/*.app \
+  /System/Applications/*.app \
+  /System/Applications/*/*.app \
+  /System/Library/PreferencePanes/*.prefPane \
+| choose \
+  -f "AnonymousPro" \
+  -s 24 \
+  -n 15 \
+  -w 40 \
+  -b FFFFFF \
+  -c 000000 \
+  -u \
+| xargs -I {} open "{}"

@@ -1,0 +1,9 @@
+doc
+pkg
+*.swp
+*.patch
+.DS_Store
+tags
+log/*
+NERD_tree*
+.envrc

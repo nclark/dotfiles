@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+def scrabblify(str)
+  str.chars.collect do |char|
+    if char.match?(/[A-Za-z]/)
+      ":scrabble_#{char}:"
+    elsif char == " "
+      "   "
+    else
+      char
+    end
+  end.join
+end
+
+
+if ARGV.join == "-l"
+  while true do
+    print "> "
+    str = STDIN.gets
+    puts scrabblify(str)
+    puts %x;echo "#{scrabblify(str)}" | pbcopy;
+  end
+else
+  puts scrabblify(ARGV.join(" "))
+end
+

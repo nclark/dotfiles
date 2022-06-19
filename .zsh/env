@@ -1,0 +1,12 @@
+home_bin=$HOME/bin
+asdf_bin=$HOME/.asdf/shims
+current_bin=./bin
+homebrew_bin=/opt/homebrew/bin
+homebrew_sbin=/opt/homebrew/sbin
+
+PATH=$current_bin:$homebrew_bin:$homebrew_sbin:$asdf_bin:$home_bin:$PATH
+
+export EDITOR=/opt/homebrew/bin/nvim
+export ERL_AFLAGS="-kernel shell_history enabled"
+export HOMEBREW_NO_ENV_HINTS=true
+export XDG_CONFIG_HOME=$HOME/.config

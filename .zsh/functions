@@ -1,0 +1,36 @@
+git_prompt_info() {
+  REF="$(git branch 2>/dev/null|grep '*'|cut -d" " -f2)"
+  echo "($REF)" 
+}
+
+pr() {
+  dir=$(ruby -r ~/.zsh/support/projects.rb -le "puts Project.find('$1')")
+  cd $dir
+
+  if [ $2 ]; then
+    mvim
+  fi
+}
+
+fp() {
+  pwd=$(pwd)
+
+  echo ${pwd}/$1 | pbcopy
+}
+
+tar_dat_shit_up() {
+  tar czvf $1.tar.gz $1/
+}
+  
+x-times() {
+  count=$1
+  shift
+
+  for i in `seq 1 $count`; do $@; done
+}
+
+archive() {
+  command="su archivebox -c 'archivebox $*'"
+
+  ssh -tt unraid.local docker exec -it archivebox $command
+}

@@ -1,0 +1,28 @@
+# Note: If you use this file, be sure to add your patterns above
+# any yadm-auto-excludes line, as all lines below this can be overwritten
+# by yadm when encrypting data.
+#
+# https://yadm.io/docs/faq#directory-creation
+
+.config/nicotine/*
+.config/neofetch/*
+.zsh/host
+.config/gh/hosts.yml
+
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+# yadm-auto-excludes
+# This section is managed by yadm.
+# Any edits below will be lost.
+.aws/*
+.ssh/*
+.private/*
+.zsh/private
+.zsh/host
+bin/panopticon
+bin/squanchy
+bin/bw-helper

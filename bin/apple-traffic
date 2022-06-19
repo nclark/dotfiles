@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# allow apple traffic
+
+COMMAND=$1
+SILENT=$2
+
+. $(dirname "$0")/support/firewall-functions.sh
+
+case $COMMAND in
+  allow)
+    disable_apple_firewall_rule
+    disable_pihole
+    if ! [ $SILENT ]; then
+      echo "apple traffic allowed"
+    fi
+    ;;
+  deny)
+    enable_apple_firewall_rule
+    enable_pihole
+    if ! [ $SILENT ]; then
+      echo "apple traffic denied"
+    fi
+    ;;
+  *)
+    echo "usage: $0 [allow|deny]"
+    ;;
+esac
+

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# temporary cd
+
+cd $1 ; zsh ; cd -
+

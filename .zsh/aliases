@@ -1,0 +1,19 @@
+# core-util aliases
+alias ll='gls --color -aFhl'
+alias ls='gls --color'
+alias less='/usr/bin/less -r'
+
+# editor
+alias vi='nvim'
+alias v='f() { if ! [ $1 ]; then; DIR="."; else; DIR=$1; fi; vimr --cwd $DIR};f'
+alias m='f() { if ! [ $1 ]; then; DIR="."; else; DIR=$1; fi; vimr --cwd $DIR};f'
+
+# work
+alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
+alias mmdpuma='$(head -1 Procfile | cut -d":" -f2)'
+
+# misc unorganized 
+alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+alias pwgen='PWGEN=$(/usr/local/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
+alias gitx='fork'
+

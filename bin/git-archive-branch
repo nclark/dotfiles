@@ -1,0 +1,9 @@
+#!/bin/sh
+
+for i in $*
+do
+  if git push archive $i; then
+    git branch -D $i
+  fi
+done
+

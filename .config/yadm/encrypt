@@ -1,0 +1,8 @@
+.aws/*
+.ssh/*
+.private/*
+.zsh/private
+.zsh/host
+bin/panopticon
+bin/squanchy
+bin/bw-helper

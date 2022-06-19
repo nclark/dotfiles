@@ -1,0 +1,115 @@
+#!/usr/bin/env sh
+
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+# https://felixkratz.github.io/SketchyBar/config/items
+# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+
+source $HOME/.zsh/host
+
+alias s="sketchybar"
+
+PLUGINS="$HOME/.config/sketchybar/plugins"
+DEFAULT_ICON_FONT="Hack Nerd Font:Bold:17.0"
+DEFAULT_LABEL_FONT="Hack Nerd Font:Bold:14.0"
+SPACE_HIGHLIGHT_ICON_COLOR="0xFF00EEFF"
+SPACE_ICON_COLOR="0xFFFFFFFF"
+SPACE_FONT="Hack Nerd Font:Bold"
+SPACE_CLICK="yabai -m space --focus"
+
+s --add event yabai_window
+
+s -m --add event window_focus \
+     --add event title_change
+
+s --bar height=33                            \
+        position=top                         \
+        padding_left=15                      \
+        padding_right=20                     \
+        color=0x4DFFFFFF                     \
+        border_color=0xff000000              \
+        border_width=0                       \
+        y_offset=-2                          \
+        margin=-2                            \
+                                             \
+  --default updates=when_shown               \
+            drawing=on                       \
+            icon.font="$DEFAULT_ICON_FONT"   \
+            icon.color=0xffffffff            \
+            label.font="$DEFAULT_LABEL_FONT" \
+            label.color=0xffffffff           \
+            label.padding_left=4             \
+            label.padding_right=4            \
+            icon.padding_left=8              \
+            icon.padding_right=8
+
+if [ $WORK_MACHINE = true ]; then
+  SPACES="browser,1,
+        slack,2,
+        code,3,, 
+        trello,4,
+        personal,5,
+        prod,6,,
+        comm,7,,"
+else
+  SPACES="browser,1,
+        terminal,2,
+        misc,3,
+        prod,4,, "
+fi
+
+for i in $SPACES
+do
+  NAME=`echo $i | cut -d"," -f1`
+  NUMBER=`echo $i | gcut -d"," -f2`
+  ICON=`echo $i | gcut -d"," -f3-10 | sed -e "s/,/ /"`
+
+  if [ $WORK_MACHINE == true -a $NUMBER == 7 ] || [ ! $WORK_MACHINE == true -a $NUMBER == 4 ]; then
+    LABEL=""
+  else
+    LABEL=""
+  fi
+
+  s --add space $NAME left                             \
+    --set $NAME associated_display=1                   \
+    associated_space=$NUMBER                           \
+    label=""                                          \
+    label.color=$SPACE_ICON_COLOR                      \
+    label.padding_right=10                             \
+    icon="$NUMBER $ICON "                              \
+    icon.font="$SPACE_FONT:14.0"                       \
+    icon.color=$SPACE_ICON_COLOR                       \
+    icon.highlight_color=$SPACE_HIGHLIGHT_ICON_COLOR   \
+    click_script="$SPACE_CLICK $NUMBER"
+done
+
+s -m --add item title left                         \
+     --set title script="$PLUGINS/window_title.sh" \
+     --subscribe title window_focus                \
+                       front_app_switched          \
+                       space_change                \
+                       title_change
+
+s --add item  clock right                \
+  --set clock update_freq=10             \
+              script="$PLUGINS/clock.sh" \
+              label.padding_left=0       \
+              icon.padding_left=0
+
+# note: sketchybar --query default_menu_items
+
+for i in \
+  "iStat Menus Status,com.bjango.istatmenus.battery" \
+  "Control Center,FocusModes"                        \
+  "iStat Menus Status,com.bjango.istatmenus.network" \
+  "iStat Menus Status,com.bjango.istatmenus.sensors" \
+  "WireGuard"                                        \
+  "Amphetamine"                                      \
+  "MeetingBar"
+do
+  s --add alias "$i" right          \
+    --set "$i" icon.padding_left=0  \
+               icon.padding_right=0 \
+               label.padding_left=0 \
+               label.padding_right=0
+done
+

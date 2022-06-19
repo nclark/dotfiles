@@ -1,0 +1,16 @@
+#!/bin/sh
+
+LINES_WITH_MARKDOWN='^#%'
+LINES_WITH_KEYBINDINGS='.*:.*#'
+MARKDOWN_SUB='s/^#.{2}//'
+KEYBINDING_SUB='s/^(.+):.+#/- `\1`:/'
+BACKTICK_SUB='s/0x32/`/'
+QUESTIONMARK_SUB='s/0x2C/?/'
+MARKDOWN_THEME='826.2742'
+
+grep -e $LINES_WITH_MARKDOWN -e $LINES_WITH_KEYBINDINGS $HOME/.config/skhd/skhdrc | \
+  sed -r "$KEYBINDING_SUB" | \
+  sed -r $MARKDOWN_SUB | \
+  sed -r $BACKTICK_SUB | \
+  sed -r $QUESTIONMARK_SUB | \
+  mdv -t $MARKDOWN_THEME -

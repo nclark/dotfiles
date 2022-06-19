@@ -1,0 +1,14 @@
+#!/bin/sh
+
+source $HOME/.zsh/private
+
+myip() {
+  curl -H "X-Api-Key: ${MYIP_APIKEY}" "${MYIP_URL}"
+}
+
+if ! [ -z $1 ]; then
+  myip | terminal-notifier -title "Current IP"
+else
+  myip ; echo
+fi
+

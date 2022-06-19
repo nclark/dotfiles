@@ -1,0 +1,130 @@
+#!/bin/sh
+
+function install_if_missing {
+  if ! echo $VERSIONS | grep $1 > /dev/null ; then brew install $1; fi
+}
+
+function install_cask_if_missing {
+  if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask $1; fi
+}
+
+VERSIONS=$(brew ls --versions)
+CASKS=$(brew ls --casks)
+
+# taps
+for i in \
+  xwmx/taps \
+  homebrew/cask-fonts \
+  felixkratz/formulae
+do
+  if ! [ -d /usr/local/Homebrew/Library/Taps/$(dirname $i) ]; then brew tap $i; fi
+done
+
+# normal
+for i in \
+  asdf \
+  awscli \
+  bitwarden-cli \
+  choose-gui \
+  coreutils \
+  direnv \
+  fzf \
+  gh \
+  gnupg \
+  ifstat \
+  inxi \
+  ipcalc \
+  jq \
+  lego \
+  mas \
+  mdv \
+  neofetch \
+  neovim \
+  pass \
+  pyenv \
+  pillow \
+  pwgen \
+  qrencode \
+  ranger \
+  rust \
+  sf-symbols \
+  sketchybar \
+  speedtest-cli \
+  syncthing \
+  the_silver_searcher \
+  terminal-notifier \
+  timg \
+  wireguard-tools \
+  wget
+do
+  install_if_missing $i
+done
+
+# casks
+for i in \
+  1password \
+  balenaetcher \
+  bartender \
+  bitwarden \
+  cleanshot \
+  dash \
+  docker \
+  eloston-chromium \
+  fantastical \
+  fluid \
+  flux \
+  font-anonymous-pro \
+  font-bitstream-vera-sans-mono-nerd-font \
+  font-hack-nerd-font \
+  fork \
+  iina \
+  istat-menus \
+  keyboardcleantool \
+  kitty \
+  librewolf \
+  meetingbar \
+  monodraw \
+  nextcloud \
+  numi \
+  obsidian \
+  plexamp \
+  slack \
+  tableplus \
+  textmate \
+  the-unarchiver \
+  time-out \
+  transmit \
+  vimr 
+do
+  install_cask_if_missing $i
+done
+
+# cask no quarantine
+for i in \
+  middleclick
+do
+  if ! echo $CASKS | grep $i > /dev/null ; then brew install --cask --no-quarantine $i; fi
+done
+
+# work vs personal
+if ! [ $WORK_MACHINE == "true" ]; then
+  install_if_missing nicotine-plus
+
+  for i in \
+    sonixd \
+    telegram-desktop \
+    tor-browser
+  do
+    install_cask_if_missing $i
+  done
+else
+  install_if_missing saml2aws
+
+  for i in \
+    microsoft-teams \
+    tunnelblick
+  do
+    install_cask_if_missing $i
+  done
+fi
+

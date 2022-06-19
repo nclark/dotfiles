@@ -1,0 +1,10 @@
+#!/bin/sh
+
+KITTY_HELP_PROFILE="$HOME/.config/kitty/help.conf"
+KITTY_TAB_TITLE="Command Help"
+
+kitty \
+  --config $KITTY_HELP_PROFILE \
+  -T "$KITTY_TAB_TITLE" \
+  --hold \
+  $HOME/bin/print-help

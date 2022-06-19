@@ -1,0 +1,45 @@
+#!/bin/sh
+
+function install_plugin {
+  NAME=$1
+  REPO=$2
+
+  if [[ $REPO ]]; then
+    URL=$REPO
+  else
+    URL="https://github.com/asdf-vm/asdf-$NAME.git"
+  fi
+
+  if ! asdf plugin list | grep $NAME > /dev/null; then
+    asdf plugin-add $NAME $URL
+  fi
+}
+
+function install {
+  NAME=$1
+  VERSION=$2
+
+  if ! asdf where $NAME $VERSION > /dev/null; then
+    asdf install $NAME $VERSION
+  fi
+}
+
+install_plugin ruby
+install ruby 2.7.6
+install ruby 3.1.2
+asdf global ruby 2.7.6
+
+install_plugin erlang
+install erlang 25.0.3
+asdf global erlang 25.0.3
+
+install_plugin elixir
+install elixir 1.13.4-otp-25
+asdf global elixir 1.13.4-otp-25
+
+install_plugin nodejs
+install nodejs 18.7.0
+asdf global nodejs 18.7.0
+
+install_plugin python https://github.com/danhper/asdf-python.git
+install python 2.7.18

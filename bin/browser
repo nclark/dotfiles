@@ -1,0 +1,20 @@
+#!/bin/sh
+
+source $HOME/.zsh/host
+
+WORK_BROWSER="/Applications/Chromium.app/Contents/MacOS/Chromium"
+PERSONAL_BROWSER="/Applications/LibreWolf.app/Contents/MacOS/librewolf --browser --foreground"
+
+if [ "$WORK_MACHINE" == "true" ]; then
+  if [ "$1" != "--invert" ]; then
+    $WORK_BROWSER
+  else
+    $PERSONAL_BROWSER
+  fi
+else
+  if [ "$1" != "--invert" ]; then
+    $PERSONAL_BROWSER
+  else
+    $WORK_BROWSER
+  fi
+fi

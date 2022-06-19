@@ -1,0 +1,31 @@
+. $HOME/.zsh/host
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=display_changed action="$HOME/.config/yabai/set_top_padding.sh"
+
+yabai -m config layout stack
+yabai -m config window_shadow float
+
+$HOME/.config/yabai/set_top_padding.sh
+yabai -m config bottom_padding 5
+yabai -m config left_padding 5
+yabai -m config right_padding 5
+yabai -m config window_gap 6
+
+yabai -m config focus_follows_mouse autofocus
+# yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier ctrl
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+
+# App specific rules
+yabai -m rule --add app="(Preferences|Install|Opening.+)" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Fantastical Helper$" manage=off
+yabai -m rule --add app="^choose$" manage=off
+yabai -m rule --add title="^Command Help$" manage=off
+
+# SketchyBar events
+yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
