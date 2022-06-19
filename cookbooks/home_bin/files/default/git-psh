@@ -1,7 +1,0 @@
-#!/bin/sh
-
-git add . 
-chmod -x .git/hooks/pre-commit
-git commit -a -m '***** WORKING CHANGES ****'
-chmod +x .git/hooks/pre-commit
-

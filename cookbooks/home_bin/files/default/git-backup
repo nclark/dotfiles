@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-
-original_branch_name = `git rev-parse --abbrev-ref HEAD`.chomp
-backup_branch_name = "backup/#{Time.now.to_i}/#{original_branch_name}"
-
-system("git branch #{backup_branch_name}")
-
-puts "\e[32mBacked up `#{original_branch_name}` as `#{backup_branch_name}`\e[0m"

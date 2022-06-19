@@ -1,3 +1,0 @@
-# Description
-zsh config
-

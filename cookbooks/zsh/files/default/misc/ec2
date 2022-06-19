@@ -1,3 +1,0 @@
-# export EC2_PRIVATE_KEY="$(/bin/ls $HOME/.ec2/nclark/pk-*.pem)"
-# export EC2_CERT="$(/bin/ls $HOME/.ec2/nclark/cert-*.pem)"
-#

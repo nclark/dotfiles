@@ -1,9 +1,0 @@
-#!/usr/bin/env ruby
-
-repo = File.expand_path(ARGV[0])
-
-["cd /git ; git clone --bare #{repo}",
- "git remote add archive file:///git/#{File.basename(repo)}"].each do |command|
-  system(command)
-end
-
