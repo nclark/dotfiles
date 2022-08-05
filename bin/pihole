@@ -3,27 +3,24 @@
 # pause/unpause pihole
 
 COMMAND=$1
-SILENT=$2
+DURATION=${2:-30}
+
 
 . $(dirname "$0")/support/firewall-functions.sh
 
 case $COMMAND in
-  --pause)
-    disable_pihole 30
+  --pause|--disable)
+    disable_pihole $DURATION
 
-    if ! [ $SILENT ]; then
-      terminal-notifier -message "PiHole disabled for 30 seconds"
-    fi
+    terminal-notifier -message "PiHole paused for $DURATION seconds"
     ;;
-  --unpause)
+  --unpause|--enable)
     enable_pihole
 
-    if ! [ $SILENT ]; then
-      terminal-notifier -message "PiHole enabled"
-    fi
+    terminal-notifier -message "PiHole unpaused"
     ;;
   *)
-    echo "usage: $0 [--pause|--unpause]"
+    echo "usage: $0 [--pause|--unpause] [DURATION=30]"
     ;;
 esac
 
