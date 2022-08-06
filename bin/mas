@@ -2,15 +2,8 @@
 
 # utilitiy script for using the mac app store from time to time
 
-if [ -e /usr/local/bin/mas ];
-then
-  MAS="/usr/local/bin/mas"
-else
-  MAS="/opt/homebrew/bin/mas"
-fi
-
 apple-traffic allow --silent
 
-$MAS $*
+/opt/homebrew/bin/mas $*
 
 apple-traffic deny --silent
