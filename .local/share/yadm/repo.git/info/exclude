@@ -8,6 +8,14 @@
 .config/neofetch/*
 .zsh/host
 .config/gh/hosts.yml
+.aws/*
+.ssh/*
+.private/*
+.zsh/private
+.zsh/host
+bin/panopticon
+bin/squanchy
+bin/bw-helper
 
 # git ls-files --others --exclude-from=.git/info/exclude
 # Lines that start with '#' are comments.
@@ -18,11 +26,3 @@
 # yadm-auto-excludes
 # This section is managed by yadm.
 # Any edits below will be lost.
-.aws/*
-.ssh/*
-.private/*
-.zsh/private
-.zsh/host
-bin/panopticon
-bin/squanchy
-bin/bw-helper
