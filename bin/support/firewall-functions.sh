@@ -31,7 +31,7 @@ disable_apple_firewall_rule() {
 }
 
 disable_pihole() {
-  DISABLE_FOR=${1:-7200}
+  DISABLE_FOR=${1:-900}
 
   curl -ks "${PIHOLE_BASE_URL}&disable=${DISABLE_FOR}" > /dev/null
 }

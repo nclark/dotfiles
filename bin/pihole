@@ -5,7 +5,6 @@
 COMMAND=$1
 DURATION=${2:-30}
 
-
 . $(dirname "$0")/support/firewall-functions.sh
 
 case $COMMAND in
