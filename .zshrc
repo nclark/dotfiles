@@ -8,9 +8,14 @@ source ~/.zsh/private
 source ~/.zsh/host
 
 ## prompt
-setopt prompt_subst
+setopt PROMPT_SUBST
 
-PS1='[%n]%15<...<%~%<<% $(git_prompt_info) # '
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+PROMPT='[%9c]%{%F{green}%}$(parse_git_branch)%{%F{none}%} # '
+
 
 ## history
 bindkey '^R' history-incremental-search-backward
@@ -20,7 +25,4 @@ eval `gdircolors ~/.dir_colors`
 
 ## direnv
 eval "$(direnv hook zsh)"
-
-## asdf
-test -s "/usr/local/opt/asdf/asdf.sh" && source "/usr/local/opt/asdf/asdf.sh"
 
