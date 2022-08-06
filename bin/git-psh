@@ -1,7 +1,14 @@
 #!/bin/sh
 
 git add . 
-chmod -x .git/hooks/pre-commit
+
+if [ -e .git/hooks/pre-commit ]; then 
+  mv .git/hooks/pre-commit .git/hooks/pre-commit.disabled
+fi
+
 git commit -a -m '***** WORKING CHANGES ****'
-chmod +x .git/hooks/pre-commit
+
+if [ -e .git/hooks/pre-commit.disabled ]; then 
+  mv .git/hooks/pre-commit.disabled .git/hooks/pre-commit
+fi
 

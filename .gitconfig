@@ -23,6 +23,7 @@
   sc = stash clear
   sa = stash apply
   sd = diff stash@{0}
+  pop = !git reset HEAD^ && git status
 [core]
   excludesfile = /Users/nclark/.gitignore
   editor = nvim
