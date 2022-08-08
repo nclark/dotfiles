@@ -68,6 +68,7 @@ $HOME/.config/bin/install-macapps
 - [bitwarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [floccus](https://addons.mozilla.org/en-US/firefox/addon/floccus/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [Cookie Popup Blocker](https://addons.mozilla.org/en-US/firefox/addon/cookie-popup-blocker/)
+- `about:config` -> `full-screen-api.macos-native-full-screen` -> true
 
 ### Chromium
   - [Chromium Web Store](https://github.com/NeverDecaf/chromium-web-store)
