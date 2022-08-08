@@ -26,6 +26,7 @@ for i in \
   awscli \
   bitwarden-cli \
   choose-gui \
+  cloudflared \
   coreutils \
   direnv \
   fzf \
@@ -34,7 +35,9 @@ for i in \
   ifstat \
   inxi \
   ipcalc \
+  joplin-cli \
   jq \
+  hugo \
   lego \
   mas \
   mdv \
@@ -79,6 +82,7 @@ for i in \
   fork \
   iina \
   istat-menus \
+  joplin \
   keyboardcleantool \
   kitty \
   librewolf \
