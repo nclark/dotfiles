@@ -7,6 +7,11 @@ yabai -m signal --add event=display_changed action="$HOME/.config/yabai/set_top_
 yabai -m config layout stack
 yabai -m config window_shadow float
 
+
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.98
+
 $HOME/.config/yabai/set_top_padding.sh
 yabai -m config bottom_padding 5
 yabai -m config left_padding 5
@@ -14,17 +19,26 @@ yabai -m config right_padding 5
 yabai -m config window_gap 6
 
 yabai -m config focus_follows_mouse autofocus
-# yabai -m config mouse_follows_focus on
 yabai -m config mouse_modifier ctrl
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 
 # App specific rules
+## grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+
 yabai -m rule --add app="(Preferences|Install|Opening.+)" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
+
+if [ $WORK_MACHINE == "true" ]; then
+  yabai -m rule --add app="Mail" space=7 grid=10:10:0:0:5:10
+  yabai -m rule --add app="Obsidian" space=7 grid=10:10:6:0:5:10
+else
+  yabai -m rule --add app="Mail" space=4 grid=10:10:0:0:5:10
+  yabai -m rule --add app="Obsidian" space=4 grid=10:10:6:0:5:10
+fi
 
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
