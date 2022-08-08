@@ -126,7 +126,8 @@ else
 
   for i in \
     microsoft-teams \
-    tunnelblick
+    tunnelblick \
+    zoom
   do
     install_cask_if_missing $i
   done
