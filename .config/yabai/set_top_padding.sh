@@ -2,9 +2,10 @@
 
 HEIGHT=$(yabai -m query --displays | jq '.[].frame.h')
 
+# note - can I get rid of this ?
 if [ $HEIGHT -lt 1080 ]; then
-  yabai -m config top_padding 5
+  yabai -m config external_bar all:38:0
 else
-  yabai -m config top_padding 38
+  yabai -m config external_bar all:38:0
 fi
 
