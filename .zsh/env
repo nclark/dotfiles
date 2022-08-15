@@ -10,3 +10,4 @@ export EDITOR=/opt/homebrew/bin/nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
 export HOMEBREW_NO_ENV_HINTS=true
 export XDG_CONFIG_HOME=$HOME/.config
+export TERM="xterm"
