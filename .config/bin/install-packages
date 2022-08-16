@@ -66,6 +66,7 @@ done
 # casks
 for i in \
   1password \
+  aether \
   balenaetcher \
   bartender \
   bitwarden \
