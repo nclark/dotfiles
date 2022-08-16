@@ -16,4 +16,6 @@ alias mmdpuma='$(head -1 Procfile | cut -d":" -f2)'
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias pwgen='PWGEN=$(/usr/local/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
 alias gitx='fork'
-
+alias s='wishlist -c $HOME/.config/wishlist/servers.yml ; rm wishlist.log'
+alias docker-compose='docker compose'
+alias flocker="DOCKER_CONTEXT=florflok docker"
