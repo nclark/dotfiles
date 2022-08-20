@@ -29,6 +29,7 @@ for i in \
   cloudflared \
   coreutils \
   direnv \
+  fswatch \
   fzf \
   gh \
   gnupg \

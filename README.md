@@ -26,8 +26,10 @@ git clone [other repo] $HOME/workspace/dotfiles-private
 $HOME/.config/bin/install-packages
 $HOME/.config/bin/install-asdf-packages
 yadm decrypt
+yadm alt
 mas signin # Note - currently broken for M1, signin via app store
 $HOME/.config/bin/install-macapps
+sudo reboot # launchctl is too confusing... just let it pick up the new service
 ```
 
 ## Encrypt files

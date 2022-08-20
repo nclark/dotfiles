@@ -1,0 +1,13 @@
+#!/bin/sh
+
+MUSIC_SYNC_PATH="$HOME/Sync/Music"
+MUSIC_SYNC_LOCK=/tmp/music-sync.lock
+
+fswatch -x -o -0 $MUSIC_SYNC_PATH | while read -d "" event; do
+  if ! [ -e $MUSIC_SYNC_LOCK ]; then
+    touch $MUSIC_SYNC_LOCK
+    rsync -r --exclude '*.DS_Store*' $HOME/Sync/Music/ unraid.local:/mnt/user/music
+    rm $MUSIC_SYNC_LOCK
+  fi
+done
+
