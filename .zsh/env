@@ -3,8 +3,9 @@ asdf_bin=$HOME/.asdf/shims
 current_bin=./bin
 homebrew_bin=/opt/homebrew/bin
 homebrew_sbin=/opt/homebrew/sbin
+go_bin=$HOME/.asdf/installs/golang/1.19/packages/bin
 
-PATH=$current_bin:$homebrew_bin:$homebrew_sbin:$asdf_bin:$home_bin:$PATH
+PATH=$current_bin:$homebrew_bin:$homebrew_sbin:$asdf_bin:$go_bin:$home_bin:$PATH
 
 export EDITOR=/opt/homebrew/bin/nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
