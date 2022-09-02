@@ -104,7 +104,8 @@ for i in \
   "iStat Menus Status,com.bjango.istatmenus.sensors" \
   "WireGuard"                                        \
   "Amphetamine"                                      \
-  "MeetingBar"
+  "MeetingBar"                                       \
+  "Gestimer"
 do
   s --add alias "$i" right          \
     --set "$i" icon.padding_left=0  \
