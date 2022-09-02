@@ -1,137 +1,167 @@
 #!/bin/sh
 
+declare -a TAPS=(
+  felixkratz/formulae
+  homebrew/cask-fonts
+  xwmx/taps
+  heroku/brew
+)
+
+declare -a PACKAGES=(
+  amazon-ecs-cli
+  asdf
+  awscli
+  bitwarden-cli
+  choose-gui
+  cloudflared
+  coreutils
+  direnv
+  fzf
+  gh
+  glow
+  gnupg
+  ifstat
+  inxi
+  ipcalc
+  joplin-cli
+  jq
+  hugo
+  lego
+  mas
+  mdv
+  neofetch
+  neovim
+  pass
+  pyenv
+  pillow
+  pwgen
+  qrencode
+  ranger
+  rust
+  sf-symbols
+  sketchybar
+  speedtest-cli
+  syncthing
+  the_silver_searcher
+  terminal-notifier
+  timg
+  wireguard-tools
+  wget
+)
+
+declare -a PERSONAL_PACKAGES=(
+  nicotine-plus
+)
+
+declare -a WORK_PACKAGES=(
+  heroku
+  saml2aws
+  session-manager-plugin
+)
+
+declare -a CASKS=(
+  1password
+  balenaetcher
+  bartender
+  bitwarden
+  cleanshot
+  dash
+  docker
+  drawio
+  eloston-chromium
+  fantastical
+  fluid
+  flux
+  font-anonymous-pro
+  font-bitstream-vera-sans-mono-nerd-font
+  font-hack-nerd-font
+  fork
+  iina
+  istat-menus
+  joplin
+  keyboardcleantool
+  kitty
+  meetingbar
+  monodraw
+  nextcloud
+  numi
+  obsidian
+  plexamp
+  postman
+  slack
+  tableplus
+  textmate
+  the-unarchiver
+  time-out
+  transmit
+  vimr 
+)
+
+declare -a CASKS_NO_QUARANTINE=(
+  librewolf
+  middleclick
+)
+
+declare -a PERSONAL_CASKS=(
+  sonixd
+  telegram-desktop
+  tor-browser
+)
+
+declare -a WORK_CASKS=(
+  microsoft-teams
+  phantomjs
+  tunnelblick
+  vmware-fusion
+  zoom
+)
+
 function install_if_missing {
   if ! echo $VERSIONS | grep $1 > /dev/null ; then brew install $1; fi
 }
 
 function install_cask_if_missing {
-  if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask $1; fi
+  if [[ -n "$2" && $2 == "no-quarantine" ]]; then
+    if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask --no-quarantine $1; fi
+  else
+    if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask $1; fi
+  fi
 }
 
 VERSIONS=$(brew ls --versions)
+
 CASKS=$(brew ls --casks)
 
-# taps
-for i in \
-  xwmx/taps \
-  homebrew/cask-fonts \
-  felixkratz/formulae
-do
+for i in ${TAPS[@]}; do
   if ! [ -d /usr/local/Homebrew/Library/Taps/$(dirname $i) ]; then brew tap $i; fi
 done
 
-# normal
-for i in \
-  asdf \
-  awscli \
-  bitwarden-cli \
-  choose-gui \
-  cloudflared \
-  coreutils \
-  direnv \
-  fswatch \
-  fzf \
-  gh \
-  gnupg \
-  ifstat \
-  inxi \
-  ipcalc \
-  joplin-cli \
-  jq \
-  hugo \
-  lego \
-  mas \
-  mdv \
-  neofetch \
-  neovim \
-  pass \
-  pyenv \
-  pillow \
-  pwgen \
-  qrencode \
-  ranger \
-  rust \
-  sf-symbols \
-  sketchybar \
-  speedtest-cli \
-  syncthing \
-  the_silver_searcher \
-  terminal-notifier \
-  timg \
-  wireguard-tools \
-  wget
-do
+for i in ${PACKAGES[@]}; do
   install_if_missing $i
 done
 
-# casks
-for i in \
-  1password \
-  aether \
-  balenaetcher \
-  bartender \
-  bitwarden \
-  cleanshot \
-  dash \
-  docker \
-  drawio \
-  eloston-chromium \
-  fantastical \
-  fluid \
-  flux \
-  font-anonymous-pro \
-  font-bitstream-vera-sans-mono-nerd-font \
-  font-hack-nerd-font \
-  fork \
-  iina \
-  istat-menus \
-  joplin \
-  keyboardcleantool \
-  kitty \
-  librewolf \
-  meetingbar \
-  monodraw \
-  nextcloud \
-  numi \
-  obsidian \
-  plexamp \
-  slack \
-  tableplus \
-  textmate \
-  the-unarchiver \
-  time-out \
-  transmit \
-  vimr 
-do
+for i in ${CASKS[@]}; do
   install_cask_if_missing $i
 done
 
-# cask no quarantine
-for i in \
-  middleclick
-do
-  if ! echo $CASKS | grep $i > /dev/null ; then brew install --cask --no-quarantine $i; fi
+for i in ${CASKS_NO_QUARANTINE[@]}; do
+  install_cask_if_missing $i no-quarantine
 done
 
-# work vs personal
-if ! [ $WORK_MACHINE == "true" ]; then
-  install_if_missing nicotine-plus
+if [ $WORK_MACHINE == "true" ]; then
+  for i in ${WORK_PACKAGES[@]}; do
+    install_if_missing $i
+  done
 
-  for i in \
-    sonixd \
-    telegram-desktop \
-    tor-browser
-  do
+  for i in ${WORK_CASKS[@]}; do
     install_cask_if_missing $i
   done
 else
-  install_if_missing saml2aws
+  for i in ${PERSONAL_PACKAGES[@]}; do
+    install_if_missing $i
+  done
 
-  for i in \
-    microsoft-teams \
-    tunnelblick \
-    zoom
-  do
+  for i in ${PERSONAL_CASKS[@]}; do
     install_cask_if_missing $i
   done
 fi
