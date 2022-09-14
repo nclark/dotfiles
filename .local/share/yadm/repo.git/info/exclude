@@ -26,3 +26,11 @@ bin/bw-helper
 # yadm-auto-excludes
 # This section is managed by yadm.
 # Any edits below will be lost.
+.aws/*
+.ssh/*
+.private/*
+.zsh/private
+.zsh/host
+bin/panopticon
+bin/squanchy
+bin/bw-helper
