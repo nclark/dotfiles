@@ -30,14 +30,6 @@ yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
 
-if [ $WORK_MACHINE == "true" ]; then
-  yabai -m rule --add app="Obsidian" space=6 grid=10:10:6:0:5:10
-  yabai -m rule --add app="Mail" space=7 grid=10:10:0:0:5:10
-  yabai -m rule --add app="Fantastical" space=7 grid=10:10:0:0:5:10
-else
-  yabai -m rule --add app="Mail" space=4 grid=10:10:0:0:5:10
-  yabai -m rule --add app="Obsidian" space=4 grid=10:10:6:0:5:10
-fi
 
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
