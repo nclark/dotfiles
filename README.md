@@ -70,11 +70,13 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - [bitwarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [floccus](https://addons.mozilla.org/en-US/firefox/addon/floccus/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [Cookie Popup Blocker](https://addons.mozilla.org/en-US/firefox/addon/cookie-popup-blocker/)
+- [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
 - `about:config` -> `full-screen-api.macos-native-full-screen` -> true
 
 ### Chromium
   - [Chromium Web Store](https://github.com/NeverDecaf/chromium-web-store)
   - [bitwarden](https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb)
+  - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
 
 ### neovim
 - `/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip`
