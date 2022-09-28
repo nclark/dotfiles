@@ -68,15 +68,13 @@ ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Cont
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 
 #% ### Password helpers
+cmd + alt + ctrl - p: $HOME/bin/bw-helper --omni # Bitwarden Helper
 cmd + alt + ctrl - j: $HOME/bin/bw-helper --jumpcloud-otp # Copy Jumpcloud OTP
-cmd + alt + ctrl + shift - j: $HOME/bin/bw-helper --jumpcloud # Copy Jumpcloud password
-cmd + alt + ctrl - b: $HOME/bin/bw-helper --bitwarden # Copy bitwarden password
-cmd + alt + ctrl - m: $HOME/bin/bw-helper --mmd-db # MOMD database menu
 
 #% ### Miscellaneous
 ctrl + alt + cmd - i: $HOME/bin/myip --notify # My IP
-ctrl + alt + cmd - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
 ctrl + alt + cmd - r: $HOME/bin/restart-helper # Restart brew services
 ctrl + cmd + shift + alt - y : launchctl kickstart -k "gui/$UID/homebrew.mxcl.yabai" # Restart yabai
 ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketchybar
+ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
 
