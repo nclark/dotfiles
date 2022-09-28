@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SERVICE=$(echo "sketchybar\nskhd\nyabai" \
+            | choose \
+                -f "AnonymousPro" \
+                -s 24 \
+                -n 5 \
+                -w 20 \
+                -b FFFFFF \
+                -c 000000 \
+                -u \
+                -m
+         )
+
+brew services restart $SERVICE

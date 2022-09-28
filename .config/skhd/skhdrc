@@ -76,6 +76,7 @@ cmd + alt + ctrl - m: $HOME/bin/bw-helper --mmd-db # MOMD database menu
 #% ### Miscellaneous
 ctrl + alt + cmd - i: $HOME/bin/myip --notify # My IP
 ctrl + alt + cmd - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
+ctrl + alt + cmd - r: $HOME/bin/restart-helper # Restart brew services
 ctrl + cmd + shift + alt - y : launchctl kickstart -k "gui/$UID/homebrew.mxcl.yabai" # Restart yabai
 ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketchybar
 
