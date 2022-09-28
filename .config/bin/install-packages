@@ -25,6 +25,7 @@ declare -a PACKAGES=(
   ipcalc
   joplin-cli
   jq
+  noahgorstein/tap/jqp
   hugo
   lego
   mas
