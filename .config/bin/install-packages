@@ -69,7 +69,6 @@ declare -a CASKS=(
   dash
   docker
   drawio
-  eloston-chromium
   fantastical
   fluid
   flux
@@ -87,8 +86,10 @@ declare -a CASKS=(
   nextcloud
   numi
   obsidian
+  orion
   plexamp
   postman
+  signal
   slack
   tableplus
   textmate
@@ -99,6 +100,7 @@ declare -a CASKS=(
 )
 
 declare -a CASKS_NO_QUARANTINE=(
+  eloston-chromium
   librewolf
   middleclick
 )
