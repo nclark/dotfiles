@@ -24,12 +24,10 @@ yabai -m config mouse_action2 resize
 # App specific rules
 ## grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 
-yabai -m rule --add app="(Preferences|Install|Opening.+)" manage=off
-yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Fantastical Helper$" manage=off
+# yabai -m rule --add app="(Preferences|Install|Opening.+)" manage=off
+# yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
-
 
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"

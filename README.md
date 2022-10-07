@@ -66,6 +66,10 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 <string>true</string>
 ```
 
+### norg
+- `CC=/opt/homebrew/bin/gcc-12 nvim`
+- `:TSInstall norg`
+
 ### Librewolf
 - [bitwarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [floccus](https://addons.mozilla.org/en-US/firefox/addon/floccus/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
