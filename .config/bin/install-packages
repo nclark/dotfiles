@@ -70,6 +70,7 @@ declare -a CASKS=(
   docker
   drawio
   fantastical
+  finicky
   fluid
   flux
   font-anonymous-pro
