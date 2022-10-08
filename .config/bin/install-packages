@@ -65,6 +65,7 @@ declare -a CASKS=(
   balenaetcher
   bartender
   bitwarden
+  calibre
   cleanshot
   dash
   docker

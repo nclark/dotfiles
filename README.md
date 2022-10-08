@@ -75,6 +75,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - [floccus](https://addons.mozilla.org/en-US/firefox/addon/floccus/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [Cookie Popup Blocker](https://addons.mozilla.org/en-US/firefox/addon/cookie-popup-blocker/)
 - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
+- [google containers](https://github.com/containers-everywhere/contain-google)
 - `about:config` -> `full-screen-api.macos-native-full-screen` -> true
 
 ### Chromium
