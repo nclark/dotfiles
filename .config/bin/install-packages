@@ -66,7 +66,6 @@ declare -a CASKS=(
   balenaetcher
   bartender
   bitwarden
-  calibre
   cleanshot
   dash
   docker
@@ -92,7 +91,6 @@ declare -a CASKS=(
   orion
   plexamp
   postman
-  signal
   slack
   tableplus
   textmate
@@ -109,6 +107,8 @@ declare -a CASKS_NO_QUARANTINE=(
 )
 
 declare -a PERSONAL_CASKS=(
+  calibre
+  signal
   sonixd
   telegram-desktop
   tor-browser
