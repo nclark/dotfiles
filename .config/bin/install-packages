@@ -40,6 +40,7 @@ declare -a PACKAGES=(
   ranger
   rust
   sf-symbols
+  shortcat
   sketchybar
   speedtest-cli
   syncthing
