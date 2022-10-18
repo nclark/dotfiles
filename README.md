@@ -36,6 +36,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - Add
   - Add to `.config/yadm/encrypt`
   - `yadm encrypt`
+  - `cd $HOME/workspace/dotfiles-private ; ./commit`
 - Install
   - `yadm decrypt`
 - List
