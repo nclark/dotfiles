@@ -105,9 +105,9 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 ## Start on launch
 - Amphetamine
 - Bartender
+- Better Touch Tool
 - Cleanshot X
 - Flux
-- MiddleClick 
 - MeetingBar
 - Nextcloud
 - Things Helper

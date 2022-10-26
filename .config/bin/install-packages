@@ -65,6 +65,7 @@ declare -a CASKS=(
   1password
   balenaetcher
   bartender
+  bettertouchtool
   bitwarden
   cleanshot
   dash
@@ -103,7 +104,6 @@ declare -a CASKS=(
 declare -a CASKS_NO_QUARANTINE=(
   eloston-chromium
   librewolf
-  middleclick
 )
 
 declare -a PERSONAL_CASKS=(
