@@ -8,6 +8,7 @@ declare -a TAPS=(
 )
 
 declare -a PACKAGES=(
+  android-platform-tools
   amazon-ecs-cli
   asdf
   awscli
@@ -26,6 +27,7 @@ declare -a PACKAGES=(
   joplin-cli
   jq
   noahgorstein/tap/jqp
+  ntp
   hugo
   lego
   mas
@@ -40,6 +42,7 @@ declare -a PACKAGES=(
   ranger
   rust
   sf-symbols
+  shellcheck
   shortcat
   sketchybar
   speedtest-cli
