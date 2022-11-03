@@ -12,6 +12,7 @@ declare -a PACKAGES=(
   amazon-ecs-cli
   asdf
   awscli
+  b2-tools
   bitwarden-cli
   choose-gui
   cloudflared
@@ -175,3 +176,6 @@ else
   done
 fi
 
+if [ ! -e /Users/nclark/.hishtory/hishtory ]; then
+  curl https://hishtory.dev/install.py | python3 -
+fi

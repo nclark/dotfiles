@@ -26,3 +26,7 @@ eval `gdircolors ~/.dir_colors`
 ## direnv
 eval "$(direnv hook zsh)"
 
+
+# Hishtory Config:
+export PATH="$PATH:/Users/nclark/.hishtory"
+source /Users/nclark/.hishtory/config.zsh
