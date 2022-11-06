@@ -53,6 +53,11 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - `brew install koekeishiya/formulae/yabai`
 - `sudo yabai --install-sa`
 - `brew services start yabai`
+- After upgrade
+  - `sha256sum /opt/homebrew/bin/yabai | awk '{print $1}' | pbcopy`
+  - `sudo visudo -f /private/etc/sudoers.d/yabai`
+  - update checksum
+  - `brew services restart yabai`
 
 ### skhd
 - `brew install koekeishiya/formulae/skhd`
