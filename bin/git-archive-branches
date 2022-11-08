@@ -16,6 +16,8 @@ end
 
 def write_branches
   Tempfile.new.tap do |f|
+    f.write "# list branches to archive"
+
     `git branch`.split.reject {|e| e == '*'}.each do |branch|
       f.write "#{branch}\n"
     end

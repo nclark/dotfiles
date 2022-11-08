@@ -13,6 +13,7 @@ declare -a PACKAGES=(
   asdf
   awscli
   b2-tools
+  bash-completion
   bitwarden-cli
   choose-gui
   cloudflared
@@ -20,6 +21,7 @@ declare -a PACKAGES=(
   direnv
   fzf
   gh
+  git
   glow
   gnupg
   ifstat
@@ -108,6 +110,8 @@ declare -a CASKS=(
 declare -a CASKS_NO_QUARANTINE=(
   eloston-chromium
   librewolf
+  middleclick
+  noisy
 )
 
 declare -a PERSONAL_CASKS=(
