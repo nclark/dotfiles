@@ -11,6 +11,7 @@ alias m='f() { if ! [ $1 ]; then; DIR="."; else; DIR=$1; fi; vimr --cwd $DIR};f'
 # work
 alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
 alias puma='$(head -1 Procfile | cut -d":" -f2)'
+alias tf=terraform
 
 # misc unorganized 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'

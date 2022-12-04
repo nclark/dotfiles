@@ -5,6 +5,10 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 
+let g:LanguageClient_serverCommands = {
+    \ 'terraform': ['terraform-ls', 'serve'],
+    \ }
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 

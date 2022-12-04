@@ -1,10 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 declare -a TAPS=(
   felixkratz/formulae
   homebrew/cask-fonts
   xwmx/taps
   heroku/brew
+  noahgorstein/tap
 )
 
 declare -a PACKAGES=(
@@ -29,17 +30,20 @@ declare -a PACKAGES=(
   ipcalc
   joplin-cli
   jq
-  noahgorstein/tap/jqp
+  jqp
   ntp
   hugo
   lego
   mas
   mdv
+  minikube
   neofetch
   neovim
   pass
   pyenv
   pillow
+  podman
+  podman-desktop
   pwgen
   qrencode
   ranger
@@ -52,6 +56,7 @@ declare -a PACKAGES=(
   syncthing
   the_silver_searcher
   terminal-notifier
+  terraform
   timg
   wireguard-tools
   wget
@@ -78,6 +83,7 @@ declare -a CASKS=(
   docker
   drawio
   fantastical
+  finch
   finicky
   fluid
   flux
@@ -85,6 +91,7 @@ declare -a CASKS=(
   font-bitstream-vera-sans-mono-nerd-font
   font-hack-nerd-font
   fork
+  freetube
   iina
   istat-menus
   joplin
@@ -105,6 +112,7 @@ declare -a CASKS=(
   time-out
   transmit
   vimr 
+  vmware-fusion 
 )
 
 declare -a CASKS_NO_QUARANTINE=(
@@ -126,7 +134,6 @@ declare -a WORK_CASKS=(
   microsoft-teams
   phantomjs
   tunnelblick
-  vmware-fusion
   zoom
 )
 
@@ -180,6 +187,6 @@ else
   done
 fi
 
-if [ ! -e /Users/nclark/.hishtory/hishtory ]; then
-  curl https://hishtory.dev/install.py | python3 -
-fi
+# if [ ! -e /Users/nclark/.hishtory/hishtory ]; then
+#   curl https://hishtory.dev/install.py | python3 -
+# fi
