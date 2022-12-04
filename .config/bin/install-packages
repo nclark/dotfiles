@@ -186,7 +186,3 @@ else
     install_cask_if_missing $i
   done
 fi
-
-# if [ ! -e /Users/nclark/.hishtory/hishtory ]; then
-#   curl https://hishtory.dev/install.py | python3 -
-# fi
