@@ -30,7 +30,7 @@ bin/bw-helper
 .ssh/*
 .private/*
 .zsh/private
-.zsh/host*
+.zsh/host##*
 bin/panopticon
 bin/squanchy
 bin/bw-helper
