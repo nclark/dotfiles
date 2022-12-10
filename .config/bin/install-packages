@@ -6,6 +6,7 @@ declare -a TAPS=(
   xwmx/taps
   heroku/brew
   noahgorstein/tap
+  clangen/musikcube
 )
 
 declare -a PACKAGES=(
@@ -37,6 +38,7 @@ declare -a PACKAGES=(
   mas
   mdv
   minikube
+  musikcube
   neofetch
   neovim
   pass
@@ -84,7 +86,6 @@ declare -a CASKS=(
   drawio
   fantastical
   finch
-  finicky
   fluid
   flux
   font-anonymous-pro
