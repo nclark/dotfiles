@@ -31,6 +31,7 @@ bin/bw-helper
 .private/*
 .zsh/private
 .zsh/host
+.zsh/secrets.txt*
 bin/panopticon
 bin/squanchy
 bin/bw-helper
