@@ -13,6 +13,11 @@ alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
 alias puma='$(head -1 Procfile | cut -d":" -f2)'
 alias tf=terraform
 
+# dotfiles
+alias vipkg='vimr $HOME/.config/bin/install-packages'
+alias vimacapp='vimr $HOME/.config/bin/install-macapps'
+alias viasdfpkg='vimr $HOME/.config/bin/install-asdf-packages'
+
 # misc unorganized 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias pwgen='PWGEN=$(/opt/homebrew/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
