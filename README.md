@@ -32,6 +32,13 @@ $HOME/.config/bin/install-macapps
 sudo reboot # launchctl is too confusing... just let it pick up the new service
 ```
 
+
+## Work vs. Personal machine
+- Set [yadm class](https://yadm.io/docs/alternates#)
+- Personal: `yadm config local.class Personal`
+- Work: `yadm config local.class Work`
+- Access class: `yadm config --get local.class`
+
 ## Encrypt files
 - Add
   - Add to `.config/yadm/encrypt`
