@@ -26,4 +26,3 @@ eval `gdircolors ~/.dir_colors`
 ## direnv
 eval "$(direnv hook zsh)"
 
-
