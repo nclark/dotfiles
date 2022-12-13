@@ -60,6 +60,7 @@ declare -a PACKAGES=(
   the_silver_searcher
   terminal-notifier
   terraform
+  terraform-ls
   timg
   wireguard-tools
   wget
