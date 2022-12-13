@@ -42,7 +42,7 @@ s --bar height=33                            \
             icon.padding_left=8              \
             icon.padding_right=8
 
-if [ $WORK_MACHINE = true ]; then
+if yadm-context --work; then
   SPACES="browser,1,
         slack,2,
         code,3,, 
@@ -62,6 +62,7 @@ do
   NAME=`echo $i | cut -d"," -f1`
   NUMBER=`echo $i | gcut -d"," -f2`
   ICON=`echo $i | gcut -d"," -f3-10 | sed -e "s/,/ /"`
+  WORK_MACHINE=$(yadm-context --work)
 
   if [ $WORK_MACHINE == true -a $NUMBER == 7 ] || [ ! $WORK_MACHINE == true -a $NUMBER == 4 ]; then
     LABEL=""

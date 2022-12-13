@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 declare -a TAPS=(
   felixkratz/formulae
   homebrew/cask-fonts
@@ -170,7 +171,7 @@ for i in ${CASKS_NO_QUARANTINE[@]}; do
   install_cask_if_missing $i no-quarantine
 done
 
-if [ $WORK_MACHINE == "true" ]; then
+if yadm-context --work; then
   for i in ${WORK_PACKAGES[@]}; do
     install_if_missing $i
   done
@@ -178,7 +179,9 @@ if [ $WORK_MACHINE == "true" ]; then
   for i in ${WORK_CASKS[@]}; do
     install_cask_if_missing $i
   done
-else
+fi
+
+if yadm-context --personal; then
   for i in ${PERSONAL_PACKAGES[@]}; do
     install_if_missing $i
   done
