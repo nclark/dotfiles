@@ -1,0 +1,18 @@
+#!/bin/sh
+
+COMMAND=${1}
+
+case $COMMAND in
+    --work)
+        [ "$(yadm config --get local.class)" = "Work" ]
+        ;;
+
+    --personal)
+        [ "$(yadm config --get local.class)" = "Personal" ]
+        ;;
+    *)
+        NAME=$(basename "${0}")
+
+        echo "usage: ${NAME} [--personal|--work]"
+        ;;
+esac
