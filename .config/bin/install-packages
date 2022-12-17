@@ -77,7 +77,6 @@ declare -a WORK_PACKAGES=(
 )
 
 declare -a CASKS=(
-  1password
   balenaetcher
   bartender
   bettertouchtool
@@ -127,6 +126,7 @@ declare -a CASKS_NO_QUARANTINE=(
 
 declare -a PERSONAL_CASKS=(
   calibre
+  musicbrainz-picard
   signal
   sonixd
   telegram-desktop
