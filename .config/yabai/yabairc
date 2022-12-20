@@ -25,7 +25,7 @@ yabai -m config mouse_action2 resize
 ## grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 
 # yabai -m rule --add app="(Preferences|Install|Opening.+)" manage=off
-# yabai -m rule --add app="^Fantastical Helper$" manage=off
+yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
 
