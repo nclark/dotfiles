@@ -30,6 +30,7 @@ declare -a PACKAGES=(
   ifstat
   inxi
   ipcalc
+  jless
   joplin-cli
   jq
   jqp
