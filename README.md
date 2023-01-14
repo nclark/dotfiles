@@ -89,6 +89,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - [Cookie Popup Blocker](https://addons.mozilla.org/en-US/firefox/addon/cookie-popup-blocker/)
 - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
 - [google containers](https://github.com/containers-everywhere/contain-google)
+- [kill sticky bookmarklet](https://github.com/t-mart/kill-sticky)
 - `about:config` -> `full-screen-api.macos-native-full-screen` -> true
 
 ### Chromium
