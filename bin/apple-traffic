@@ -12,7 +12,7 @@ case $COMMAND in
     disable_apple_firewall_rule
     disable_pihole
     if ! [ $SILENT ]; then
-      echo "apple traffic allowed"
+      echo "apple traffic allowed (pi-hole disabled for 15m)"
     fi
     ;;
   deny)

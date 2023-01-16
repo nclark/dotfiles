@@ -10,7 +10,11 @@ PIHOLE_BASE_URL="http://${PIHOLE_HOST}/admin/api.php?auth=${PIHOLE_API_KEY}"
 
 update_apple_firewall_rule() {
   curl -s -k -u ${OPNSENSE_AUTH} -X POST -d "" \
-    "${OPNSENSE_BASE_URL}/toggleRule/${OPNSENSE_APPLE_RULE_UUID}/${1}" \
+    "${OPNSENSE_BASE_URL}/toggleRule/${OPNSENSE_APPLE_INGRESS_RULE_UUID}/${1}" \
+    > /dev/null
+
+  curl -s -k -u ${OPNSENSE_AUTH} -X POST -d "" \
+    "${OPNSENSE_BASE_URL}/toggleRule/${OPNSENSE_APPLE_EGRESS_RULE_UUID}/${1}" \
     > /dev/null
 }
 
