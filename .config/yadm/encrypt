@@ -8,3 +8,4 @@ bin/squanchy
 bin/bw-helper
 bin/eno-vpn-helper
 bin/aws-account-helper
+bin/ident
