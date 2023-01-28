@@ -23,6 +23,7 @@ declare -a PACKAGES=(
   cloudflared
   coreutils
   direnv
+  fd
   fzf
   gh
   git
