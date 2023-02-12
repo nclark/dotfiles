@@ -103,6 +103,7 @@ declare -a CASKS=(
   joplin
   keyboardcleantool
   kitty
+  lagrange
   meetingbar
   monodraw
   nextcloud
