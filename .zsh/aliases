@@ -23,7 +23,7 @@ alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias pwgen='PWGEN=$(/opt/homebrew/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
 alias gitx='fork'
 alias s='wishlist -c $HOME/.config/wishlist/servers.yml ; rm wishlist.log'
-alias docker-compose='docker compose'
 alias flocker="DOCKER_CONTEXT=florflok docker"
 alias ghenc='f() { curl https://github.com/${1}.keys | age -R - ${2} > ${2}.age};f'
 alias ghdec='f() { age -d -i ~/.ssh/id_ed25519 ${1} > $(basename ${1} .age) }; f'
+alias docker='finch'
