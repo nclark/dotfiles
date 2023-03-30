@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'erb'
+
+class Agenda
+  attr_reader :day
+
+  def initialize(day)
+    @day = day == :today ? :today : :tomorrow
+  end
+
+  def fetch 
+    agenda = %x|#{command}|.split("\n")
+
+    agenda.map! do |item|
+      title, time = item.split("::").map(&:strip)
+      next if time.nil? || time.empty?
+      time.gsub!(/tomorrow at /, '')
+
+      "#{time} - [[Meetings / #{title}]]"
+    end
+
+    agenda.reject { |l| l =~ /BLOCKED/i || l.nil? || l.empty? }
+  end
+
+  private
+
+  def day_range
+    if day == :today
+      'eventsToday'
+    elsif day == :tomorrow
+      date = Date.today + 1
+      dateString = date.strftime("%B %d, %Y")
+
+      "eventsFrom:'#{dateString}' to:'#{dateString} at 9pm'"
+    end
+  end
+
+  def command
+    %Q$icalBuddy -nc -eep "url, location, notes, attendees" -b "" -ps "| :: |" -ic Calendar #{day_range}$
+  end
+end
+
+class Journal
+  attr_reader :agenda, :template
+
+  def initialize(arg)
+    if arg == '-T' || arg == '--today'
+      @agenda = Agenda.new(:today)
+    elsif arg == '-t' || arg == '--tomorrow'
+      @agenda = Agenda.new(:tomorrow)
+    else
+      puts "Usage: #{File.basename($0)} [-T|--today] [-t|--tomorrow]"
+
+      exit
+    end
+
+    @calendar = agenda.fetch
+    @template = ERB.new(DATA.read, trim_mode: '-')
+  end
+
+  def write!
+    puts template.result(self.binding)
+
+    orig = File.open(filename, "r+") {|f| f.readlines}
+    
+    File.open(filename, "w") do |f|
+      f.puts template.result(self.binding)
+    
+      orig.each {|l| f.puts l}
+    end
+  end
+
+  private
+
+  def filename
+    dir = "#{ENV['HOME']}/Documents/logseq-work/journals"
+    date = @agenda.day == :today ? Date.today : Date.today + 1
+
+    "#{dir}/#{date.strftime("%Y_%m_%d")}.md"
+  end
+end
+
+journal = Journal.new(ARGV[0])
+journal.write!
+
+__END__
+- # Focus
+
+- # Tasks
+  - ## Carryover
+  - ## New
+
+- # Agenda
+<%- @calendar.each do |item| -%>
+  - <%= item %>
+<% end %>
