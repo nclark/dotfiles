@@ -3,22 +3,15 @@
 source $HOME/.zsh/host
 
 WORK_BROWSER="/Applications/Chromium.app/Contents/MacOS/Chromium"
-
-personal() {
-  osascript <<EOF
-  tell application "Orion"
-     activate
-  end tell
-EOF
-}
+PERSONAL_BROWSER="/Applications/LibreWolf.app/Contents/MacOS/librewolf --browser --foreground"
 
 if [ $WORK_MACHINE == true -a "$1" == "--invert" ]; then
-  personal
+  $PERSONAL_BROWSER
 elif [ $WORK_MACHINE == true ]; then
   $WORK_BROWSER
 elif [ "$1" == "--invert" ]; then
   $WORK_BROWSER
 else
-  personal
+  $PERSONAL_BROWSER
 fi
 
