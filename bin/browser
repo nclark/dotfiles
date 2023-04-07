@@ -5,19 +5,10 @@ source $HOME/.zsh/host
 WORK_BROWSER="/Applications/Chromium.app/Contents/MacOS/Chromium"
 
 personal() {
-  # New window currently unscriptable
-  # something coming with orion:// URL hanlder soon?
-  #   https://orionfeedback.org/d/1415-orion-url-scheme/19
-  # idk but it's beta
-  open /Applications/Orion.app
-
   osascript <<EOF
-    tell application "Orion"
-    	tell window index 1
-    		make new tab
-      set current tab to last tab
-    	end tell
-    end tell
+  tell application "Orion"
+     activate
+  end tell
 EOF
 }
 
