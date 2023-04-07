@@ -54,7 +54,8 @@ else
   SPACES="browser,1,
         terminal,2,
         misc,3,
-        prod,4,, "
+        prod,4,,
+        gpt,5,"
 fi
 
 for i in $SPACES
@@ -64,7 +65,7 @@ do
   ICON=`echo $i | gcut -d"," -f3-10 | sed -e "s/,/ /"`
   WORK_MACHINE=$(yadm-context --work)
 
-  if [ $WORK_MACHINE == true -a $NUMBER == 7 ] || [ ! $WORK_MACHINE == true -a $NUMBER == 4 ]; then
+  if [ $WORK_MACHINE == true -a $NUMBER == 7 ] || [ ! $WORK_MACHINE == true -a $NUMBER == 5 ]; then
     LABEL=""
   else
     LABEL=""
