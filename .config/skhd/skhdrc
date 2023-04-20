@@ -65,7 +65,6 @@ cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser $WORK_MACHINE --invert # Alternate browser
 cmd + ctrl - e: /opt/homebrew/bin/vimr # Editor
 cmd + ctrl - n: osascript -e 'tell application "Logseq" to activate' # Notes
-cmd + ctrl - p: osascript -e 'tell application "dailyplace" to activate' # daily.place
 ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account

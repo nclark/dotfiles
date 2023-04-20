@@ -4,8 +4,9 @@ current_bin=./bin
 homebrew_bin=/opt/homebrew/bin
 homebrew_sbin=/opt/homebrew/sbin
 go_bin=$HOME/.asdf/installs/golang/1.19/packages/bin
+cargo_bin=$HOME/.cargo/bin
 
-export PATH=$current_bin:$home_bin:$asdf_bin:$homebrew_bin:$homebrew_sbin:$go_bin:$PATH
+export PATH=$current_bin:$home_bin:$asdf_bin:$homebrew_bin:$homebrew_sbin:$go_bin:$cargo_bin:$PATH
 
 export EDITOR=/opt/homebrew/bin/nvim
 export ERL_AFLAGS="-kernel shell_history enabled"

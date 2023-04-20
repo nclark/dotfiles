@@ -63,7 +63,7 @@ class Journal
   def write!
     puts template.result(self.binding)
 
-    orig = File.open(filename, "r+") {|f| f.readlines}
+    orig = File.open(filename, "a+") {|f| f.readlines}
     
     File.open(filename, "w") do |f|
       f.puts template.result(self.binding)
@@ -89,10 +89,10 @@ __END__
 - # Focus
 
 - # Tasks
-  - ## Carryover
-  - ## New
 
 - # Agenda
 <%- @calendar.each do |item| -%>
   - <%= item %>
 <% end %>
+
+- # Notes
