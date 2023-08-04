@@ -88,7 +88,7 @@ journal.write!
 __END__
 - # Focus
 
-- # Tasks
+- # [[Tasks]]
 
 - # Agenda
 <%- @calendar.each do |item| -%>

@@ -26,5 +26,5 @@ alias s='wishlist -c $HOME/.config/wishlist/servers.yml ; rm wishlist.log'
 alias flocker="DOCKER_CONTEXT=florflok docker"
 alias ghenc='f() { curl https://github.com/${1}.keys | age -R - ${2} > ${2}.age};f'
 alias ghdec='f() { age -d -i ~/.ssh/id_ed25519 ${1} > $(basename ${1} .age) }; f'
-alias docker='finch'
+# alias docker='finch'
 alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"

@@ -59,8 +59,8 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 #% # App launchers
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
-cmd + ctrl - return: kitty -1 -d=$HOME # New terminal
-cmd + ctrl - h: kitty -1 -T=ranger -d=$HOME /opt/homebrew/bin/ranger # File manager
+cmd + ctrl - return: kitty -1 --instance-group main -d=$HOME # New terminal
+cmd + ctrl - h: kitty -1 --instance-group main -T=ranger -d=$HOME /opt/homebrew/bin/ranger # File manager
 cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser $WORK_MACHINE --invert # Alternate browser
 cmd + ctrl - e: /opt/homebrew/bin/vimr # Editor
