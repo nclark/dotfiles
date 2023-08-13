@@ -24,18 +24,21 @@ function install {
   fi
 }
 
+export LDFLAGS="-L/opt/homebrew/opt/capstone/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/capstone/include"
+
 install_plugin ruby
-install ruby 2.7.6
+install ruby 2.7.7
 install ruby 3.1.2
-asdf global ruby 2.7.6
+asdf global ruby 2.7.7
 
 install_plugin erlang
-install erlang 25.0.3
-asdf global erlang 25.0.3
+install erlang 22.3.4.26
+asdf global erlang 22.3.4.26
 
 install_plugin elixir
-install elixir 1.13.4-otp-25
-asdf global elixir 1.13.4-otp-25
+install elixir 1.12.3-otp-22
+asdf global elixir 1.12.3-otp-22
 
 install_plugin nodejs
 install nodejs 18.7.0
