@@ -47,6 +47,7 @@ declare -a PACKAGES=(
   neofetch
   neovim
   pass
+  progress
   pyenv
   pillow
   podman
@@ -71,6 +72,7 @@ declare -a PACKAGES=(
 )
 
 declare -a PERSONAL_PACKAGES=(
+  kopia
   nicotine-plus
 )
 
@@ -84,6 +86,7 @@ declare -a CASKS=(
   balenaetcher
   bartender
   bettertouchtool
+  biscuit
   bitwarden
   cleanshot
   dash
@@ -112,11 +115,13 @@ declare -a CASKS=(
   orion
   plexamp
   postman
+  qlvideo
   slack
   tableplus
   textmate
   the-unarchiver
   time-out
+  tor-browser
   transmit
   vimr 
   vmware-fusion 
@@ -143,6 +148,10 @@ declare -a WORK_CASKS=(
   phantomjs
   tunnelblick
   zoom
+)
+
+declare -a PIP_PACKAGES=(
+  opn-cli
 )
 
 function install_if_missing {
@@ -196,3 +205,7 @@ if yadm-context --personal; then
     install_cask_if_missing $i
   done
 fi
+
+for i in ${PIP_PACKAGES[@]}; do
+  pip3 install $i
+done
