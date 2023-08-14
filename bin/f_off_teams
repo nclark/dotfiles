@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Install with
-#   yabai -m signal --add event=window_moved app="Microsoft Teams" action="$HOME/bin/f_off_teams.sh"
-
 WINDOW_ID=$(yabai -m query --windows | jq '.[] | select(.title | contains("Microsoft Teams")) | select(.frame.w == 304) | .id')
 
 if [ ${WINDOW_ID} ] ; then
