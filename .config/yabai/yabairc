@@ -33,3 +33,6 @@ yabai -m rule --add title="^Quick Entry$" manage=off grid=6:4:1:1:2:2
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+
+# Microsoft Teams is annoying events
+yabai -m signal --add event=window_created app="Microsoft Teams" action="$HOME/bin/f_off_teams"
