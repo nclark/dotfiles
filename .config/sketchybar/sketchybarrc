@@ -25,7 +25,7 @@ s --bar height=33                            \
         position=top                         \
         padding_left=15                      \
         padding_right=20                     \
-        color=0x000000                     \
+        color=0x4DFFFFFF                     \
         border_color=0xff000000              \
         border_width=0                       \
         y_offset=-2                          \
@@ -42,14 +42,16 @@ s --bar height=33                            \
             icon.padding_left=8              \
             icon.padding_right=8
 
-if yadm-context --work; then
+yadm-context --work
+
+if [ $? = 0 ]; then
   SPACES="browser,1,
         slack,2,
         code,3,, 
         trello,4,
         personal,5,
         prod,6,,
-        comm,7,,"
+        comm,7,,,"
 else
   SPACES="browser,1,
         terminal,2,
@@ -62,7 +64,7 @@ for i in $SPACES
 do
   NAME=`echo $i | cut -d"," -f1`
   NUMBER=`echo $i | gcut -d"," -f2`
-  ICON=`echo $i | gcut -d"," -f3-10 | sed -e "s/,/ /"`
+  ICON=`echo $i | gcut -d"," -f3-10 | sed -e "s/,/ /g"`
   WORK_MACHINE=$(yadm-context --work)
 
   if [ $WORK_MACHINE == true -a $NUMBER == 7 ] || [ ! $WORK_MACHINE == true -a $NUMBER == 5 ]; then
@@ -100,14 +102,15 @@ s --add item  clock right                \
 # note: sketchybar --query default_menu_items
 
 for i in \
-  "iStat Menus Status,com.bjango.istatmenus.battery" \
-  "Control Center,FocusModes"                        \
-  "iStat Menus Status,com.bjango.istatmenus.network" \
-  "iStat Menus Status,com.bjango.istatmenus.sensors" \
-  "WireGuard"                                        \
-  "Amphetamine"                                      \
-  "MeetingBar"                                       \
-  "Gestimer"
+  "Fantastical Helper,Fantastical"                    \
+  "Control Center,FocusModes"                         \
+  "Amphetamine"                                       \
+  "Gestimer"                                          \
+  "iStat Menus Status,com.bjango.istatmenus.weather"  \
+  "WireGuard"                                         \
+  "Tunnelblick"                                       \
+  "iStat Menus Status,com.bjango.istatmenus.combined" \
+  "MeetingBar"
 do
   s --add alias "$i" right          \
     --set "$i" icon.padding_left=0  \
