@@ -59,29 +59,27 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
   the option "Automatically rearrange Spaces based on most recent use"
 - `brew install koekeishiya/formulae/yabai`
 - `sudo yabai --install-sa`
-- `brew services start yabai`
+- `yabai --start-service`
 - After upgrade
   - `sha256sum /opt/homebrew/bin/yabai | awk '{print $1}' | pbcopy`
+  - `sudo mkdir /private/etc/sudoers.d`
   - `sudo visudo -f /private/etc/sudoers.d/yabai`
   - update checksum
-  - `brew services restart yabai`
+  - `yabai --restart-service`
 
 ### skhd
 - `brew install koekeishiya/formulae/skhd`
-- `brew services start skhd`
+- `skhd --start-service`
 
 ### sketchybar
 - `brew services start sketchybar`
-- On work machine, edit `/usr/local/Cellar/sketchybar/[version]/homebrew.mxcl.sketchybar.plist`
+- On work machine, edit `/opt/homebrew/Cellar/sketchybar/[version]/homebrew.mxcl.sketchybar.plist`
 - Add to the EnvironmentVariables section of the property list
 ```
 <key>WORK_MACHINE</key>
 <string>true</string>
 ```
-
-### norg
-- `CC=/opt/homebrew/bin/gcc-12 nvim`
-- `:TSInstall norg`
+  - then restart `brew services restart sketchybar`
 
 ### Librewolf
 - [bitwarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
@@ -96,6 +94,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
   - [Chromium Web Store](https://github.com/NeverDecaf/chromium-web-store)
   - [bitwarden](https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb)
   - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
+  - [floccus](https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg)
 
 ### neovim
 - `/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip`
