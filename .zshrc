@@ -24,5 +24,6 @@ bindkey '^R' history-incremental-search-backward
 eval `gdircolors ~/.dir_colors`
 
 ## direnv
+export DIRENV_BASH="/opt/homebrew/bin/bash"
 eval "$(direnv hook zsh)"
 

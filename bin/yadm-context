@@ -5,11 +5,11 @@ CONTEXT="$(yadm config --get local.class)"
 
 case $COMMAND in
     --work)
-        if [ $CONTEXT = "Work" ]; then exit 1; fi
+        if [ $CONTEXT = "Personal" ]; then exit 1; fi
         ;;
 
     --personal)
-        if [ $CONTEXT = "Personal" ]; then exit 1; fi
+        if [ $CONTEXT = "Work" ]; then exit 1; fi
         ;;
     *)
         NAME=$(basename "${0}")
