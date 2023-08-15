@@ -30,6 +30,7 @@ s --bar height=33                            \
         border_width=0                       \
         y_offset=-2                          \
         margin=-2                            \
+        topmost=1                            \
                                              \
   --default updates=when_shown               \
             drawing=on                       \
@@ -42,9 +43,7 @@ s --bar height=33                            \
             icon.padding_left=8              \
             icon.padding_right=8
 
-yadm-context --work
-
-if [ $? = 0 ]; then
+if [ "${WORK_MACHINE}" = "true" ]; then
   SPACES="browser,1,
         slack,2,
         code,3,, 
