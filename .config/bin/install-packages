@@ -78,6 +78,7 @@ declare -a PERSONAL_PACKAGES=(
 
 declare -a WORK_PACKAGES=(
   heroku
+  ical-buddy
   saml2aws
   session-manager-plugin
 )
@@ -144,7 +145,6 @@ declare -a PERSONAL_CASKS=(
 )
 
 declare -a WORK_CASKS=(
-  microsoft-teams
   phantomjs
   tunnelblick
   zoom
