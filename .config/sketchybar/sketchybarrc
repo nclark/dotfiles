@@ -30,7 +30,6 @@ s --bar height=33                            \
         border_width=0                       \
         y_offset=-2                          \
         margin=-2                            \
-        topmost=1                            \
                                              \
   --default updates=when_shown               \
             drawing=on                       \
