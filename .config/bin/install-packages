@@ -46,6 +46,7 @@ declare -a PACKAGES=(
   musikcube
   neofetch
   neovim
+  orbstack
   pass
   progress
   pyenv
@@ -91,7 +92,6 @@ declare -a CASKS=(
   bitwarden
   cleanshot
   dash
-  docker
   drawio
   fantastical
   finch
