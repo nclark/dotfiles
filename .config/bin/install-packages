@@ -64,6 +64,7 @@ declare -a PACKAGES=(
   speedtest-cli
   syncthing
   the_silver_searcher
+  telnet
   terminal-notifier
   terraform
   terraform-ls
