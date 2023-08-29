@@ -39,6 +39,7 @@ declare -a PACKAGES=(
   lazydocker
   ntp
   hugo
+  kopia
   lego
   mas
   mdv
@@ -108,7 +109,9 @@ declare -a CASKS=(
   joplin
   keyboardcleantool
   kitty
+  kopiaui
   lagrange
+  macgpt
   meetingbar
   monodraw
   nextcloud
