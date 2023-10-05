@@ -24,6 +24,7 @@
   sa = stash apply
   sd = diff stash@{0}
   pop = !git reset HEAD^ && git status
+  put = push origin HEAD
 [core]
   excludesfile = /Users/nclark/.gitignore
   editor = nvim
