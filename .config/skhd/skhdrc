@@ -68,6 +68,7 @@ cmd + ctrl - n: osascript -e 'tell application "Logseq" to activate' # Notes
 ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
+cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/ChatGPT.app
 
 #% ### Password helpers
 cmd + alt + ctrl - p: $HOME/bin/bw-helper --omni # Bitwarden Helper
