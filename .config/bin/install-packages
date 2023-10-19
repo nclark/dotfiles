@@ -8,6 +8,7 @@ declare -a TAPS=(
   heroku/brew
   noahgorstein/tap
   clangen/musikcube
+  localsend/localsend
 )
 
 declare -a PACKAGES=(
@@ -37,6 +38,7 @@ declare -a PACKAGES=(
   jq
   jqp
   lazydocker
+  localsend
   ntp
   hugo
   kopia
@@ -111,7 +113,6 @@ declare -a CASKS=(
   kitty
   kopiaui
   lagrange
-  macgpt
   meetingbar
   monodraw
   nextcloud
