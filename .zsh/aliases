@@ -20,7 +20,7 @@ alias viasdfpkg='vimr $HOME/.config/bin/install-asdf-packages'
 
 # misc unorganized 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
-alias pwgen='PWGEN=$(/opt/homebrew/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?" 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
+alias pwgen='PWGEN=$(/opt/homebrew/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?\/[]()\{\}+,;<>." 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
 alias gitx='fork'
 alias s='wishlist -c $HOME/.config/wishlist/servers.yml ; rm wishlist.log'
 alias flocker="DOCKER_CONTEXT=florflok docker"
