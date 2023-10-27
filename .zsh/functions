@@ -33,3 +33,7 @@ archive() {
 adguard-cache-clear() {
   curl -X POST https://${ADGUARD_API_TOKEN}@adguard.squanchy.net/control/cache_clear
 }
+
+clear-photoprism-sdcard() {
+  ssh photoprism.local 'echo "delete" | sudo tee /var/run/photo-import.fifo > /dev/null'
+}
