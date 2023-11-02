@@ -1,0 +1,10 @@
+#!/bin/sh
+
+KITTY_MEMO_PROFILE="$HOME/.config/kitty/memo.conf"
+KITTY_TAB_TITLE="Memo"
+
+kitty \
+  --config $KITTY_MEMO_PROFILE \
+  -T "$KITTY_TAB_TITLE" \
+  --start-as=fullscreen \
+  $HOME/bin/memo

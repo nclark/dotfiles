@@ -1,0 +1,53 @@
+#!/bin/sh
+
+writeNote() {
+  nvim -c "set filetype=markdown" "${CONTENT_PATH}"
+}
+
+previewNote() {
+  mdv -t 826.2742 "${CONTENT_PATH}"
+}
+
+prompt() {
+  printf "Save? [y|n]> "
+
+  read -r user_input
+
+  if [ "$user_input" = "y" ]; then
+    echo "Saving to memos..."
+
+    break
+  fi
+}
+
+saveNote() {
+  ESCAPED_CONTENT=$(python -c "import json, sys; print(json.dumps(sys.stdin.read())[1:-1])" < "${CONTENT_PATH}")
+
+  OUTPUT=$(curl -X POST ${MEMOS_URL}/api/v1/memo \
+    -H "Accept: application/json" \
+    -H "Authorization: Bearer ${MEMOS_TOKEN}" \
+    -d "{\"content\": \"${ESCAPED_CONTENT}\"}")
+
+  if [ $? = 0 ]; then
+    ID=$(echo "$OUTPUT" | grep '"id":' | awk -F ': ' '{print $2}' | cut -d, -f1)
+    echo "Saved - ${MEMOS_URL}/m/${ID}"
+    open "${MEMOS_URL}/m/${ID}"
+    rm "${CONTENT_PATH}"
+  else
+    echo "Error; not deleting ${CONTENT_PATH}"
+  fi
+}
+
+source ~/.zsh/host
+
+CONTENT_PATH=$(mktemp)
+
+while true; do
+  writeNote
+
+  previewNote
+
+  prompt
+done
+
+saveNote

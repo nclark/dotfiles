@@ -59,6 +59,7 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 #% # App launchers
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
+cmd + ctrl - m: $HOME/bin/create-memo # Create a new memo
 cmd + ctrl - return: kitty -1 --instance-group main -d=$HOME # New terminal
 cmd + ctrl - h: kitty -1 --instance-group main -T=ranger -d=$HOME /opt/homebrew/bin/ranger # File manager
 cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
