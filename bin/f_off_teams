@@ -3,7 +3,7 @@
 WINDOW_ID=$(yabai -m query --windows | jq '.[] | select(.title | contains("Microsoft Teams")) | select(.frame.w == 304) | .id')
 
 if [ ${WINDOW_ID} ] ; then
-  yabai -m window ${WINDOW_ID} --opacity 0.01
+  yabai -m window ${WINDOW_ID} --toggle float --grid 80:80:80:80:1:1 --opacity 0.01
 else
   echo "Not found"
 fi
