@@ -25,6 +25,7 @@ declare -a PACKAGES=(
   coreutils
   direnv
   fd
+  fx
   fzf
   gh
   git
