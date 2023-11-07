@@ -1,7 +1,23 @@
 #!/bin/sh
 
 writeNote() {
-  nvim -c "set filetype=markdown" "${CONTENT_PATH}"
+  title="$1"
+  tags="$2"
+
+  if [ -n "$title" ]; then
+    echo "## $title" > "${CONTENT_PATH}"
+    echo "" >> "${CONTENT_PATH}"
+
+    if [ -n "$tags" ]; then
+      echo "$tags" >> "${CONTENT_PATH}"
+    else
+      echo "" >> "${CONTENT_PATH}"
+    fi
+  fi
+
+  nvim -c "set filetype=markdown" \
+       -c 'execute "normal! G$" | startinsert' \
+       "${CONTENT_PATH}"
 }
 
 previewNote() {
@@ -9,7 +25,7 @@ previewNote() {
 }
 
 prompt() {
-  printf "Save? [y|n]> "
+  printf "Save? [y|n|a]> "
 
   read -r user_input
 
@@ -17,6 +33,8 @@ prompt() {
     echo "Saving to memos..."
 
     break
+  elif [ "$user_input" = "a" ]; then
+    exit
   fi
 }
 
@@ -31,8 +49,17 @@ saveNote() {
   if [ $? = 0 ]; then
     ID=$(echo "$OUTPUT" | grep '"id":' | awk -F ': ' '{print $2}' | cut -d, -f1)
     echo "Saved - ${MEMOS_URL}/m/${ID}"
-    open "${MEMOS_URL}/m/${ID}"
     rm "${CONTENT_PATH}"
+
+    printf "Open? [y|n]> "
+
+    read -r user_input
+
+    if [ "$user_input" = "y" ]; then
+      open "${MEMOS_URL}/m/${ID}"
+
+      break
+    fi
   else
     echo "Error; not deleting ${CONTENT_PATH}"
   fi
@@ -43,7 +70,7 @@ source ~/.zsh/host
 CONTENT_PATH=$(mktemp)
 
 while true; do
-  writeNote
+  writeNote "$1" "$2"
 
   previewNote
 

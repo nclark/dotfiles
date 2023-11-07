@@ -7,4 +7,4 @@ kitty \
   --config $KITTY_MEMO_PROFILE \
   -T "$KITTY_TAB_TITLE" \
   --start-as=fullscreen \
-  $HOME/bin/memo
+  $HOME/bin/memo "$1" "$2"
