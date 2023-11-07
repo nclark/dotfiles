@@ -75,7 +75,7 @@ class Journal
   private
 
   def filename
-    dir = "#{ENV['HOME']}/Documents/logseq-work/journals"
+    dir = "#{ENV['HOME']}/Nextcloud/Documents/logseq-work/journals"
     date = @agenda.day == :today ? Date.today : Date.today + 1
 
     "#{dir}/#{date.strftime("%Y_%m_%d")}.md"
