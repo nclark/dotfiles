@@ -72,7 +72,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 - `skhd --start-service`
 
 ### sketchybar
-- `brew services start sketchybar`
+- `brew services start felixkratz/formulae/sketchybar`
 - On work machine, edit `/opt/homebrew/Cellar/sketchybar/[version]/homebrew.mxcl.sketchybar.plist`
 - Add to the EnvironmentVariables section of the property list
 ```
