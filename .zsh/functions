@@ -1,10 +1,22 @@
 pr() {
-  dir=$(ruby -r ~/.zsh/support/projects.rb -le "puts Project.find('$1')")
-  cd $dir
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: pr <directory>"
+        return 1
+    fi
 
-  if [ $2 ]; then
-    mvim
-  fi
+    # The base directory for 'pr' command
+    local base_dir="${HOME}/workspace"
+
+    # Use 'find' to locate the directory
+    local dir
+    dir=$(find "${base_dir}" -maxdepth 2 -type d -name "$1" 2>/dev/null | head -n 1)
+
+    if [[ -d "$dir" ]]; then
+        cd "$dir" || return
+    else
+        echo "Project directory not found."
+        return 1
+    fi
 }
 
 fp() {
