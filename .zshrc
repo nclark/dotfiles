@@ -2,7 +2,6 @@
 source ~/.zsh/env
 source ~/.zsh/compinstall
 source ~/.zsh/aliases
-source ~/.zsh/autocomplete
 source ~/.zsh/functions
 source ~/.zsh/private
 source ~/.zsh/host

@@ -4,6 +4,7 @@ zstyle ':completion:*' completer _expand _complete _ignored _correct _approximat
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z} m:{a-zA-Z}={A-Za-z}' '' 'r:|[._-]=** r:|=**'
 zstyle :compinstall filename '/home/nclark/.zshrc'
 
+fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
