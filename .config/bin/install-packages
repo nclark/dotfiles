@@ -85,6 +85,7 @@ declare -a PERSONAL_PACKAGES=(
 declare -a WORK_PACKAGES=(
   heroku
   ical-buddy
+  oath-toolkit
   saml2aws
   session-manager-plugin
 )
