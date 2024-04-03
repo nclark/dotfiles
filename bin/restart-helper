@@ -12,4 +12,13 @@ SERVICE=$(echo "sketchybar\nskhd\nyabai" \
                 -m
          )
 
-brew services restart $SERVICE
+
+case $SERVICE in
+  sketchybar|skhd)
+    brew services restart $SERVICE
+    ;;
+  yabai)
+    yabai --restart-service
+    ;;
+esac
+
