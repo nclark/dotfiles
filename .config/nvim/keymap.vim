@@ -61,3 +61,18 @@ nmap <leader>h :noh<CR>
 """ Mix Format
 imap <leader>mf <Esc>:w<CR>:MixFormat<CR>
 nmap <leader>mf :w<CR>:MixFormat<CR>
+
+""" Marked2
+function! OpenInMarked()
+  " Check if the current file's extension is .md
+  if expand('%:e') ==# 'md'
+    " Execute AppleScript to open the file in Marked 2
+    execute "silent !osascript -e 'tell application \"Marked 2\" to open POSIX file \"" . expand('%:p') . "\"'"
+    echo "Opened in Marked 2"
+  else
+    echo "Not a Markdown file"
+  endif
+endfunction
+
+nnoremap <Leader>md :call OpenInMarked()<CR>
+
