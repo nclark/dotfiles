@@ -12,6 +12,7 @@ alias m='f() { if ! [ $1 ]; then; DIR="."; else; DIR=$1; fi; vimr --cwd $DIR};f'
 alias chromecumber='CAPYBARA_DRIVER=chrome spring cucumber'
 alias puma='$(head -1 Procfile | cut -d":" -f2)'
 alias tf=terraform
+alias ag="ag -p ~/.agignore"
 
 # dotfiles
 alias vipkg='vimr $HOME/.config/bin/install-packages'
