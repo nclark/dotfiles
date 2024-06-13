@@ -1,0 +1,89 @@
+#!/Users/nclark/.asdf/installs/ruby/3.1.2/bin/ruby
+
+require 'date'
+require 'pry'
+require 'erb'
+
+class Agenda
+  attr_reader :day
+
+  def initialize(day)
+    @day = day == :today ? :today : :tomorrow
+  end
+
+  def fetch 
+    @_agenda = `#{command}`.encode('ASCII', invalid: :replace, undef: :replace, replace: '').split("\n")
+
+    @_agenda.map! do |item|
+      title, time = item.split("::").map(&:strip)
+      next if time.nil? || time.empty?
+      title.gsub!(%r{/}, 'and')
+      title.gsub!(%r{:}, ' -')
+      time.gsub!(/tomorrow at /, '')
+
+      ["#{time} - #{title}", title]
+    end
+
+    @_agenda.reject! { |l| l.nil? || l[0] =~ /BLOCKED/i || l[0].nil? || l[0].empty? }
+  end
+
+  def choose
+    index = %x^printf "#{choices}" | choose -i -n 8 -w 50^
+
+    exit unless index.to_i >= 0
+
+    fetch[index.to_i][1]
+  end
+
+  private
+
+  def choices
+    fetch.map(&:first).join("\n")
+  end
+
+  def day_range
+    if day == :today
+      'eventsToday'
+    elsif day == :tomorrow
+      date = Date.today + 1
+      dateString = date.strftime("%B %d, %Y")
+
+      "eventsFrom:'#{dateString}' to:'#{dateString} at 9pm'"
+    end
+  end
+
+  def command
+    %Q$icalBuddy -nc -eep "url, location, notes, attendees" -b "" -ps "| :: |" -ic Calendar #{day_range}$
+  end
+end
+
+class Note
+  MEETING_DIR='/Users/nclark/Obsidian/work/meetings'
+
+  attr_reader :title
+
+  def initialize(title)
+    @title = title
+  end
+
+  def create
+    zettel_name = "meetings/#{Time.now.strftime('%Y%m%d%H%M')}"
+    template = ERB.new(DATA.read)
+    content = template.result(binding)
+    %x|obs create "#{zettel_name}" --open --content "#{content}"|
+  end
+end
+
+title = Agenda.new(:today).choose
+note = Note.new(title)
+note.create
+
+__END__
+---
+title: <%= title %>
+tags:
+  - meeting
+---
+
+## Notes
+- 
