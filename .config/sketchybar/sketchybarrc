@@ -100,7 +100,6 @@ s --add item  clock right                \
 # note: sketchybar --query default_menu_items
 
 for i in \
-  "Fantastical Helper,Fantastical"                    \
   "Control Center,FocusModes"                         \
   "Amphetamine"                                       \
   "Gestimer"                                          \
@@ -108,7 +107,7 @@ for i in \
   "WireGuard"                                         \
   "Tunnelblick"                                       \
   "iStat Menus Status,com.bjango.istatmenus.combined" \
-  "MeetingBar"
+  "BusyCal Menu"
 do
   s --add alias "$i" right          \
     --set "$i" icon.padding_left=0  \

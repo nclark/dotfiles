@@ -1,4 +1,4 @@
-#!/Users/nclark/.asdf/installs/ruby/3.1.2/bin/ruby
+#!/usr/bin/env ruby
 
 require 'date'
 require 'pry'
