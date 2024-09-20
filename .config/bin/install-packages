@@ -19,9 +19,12 @@ declare -a PACKAGES=(
   awscli
   b2-tools
   bash-completion
+  basictex
   bitwarden-cli
+  busycal
   choose-gui
   cloudflared
+  colima
   coreutils
   direnv
   fd
@@ -51,12 +54,11 @@ declare -a PACKAGES=(
   neofetch
   neovim
   orbstack
+  pandoc
   pass
   progress
   pyenv
   pillow
-  podman
-  podman-desktop
   pwgen
   qrencode
   ranger
