@@ -84,6 +84,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 ### Librewolf
 - [bitwarden](https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 - [floccus](https://addons.mozilla.org/en-US/firefox/addon/floccus/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
+- [wallabagger](https://addons.mozilla.org/en-US/firefox/addon/wallabagger/)
 - [Cookie Popup Blocker](https://addons.mozilla.org/en-US/firefox/addon/cookie-popup-blocker/)
 - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
 - [google containers](https://github.com/containers-everywhere/contain-google)
@@ -95,6 +96,7 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
   - [bitwarden](https://chrome.google.com/webstore/detail/bitwarden-free-password-m/nngceckbapebfimnlniiiahkandclblb)
   - [shut up cookies](https://github.com/OhMyGuus/I-Dont-Care-About-Cookies)
   - [floccus](https://chrome.google.com/webstore/detail/floccus-bookmarks-sync/fnaicdffflnofjppbagibeoednhnbjhg)
+  - [wallabagger](https://chromewebstore.google.com/detail/wallabagger/gbmgphmejlcoihgedabhgjdkcahacjlj?hl=fr&pli=1)
 
 ### neovim
 - `/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip`
