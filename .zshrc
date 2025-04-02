@@ -1,10 +1,11 @@
-## includes
+# includes
 source ~/.zsh/env
 source ~/.zsh/compinstall
 source ~/.zsh/aliases
 source ~/.zsh/functions
 source ~/.zsh/private
 source ~/.zsh/host
+source ~/.zsh/completions/*
 
 ## prompt
 setopt PROMPT_SUBST
@@ -14,7 +15,6 @@ parse_git_branch() {
 }
 
 PROMPT='[%9c]%{%F{green}%}$(parse_git_branch)%{%F{none}%} # '
-
 
 ## history
 bindkey '^R' history-incremental-search-backward
@@ -26,3 +26,7 @@ eval `gdircolors ~/.dir_colors`
 export DIRENV_BASH="/opt/homebrew/bin/bash"
 eval "$(direnv hook zsh)"
 
+## asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"

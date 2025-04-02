@@ -31,3 +31,5 @@ alias ghdec='f() { age -d -i ~/.ssh/id_ed25519 ${1} > $(basename ${1} .age) }; f
 alias runlike="docker run --rm -v /var/run/docker.sock:/var/run/docker.sock assaflavie/runlike"
 alias opn='opn-cli'
 alias ns='nix-shell'
+alias find='fd'
+alias pr="source ~/bin/pr"

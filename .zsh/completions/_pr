@@ -1,0 +1,8 @@
+_pr_completion() {
+  local cur
+  cur="${words[-1]}"
+
+  compadd $(/usr/bin/find /Users/nclark/workspace -type d -mindepth 2 -maxdepth 2 ! -path "*workspace/dotfiles*/*" -not -name '.*' | awk -F/ '{print $NF}')
+}
+
+compdef _pr_completion pr
