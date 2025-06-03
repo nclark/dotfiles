@@ -59,17 +59,18 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 #% # App launchers
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
-cmd + ctrl - m: $HOME/bin/create-memo # Create a new memo
 cmd + ctrl - return: kitty -1 --instance-group main -d=$HOME # New terminal
-cmd + ctrl - h: kitty -1 --instance-group main -T=ranger -d=$HOME /opt/homebrew/bin/ranger # File manager
+cmd + ctrl + shift - h: kitty -1 --instance-group main -T=ranger -d=$HOME /opt/homebrew/bin/ranger # File manager
+cmd + ctrl - h: open ~
 cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser $WORK_MACHINE --invert # Alternate browser
-cmd + ctrl - e: /Users/nclark/bin/vimr # Editor
-cmd + ctrl - n: open /Applications/Obsidian.app
+cmd + ctrl - e: open /Applications/Zed\ Preview.app
+cmd + alt + ctrl - n: open /Applications/Obsidian.app
 ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
 cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/ChatGPT.app
+cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
 
 #% ### Password helpers
 cmd + alt + ctrl - p: $HOME/bin/bw-helper --omni # Bitwarden Helper
@@ -82,6 +83,6 @@ ctrl + alt + cmd - d: $HOME/bin/duo-helper # Restart brew services
 ctrl + cmd + shift + alt - y : launchctl kickstart -k "gui/$UID/homebrew.mxcl.yabai" # Restart yabai
 ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketchybar
 ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
-cmd + alt + ctrl - t: /Applications/Teams\ SUCKS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
-cmd + alt + ctrl - m: $HOME/bin/zkmtg
+cmd + alt + ctrl - m: /Applications/EVERYBODY\ HATES\ TEAMS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
+cmd + alt + ctrl - t: $HOME/bin/newtodo --prompt
 
