@@ -94,12 +94,12 @@ declare -a WORK_PACKAGES=(
 
 declare -a CASKS=(
   balenaetcher
-  bartender
   bettertouchtool
   biscuit
   bitwarden
   cleanshot
   dash
+  dozer
   drawio
   fantastical
   finch

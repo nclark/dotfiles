@@ -17,3 +17,4 @@ export HOMEBREW_NO_ENV_HINTS=true
 export XDG_CONFIG_HOME=$HOME/.config
 export CONF=$XDG_CONFIG_HOME
 export TERM="xterm"
+export AWS_CLI_AUTO_PROMPT=on

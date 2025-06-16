@@ -48,3 +48,15 @@ adguard-cache-clear() {
 clear-photoprism-sdcard() {
   ssh photoprism.local 'echo "delete" | sudo tee /var/run/photo-import.fifo > /dev/null'
 }
+
+archivebox() {
+  ssh apps.local "cd /opt/apps/archivebox ; bin/archivebox $*"
+}
+
+gpt4() {
+  llm -m gpt-4-turbo "$*"
+}
+
+chatgpt4() {
+  llm chat -m gpt-4-turbo
+}
