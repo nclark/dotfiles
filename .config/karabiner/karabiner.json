@@ -1,0 +1,23 @@
+{
+    "profiles": [
+        {
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "key_code": "page_down" },
+                    "to": [{ "consumer_key_code": "volume_increment" }]
+                },
+                {
+                    "from": { "key_code": "f11" },
+                    "to": [{ "consumer_key_code": "play_or_pause" }]
+                },
+                {
+                    "from": { "key_code": "f12" },
+                    "to": [{ "consumer_key_code": "volume_decrement" }]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}
