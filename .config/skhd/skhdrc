@@ -69,10 +69,16 @@ cmd + alt + ctrl - n: open /Applications/Obsidian.app
 ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
-cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/ChatGPT.app
+cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
 cmd + ctrl - d: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/DeepSeek.app
 cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
+
+# Advantage360 keys 
+# ctrl + alt + cmd + shift - k : open /Applications/Keymapp.app
+ctrl + alt + cmd + shift - y : shortcuts run 'Voice Control On'
+ctrl + alt + cmd + shift - z : shortcuts run 'Voice Control Off'
+
 
 #% ### Password helpers
 cmd + alt + ctrl - p: $HOME/bin/bw-helper --omni # Bitwarden Helper
