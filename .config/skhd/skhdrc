@@ -9,7 +9,7 @@ ctrl - right: yabai -m space --focus next || yabai -m space --focus first # Move
 
 #% - `ctrl - [1-9]`: Move to specific space
 ctrl - 1: yabai -m space --focus 1
-ctrl - 2: yabai -m space --focus 2 
+ctrl - 2: yabai -m space --focus 2
 ctrl - 3: yabai -m space --focus 3
 ctrl - 4: yabai -m space --focus 4
 ctrl - 5: yabai -m space --focus 5
@@ -46,7 +46,7 @@ ctrl + cmd + shift - 9: yabai -m window --space 9
 ctrl + shift - f : $HOME/.config/yabai/toggle_stacked.sh # Toggle space between bsp and stacked
 ctrl + shift + cmd - f : yabai -m window --toggle float # Toggle current window float state
 
-#% ### Float currently focused window and move to 
+#% ### Float currently focused window and move to
 ctrl + shift + cmd - c : $HOME/.config/yabai/float.sh center # Center
 ctrl + shift + cmd - l : $HOME/.config/yabai/float.sh left # Left
 ctrl + shift + cmd - r : $HOME/.config/yabai/float.sh right # Right
@@ -74,10 +74,9 @@ cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
 cmd + ctrl - d: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/DeepSeek.app
 cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 
-# Advantage360 keys 
-# ctrl + alt + cmd + shift - k : open /Applications/Keymapp.app
-ctrl + alt + cmd + shift - y : shortcuts run 'Voice Control On'
-ctrl + alt + cmd + shift - z : shortcuts run 'Voice Control Off'
+# Advantage360 keys
+ctrl + alt + cmd + shift - k : $HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap
+ctrl + alt + cmd + shift - y : shortcuts run 'Voice Control Toggle'
 
 
 #% ### Password helpers
@@ -93,4 +92,3 @@ ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketch
 ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
 cmd + alt + ctrl - m: /Applications/EVERYBODY\ HATES\ TEAMS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
 cmd + alt + ctrl - t: $HOME/bin/newtodo --prompt
-
