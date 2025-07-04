@@ -20,6 +20,7 @@ alias vimacapp='vimr $HOME/.config/bin/install-macapps'
 alias viasdfpkg='vimr $HOME/.config/bin/install-asdf-packages'
 
 # misc unorganized 
+alias claude="/Users/nclark/.claude/local/claude"
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
 alias pwgen='PWGEN=$(/opt/homebrew/bin/pwgen --symbols --secure --ambiguous --remove-chars=":?\/[]()\{\}+,;<>." 15 1) ; echo $PWGEN ; echo -n $PWGEN | pbcopy'
 alias gitx='fork'
