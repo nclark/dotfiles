@@ -5,7 +5,6 @@ ls -d \
   /System/Applications/*.app \
   /System/Applications/*/*.app \
   /System/Library/PreferencePanes/*.prefPane \
-| grep -v "/Applications/Microsoft Teams.app" \
 | choose \
   -f "AnonymousPro" \
   -s 24 \
