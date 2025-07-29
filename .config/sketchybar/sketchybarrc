@@ -107,7 +107,7 @@ for i in \
   "WireGuard"                                         \
   "Tunnelblick"                                       \
   "iStat Menus Status,com.bjango.istatmenus.combined" \
-  "BusyCal Menu"
+  "BusyCal Menu & Alarms"
 do
   s --add alias "$i" right          \
     --set "$i" icon.padding_left=0  \
