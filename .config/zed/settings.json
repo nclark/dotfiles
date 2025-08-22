@@ -1,0 +1,27 @@
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "on_yank"
+  },
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "buffer_font_family": "Anonymous Pro",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "GitHub Dark Default"
+  },
+  "languages": {
+    "Markdown": {
+      "show_edit_predictions": false,
+      "show_completions_on_input": false
+    }
+  }
+}
