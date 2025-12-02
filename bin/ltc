@@ -1,0 +1,131 @@
+#!/usr/bin/env bash
+
+# ltc - "less temporary claude"
+# Moves current temporary Claude directory to permanent storage
+# and rewrites Claude's history to preserve the conversation
+
+# https://sharats.me/posts/shell-script-best-practices/
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    echo 'Usage: ltc <title>
+
+Less Temporary Claude - Move current temp Claude workspace to permanent storage
+while preserving conversation history.
+
+Arguments:
+  title    Name for the project (will be prefixed with YYYYMMDD-)
+
+Examples:
+  ltc my-project    # Moves to ~/workspace/claudes/20251202-my-project
+
+After running:
+  1. Exit Claude (Ctrl+D)
+  2. cd to the new location
+  3. Relaunch Claude to continue the conversation
+'
+    exit
+fi
+
+if [[ -z "${1-}" ]]; then
+    echo "Error: Title required"
+    exit 1
+fi
+
+title="$1"
+old_path="$(pwd -P)"  # Use -P to resolve symlinks to real path
+timestamp="$(date +%Y%m%d)"
+new_path="$HOME/workspace/claudes/${timestamp}-${title}"
+
+# Safety check: only allow moving temp directories or existing claudes directories
+if [[ "$old_path" != /tmp/* ]] && \
+   [[ "$old_path" != /private/var/folders/* ]] && \
+   [[ "$old_path" != /var/folders/* ]] && \
+   [[ "$old_path" != "$HOME/workspace/claudes/"* ]]; then
+    echo "Error: ltc can only be run from:"
+    echo "  - A temp directory (/tmp/* or /var/folders/*)"
+    echo "  - An existing claudes directory (~/workspace/claudes/*)"
+    echo ""
+    echo "Current directory: $old_path"
+    exit 1
+fi
+
+# Escape paths for Claude's directory naming (/, ., and _ all become -)
+escape_path() {
+    echo "$1" | tr '/._' '-'
+}
+
+old_escaped=$(escape_path "$old_path")
+new_escaped=$(escape_path "$new_path")
+
+if [[ -e "$new_path" ]]; then
+    echo "Error: Destination already exists: $new_path"
+    exit 1
+fi
+
+echo "Moving workspace..."
+echo "  From: $old_path"
+echo "  To:   $new_path"
+echo ""
+
+# Create parent directory
+mkdir -p "$HOME/workspace/claudes"
+
+# Move the working directory
+mv "$old_path" "$new_path"
+
+echo "✓ Moved working directory"
+
+# Update Claude's history.jsonl
+if [[ -f "$HOME/.claude/history.jsonl" ]]; then
+    # Create backup
+    cp "$HOME/.claude/history.jsonl" "$HOME/.claude/history.jsonl.bak"
+
+    # Rewrite project paths
+    sed "s|\"project\":\"$old_path\"|\"project\":\"$new_path\"|g" \
+        "$HOME/.claude/history.jsonl.bak" > "$HOME/.claude/history.jsonl"
+
+    echo "✓ Updated history.jsonl"
+fi
+
+# Rename project directory
+old_project_dir="$HOME/.claude/projects/$old_escaped"
+new_project_dir="$HOME/.claude/projects/$new_escaped"
+
+echo "DEBUG: Looking for: $old_project_dir"
+echo "DEBUG: Will rename to: $new_project_dir"
+
+if [[ -d "$old_project_dir" ]]; then
+    mv "$old_project_dir" "$new_project_dir"
+    echo "✓ Renamed project directory"
+else
+    echo "⚠ Project directory not found (this is normal if no conversation happened yet)"
+fi
+
+if [[ -d "$new_project_dir" ]]; then
+
+    # Rewrite cwd in all session files
+    for session_file in "$new_project_dir"/*.jsonl; do
+        if [[ -f "$session_file" ]]; then
+            # Create temporary file
+            temp_file="${session_file}.tmp"
+            sed "s|\"cwd\":\"$old_path\"|\"cwd\":\"$new_path\"|g" "$session_file" > "$temp_file"
+            mv "$temp_file" "$session_file"
+        fi
+    done
+    echo "✓ Updated session files"
+fi
+
+echo ""
+echo "✅ Successfully moved to: $new_path"
+echo ""
+echo "Next steps:"
+echo "  1. Exit Claude (Ctrl+D or Ctrl+C)"
+echo "  2. cd $new_path"
+echo "  3. claude"

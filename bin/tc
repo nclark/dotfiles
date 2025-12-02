@@ -1,0 +1,115 @@
+#!/usr/bin/env bash
+
+# https://sharats.me/posts/shell-script-best-practices/
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    echo 'Usage: tc [path]
+
+Temporary Claude - Create a temporary directory and launch Claude with --dangerously-skip-permissions
+
+Arguments:
+  path    Optional. Can be:
+          - A full path to an existing directory
+          - A relative path to an existing directory
+          - A subdirectory name under ~/workspace/djo
+          - A subdirectory name under ~/workspace/claudes
+          If provided, creates a symlink to this directory in the temp dir.
+
+Examples:
+  tc                              # Just temp dir + Claude
+  tc myproject                    # Link to ~/workspace/djo/myproject
+  tc 20251202-saved               # Link to ~/workspace/claudes/20251202-saved
+  tc ~/some/other/path            # Link to absolute path
+  tc ../relative/path             # Link to relative path
+
+'
+    exit
+fi
+
+main() {
+    local target_path=""
+
+    # If an argument is provided, resolve the path
+    if [[ "${1-}" != "" ]]; then
+        local arg="$1"
+
+        # Check if it's an absolute or relative path that exists
+        if [[ -e "$arg" ]]; then
+            target_path="$(cd "$arg" && pwd)"
+        # Otherwise, check if it's a subdir of ~/workspace/djo
+        elif [[ -e "$HOME/workspace/djo/$arg" ]]; then
+            target_path="$HOME/workspace/djo/$arg"
+        # Otherwise, check if it's a subdir of ~/workspace/claudes
+        elif [[ -e "$HOME/workspace/claudes/$arg" ]]; then
+            target_path="$HOME/workspace/claudes/$arg"
+        # Otherwise, try to find a matching directory in ~/workspace/claudes that ends with the arg
+        else
+            local matches=()
+            if [[ -d "$HOME/workspace/claudes" ]]; then
+                while IFS= read -r -d '' dir; do
+                    matches+=("$dir")
+                done < <(find "$HOME/workspace/claudes" -maxdepth 1 -type d -name "*-$arg" -print0 2>/dev/null)
+            fi
+
+            if [[ ${#matches[@]} -eq 1 ]]; then
+                target_path="${matches[0]}"
+                echo "Found: $(basename "$target_path")"
+            elif [[ ${#matches[@]} -gt 1 ]]; then
+                echo "Error: Multiple matches found for '$arg':"
+                for match in "${matches[@]}"; do
+                    echo "  - $(basename "$match")"
+                done
+                exit 1
+            else
+                echo "Error: Path not found: $arg"
+                echo "Tried:"
+                echo "  - $arg"
+                echo "  - $HOME/workspace/djo/$arg"
+                echo "  - $HOME/workspace/claudes/$arg"
+                echo "  - $HOME/workspace/claudes/*-$arg"
+                exit 1
+            fi
+        fi
+
+        if [[ ! -d "$target_path" ]]; then
+            echo "Error: Path exists but is not a directory: $target_path"
+            exit 1
+        fi
+    fi
+
+    # Create temp directory and cd into it
+    local temp_dir
+    temp_dir=$(mktemp -d)
+    cd "$temp_dir"
+
+    echo "Created temporary directory: $temp_dir"
+
+    # Create symlink if path was provided
+    if [[ "$target_path" != "" ]]; then
+        local link_name
+        link_name=$(basename "$target_path")
+        ln -s "$target_path" "$link_name"
+        echo "Created symlink: $link_name -> $target_path"
+    fi
+
+    # Launch Claude
+    echo "Launching Claude..."
+    /Users/nclark/.claude/local/claude --dangerously-skip-permissions
+
+    # After Claude exits, stay in the temp directory
+    echo ""
+    echo "Remaining in: $temp_dir"
+    echo "Run 'ltc <title>' to make this permanent, or just exit to clean up"
+
+    # Start a new shell in the temp directory to keep user there
+    exec $SHELL
+}
+
+main "$@"
