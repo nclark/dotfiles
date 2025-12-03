@@ -1,0 +1,9 @@
+_ccd_completion() {
+  local cur
+  cur="${words[-1]}"
+
+  # Find directories in ~/workspace/claudes, strip the date prefix (YYYYMMDD-)
+  compadd $(/usr/bin/find "$HOME/workspace/claudes" -type d -maxdepth 1 -not -name '.*' -not -name 'claudes' | awk -F/ '{print $NF}' | sed 's/^[0-9]\{8\}-//')
+}
+
+compdef _ccd_completion ccd

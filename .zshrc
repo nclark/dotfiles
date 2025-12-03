@@ -5,7 +5,9 @@ source ~/.zsh/aliases
 source ~/.zsh/functions
 source ~/.zsh/private
 source ~/.zsh/host
-source ~/.zsh/completions/*
+for completion_file in ~/.zsh/completions/*; do
+  source "$completion_file"
+done
 
 ## prompt
 setopt PROMPT_SUBST

@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+BASE_DIR="$HOME/workspace/claudes"
+
+if [ -z "$1" ]; then
+  echo "Usage: ccd <directory_name>"
+  return 1
+fi
+
+# Search for directories matching the pattern *-$1
+TARGET_DIR=$(/usr/bin/find "$BASE_DIR" -type d -maxdepth 1 -name "*-$1" | head -n 1)
+
+if [ -n "$TARGET_DIR" ]; then
+  cd "$TARGET_DIR" || return 1
+else
+  echo "Directory matching '*-$1' not found within $BASE_DIR"
+  return 1
+fi
