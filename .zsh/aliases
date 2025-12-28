@@ -39,3 +39,6 @@ alias timer="docker run --rm -it ghcr.io/nclark/wut"
 alias jfmusic="/Users/nclark/workspace/projects/jellyfin-tui/target/release/jellyfin-tui"
 alias cat='bat'
 alias lg=lazygit
+alias ccusage="npx ccusage@latest"
+alias claude="~/.local/bin/claude"
+alias docker='finch'

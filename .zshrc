@@ -32,3 +32,6 @@ eval "$(direnv hook zsh)"
 . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+# opencode
+export PATH=/Users/nclark/.opencode/bin:$PATH
