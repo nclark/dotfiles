@@ -1,0 +1,6 @@
+customCommands:
+  - key: "g"
+    context: "files"
+    command: "glow -p {{.SelectedFile.Name}}"
+    description: "View markdown with glow"
+    output: terminal

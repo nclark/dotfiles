@@ -55,7 +55,7 @@ main() {
             if [[ -d "$HOME/workspace/claudes" ]]; then
                 while IFS= read -r -d '' dir; do
                     matches+=("$dir")
-                done < <(find "$HOME/workspace/claudes" -maxdepth 1 -type d -name "*-$arg" -print0 2>/dev/null)
+                done < <(find -L "$HOME/workspace/claudes" -maxdepth 1 -type d -name "*-$arg" -print0 2>/dev/null)
             fi
 
             if [[ ${#matches[@]} -eq 1 ]]; then
