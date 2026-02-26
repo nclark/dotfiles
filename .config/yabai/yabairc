@@ -33,6 +33,23 @@ yabai -m rule --add app="^Finder$" manage=on
 yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
 yabai -m rule --add app="^Finder$" title="^Move$" manage=off
 
+# Force Outlook to tile
+yabai -m rule --add app="^Microsoft Outlook$" manage=on
+# Force Teams to tile
+yabai -m rule --add app="^Microsoft Teams$" manage=on
+# Keep the meeting compact overlay from stalking across desktops
+yabai -m rule --add app="^Microsoft Teams$" title="compact view" manage=off sticky=off
+yabai -m signal --add app="^Microsoft Teams$" event=window_created title="compact view" action="yabai -m window \$YABAI_WINDOW_ID --minimize"
+yabai -m signal --add app="^Microsoft Teams$" event=window_title_changed title="compact view" action="yabai -m window \$YABAI_WINDOW_ID --minimize"
+# Keep Outlook preferences and small dialogs floating
+yabai -m rule --add app="^Microsoft Outlook$" title="^Preferences$" manage=off
+yabai -m rule --add app="^Microsoft Outlook$" title="^Settings$" manage=off
+yabai -m rule --add app="^Microsoft Outlook$" title="^About Microsoft Outlook$" manage=off
+
+# Ghostty tab workaround: native tabs report as separate windows, re-apply layout
+yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
