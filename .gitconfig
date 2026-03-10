@@ -29,6 +29,7 @@
   excludesfile = /Users/nclark/.gitignore
   editor = nvim
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  pager = delta
 [merge]
   tool = mvim
 [mergetool "mvim"]
@@ -40,6 +41,13 @@
   lineNumber = true
 [init]
   defaultBranch = master
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true
+  side-by-side = true  # optional but nice
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

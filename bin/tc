@@ -101,7 +101,7 @@ main() {
 
     # Launch Claude
     echo "Launching Claude..."
-    /Users/nclark/.claude/local/claude --dangerously-skip-permissions
+    claude --dangerously-skip-permissions
 
     # After Claude exits, stay in the temp directory
     echo ""

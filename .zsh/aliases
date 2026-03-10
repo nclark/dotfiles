@@ -42,3 +42,7 @@ alias lg=lazygit
 alias ccusage="npx ccusage@latest"
 alias claude="~/.local/bin/claude"
 alias docker='finch'
+
+alias nm="~/workspace/projects/calc/bin/nm"
+alias cl="claude --dangerously-skip-permissions"
+alias clr="claude --dangerously-skip-permissions --resume"
