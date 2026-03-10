@@ -1,13 +1,24 @@
 #!/bin/sh
 
+. /Users/nclark/.zsh/private
+
 MUSIC_SYNC_PATH="$HOME/Sync/Music"
 MUSIC_SYNC_LOCK=/tmp/music-sync.lock
+MUSIC_SYNC_LOG=/tmp/music-sync.log
+
+echo "$(date): Music sync service started, watching $MUSIC_SYNC_PATH" >> $MUSIC_SYNC_LOG
 
 fswatch -x -o -0 $MUSIC_SYNC_PATH | while read -d "" event; do
   if ! [ -e $MUSIC_SYNC_LOCK ]; then
     touch $MUSIC_SYNC_LOCK
-    rsync -r --exclude '*.DS_Store*' $HOME/Sync/Music/ truenas.local:/mnt/fry/data/music
+    echo "$(date): Starting rsync..." >> $MUSIC_SYNC_LOG
+    rsync -r --exclude '*.DS_Store*' $HOME/Sync/Music/ truenas.local:/mnt/fry/data/music >> $MUSIC_SYNC_LOG 2>&1
+
+    echo "$(date): Rsync complete, triggering Jellyfin library scan..." >> $MUSIC_SYNC_LOG
+    curl -X POST "$JELLYFIN_URL/ScheduledTasks/Running/7738148ffcd07979c7ceb148e06b3aed" \
+      -H "X-MediaBrowser-Token: $JELLYFIN_API_KEY" >> $MUSIC_SYNC_LOG 2>&1
+    echo "$(date): Jellyfin scan triggered" >> $MUSIC_SYNC_LOG
+
     rm $MUSIC_SYNC_LOCK
   fi
 done
-
