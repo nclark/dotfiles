@@ -21,22 +21,26 @@ declare -a PACKAGES=(
   bash-completion
   basictex
   bitwarden-cli
+  broot
   busycal
   choose-gui
   cloudflared
   colima
   coreutils
   direnv
+  dust
   fd
   fx
   fzf
   gh
+  delta
   git
   glow
   gnupg
   ifstat
   inxi
   ipcalc
+  jaq
   jless
   joplin-cli
   jq
