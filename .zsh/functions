@@ -60,3 +60,10 @@ gpt4() {
 chatgpt4() {
   llm chat -m gpt-4-turbo
 }
+
+ssh() {
+    if [[ "$TERM" == "xterm-ghostty" ]]; then
+        infocmp -x 2>/dev/null | command ssh "$@" 'tic -x -o ~/.terminfo - 2>/dev/null' 2>/dev/null
+    fi
+    command ssh "$@"
+}
