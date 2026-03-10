@@ -48,3 +48,5 @@ export DOCKER_HOST="unix:///Applications/Finch/lima/data/finch/sock/finch.sock"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+## atuin
+eval "$(atuin init zsh)"
