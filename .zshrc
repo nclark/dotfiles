@@ -33,5 +33,13 @@ eval "$(direnv hook zsh)"
 
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 
-# opencode
-export PATH=/Users/nclark/.opencode/bin:$PATH
+# finch
+export DOCKER_HOST="unix:///Applications/Finch/lima/data/finch/sock/finch.sock"
+
+# bun completions
+[ -s "/Users/nclark/.bun/_bun" ] && source "/Users/nclark/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+

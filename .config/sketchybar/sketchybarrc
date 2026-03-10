@@ -100,12 +100,14 @@ s --add item  clock right                \
 # note: sketchybar --query default_menu_items
 
 for i in \
-  "Amphetamine"                                        \
-  "iStat Menus Menubar,com.bjango.istatmenus.weather"  \
-  "WireGuard"                                          \
-  "Tunnelblick"                                        \
-  "Fantastical Helper,Fantastical"
-  # "BusyCal Menu & Alarms"
+  "Control Center,Amphetamine"                         \
+  "Control Center,Item-0"                              \
+  "Control Center,Item-0"                              \
+  "Control Center,Item-0"
+  # "Control Center,Item-0"
+  # Note: iStat Menus, WireGuard, Tunnelblick show as generic "Control Center,Item-0" in macOS Tahoe
+  # macOS doesn't expose proper names for these menu items anymore
+  # BusyCal also shows as "Control Center,Item-0"
 do
   s --add alias "$i" right          \
     --set "$i" icon.padding_left=0  \
