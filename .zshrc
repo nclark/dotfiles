@@ -21,6 +21,11 @@ PROMPT='[%9c]%{%F{green}%}$(parse_git_branch)%{%F{none}%} # '
 ## history
 bindkey '^R' history-incremental-search-backward
 
+## edit command line in $EDITOR with ctrl-e
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
+
 ## colors
 eval `gdircolors ~/.dir_colors`
 
