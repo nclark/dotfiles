@@ -61,6 +61,36 @@ chatgpt4() {
   llm chat -m gpt-4-turbo
 }
 
+readyt() {
+  local use_claude=false
+  local input=""
+
+  for arg in "$@"; do
+    if [[ "$arg" == "--claude" ]]; then
+      use_claude=true
+    else
+      input="$arg"
+    fi
+  done
+
+  # Strip protocol if full URL provided
+  input="${input#https://}"
+  input="${input#http://}"
+
+  # If just a video ID, build the full path
+  if [[ "$input" != *youtube.com* ]]; then
+    input="www.youtube.com/watch?v=${input}"
+  fi
+
+  local url="https://defuddle.md/${input}"
+
+  if $use_claude; then
+    curl -sL "$url" | claude --append-system-prompt "Here is a YouTube video transcript piped via stdin. Summarize it, then answer any follow-up questions about it."
+  else
+    curl -sL "$url" | glow -p
+  fi
+}
+
 ssh() {
     if [[ "$TERM" == "xterm-ghostty" ]]; then
         infocmp -x 2>/dev/null | command ssh "$@" 'tic -x -o ~/.terminfo - 2>/dev/null' 2>/dev/null
