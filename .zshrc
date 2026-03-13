@@ -50,3 +50,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 ## atuin
 eval "$(atuin init zsh)"
+# restore default up-arrow (atuin overrides it)
+bindkey '^[[A' up-line-or-history
+bindkey '^[OA' up-line-or-history
