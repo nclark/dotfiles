@@ -101,7 +101,7 @@ main() {
 
     # Launch Claude
     echo "Launching Claude..."
-    claude --dangerously-skip-permissions
+    claude --dangerously-skip-permissions --system-prompt "You are in an empty, freshly created temp directory. There is no existing context to discover — do not look around or explore. The user will provide all necessary context in their prompts."
 
     # After Claude exits, stay in the temp directory
     echo ""

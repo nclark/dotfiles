@@ -4,6 +4,7 @@ ls -d \
   /Applications/*.app \
   /System/Applications/*.app \
   /System/Applications/*/*.app \
+  /System/Library/CoreServices/Finder.app \
   /System/Library/PreferencePanes/*.prefPane \
 | choose \
   -f "AnonymousPro" \
