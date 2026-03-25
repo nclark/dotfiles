@@ -6,8 +6,11 @@
     "default_model": {
       "provider": "anthropic",
       "model": "claude-sonnet-4-latest"
-    }
+    },
+    "play_sound_when_agent_done": false
   },
+  "show_edit_predictions": true,
+  "show_completions_on_input": true,
   "telemetry": {
     "metrics": false,
     "diagnostics": false
@@ -22,7 +25,7 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "GitHub Dark Default"
+    "dark": "Ayu Dark"
   },
   "languages": {
     "Markdown": {

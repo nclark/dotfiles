@@ -3,7 +3,6 @@
 
 declare -a TAPS=(
   felixkratz/formulae
-  homebrew/cask-fonts
   xwmx/taps
   heroku/brew
   noahgorstein/tap
@@ -63,6 +62,7 @@ declare -a PACKAGES=(
   progress
   pyenv
   pillow
+  pipx
   pwgen
   qrencode
   ranger
@@ -101,9 +101,10 @@ declare -a CASKS=(
   bettertouchtool
   biscuit
   bitwarden
+  chatgpt
+  claude
   cleanshot
   dash
-  dozer
   drawio
   fantastical
   finch
@@ -138,14 +139,12 @@ declare -a CASKS=(
   tor-browser
   transmit
   vimr 
-  vmware-fusion 
 )
 
 declare -a CASKS_NO_QUARANTINE=(
   eloston-chromium
   librewolf
   middleclick
-  noisy
 )
 
 declare -a PERSONAL_CASKS=(
@@ -158,7 +157,6 @@ declare -a PERSONAL_CASKS=(
 )
 
 declare -a WORK_CASKS=(
-  phantomjs
   tunnelblick
   zoom
 )
@@ -220,5 +218,5 @@ if yadm-context --personal; then
 fi
 
 for i in ${PIP_PACKAGES[@]}; do
-  pip3 install $i
+  pipx install $i
 done

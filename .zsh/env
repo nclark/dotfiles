@@ -7,9 +7,11 @@ homebrew_sbin=/opt/homebrew/sbin
 go_bin=$HOME/.asdf/installs/golang/1.19/packages/bin
 cargo_bin=$HOME/.cargo/bin
 asdf_python_bin=$(asdf where python)/bin
+bun_bin="$HOME/.bun/bin"
+team_bin="$HOME/workspace/djo/mkteam"
 
 
-export PATH=$current_bin:$home_bin:$asdf_bin:$homebrew_bin:$homebrew_sbin:$go_bin:$cargo_bin:$asdf_python_bin:$local_bin:$PATH
+export PATH=$current_bin:$home_bin:$asdf_bin:$homebrew_bin:$homebrew_sbin:$go_bin:$cargo_bin:$asdf_python_bin:$local_bin:$bun_bin:$PATH:$team_bin
 
 export EDITOR=/opt/homebrew/bin/nvim
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -17,3 +19,5 @@ export HOMEBREW_NO_ENV_HINTS=true
 export XDG_CONFIG_HOME=$HOME/.config
 export CONF=$XDG_CONFIG_HOME
 export AWS_CLI_AUTO_PROMPT=off
+# export DOCKER_HOST="unix://$HOME/.config/colima/default/docker.sock"
+export DOCKER_HOST="unix://$HOME/.colima/docker.sock"

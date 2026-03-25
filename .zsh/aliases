@@ -47,3 +47,5 @@ alias nm="~/workspace/projects/calc/bin/nm"
 alias cl="claude --dangerously-skip-permissions"
 alias clr="claude --dangerously-skip-permissions --resume"
 clrc() { claude remote-control --permission-mode bypassPermissions ${@:+--name} ${@:+"$*"} }
+alias dc=docker-compose
+alias load='sysctl -n vm.loadavg | awk '\''{printf "Load Avg: %s, %s, %s\n", $2, $3, $4}'\'''

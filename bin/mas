@@ -2,8 +2,8 @@
 
 # utilitiy script for using the mac app store from time to time
 
-apple-traffic allow --silent
+# apple-traffic allow --silent
 
 /opt/homebrew/bin/mas $*
 
-apple-traffic deny --silent
+# apple-traffic deny --silent

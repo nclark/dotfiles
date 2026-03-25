@@ -8,7 +8,12 @@
 [
   {
     "bindings": {
-      "cmd-shift-l": "workspace::ToggleLeftDock"
+      "cmd-shift-l": "workspace::ToggleLeftDock",
+      "cmd-shift-g": "git::Diff",
+      "cmd-p": [
+        "task::Spawn",
+        { "task_name": "file_finder", "reveal_target": "center" }
+      ]
     }
   },
   {

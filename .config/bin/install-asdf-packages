@@ -27,22 +27,22 @@ function install {
 export LDFLAGS="-L/opt/homebrew/opt/capstone/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/capstone/include"
 
-install_plugin ruby
+asdf plugin add ruby
 install ruby 2.7.7
 install ruby 3.1.2
-asdf global ruby 2.7.7
+asdf set -u ruby 3.1.2
 
-install_plugin erlang
+asdf plugin add erlang
 install erlang 22.3.4.26
-asdf global erlang 22.3.4.26
+asdf set -u erlang 22.3.4.26
 
-install_plugin elixir
+asdf plugin add elixir
 install elixir 1.12.3-otp-22
-asdf global elixir 1.12.3-otp-22
+asdf set -u elixir 1.12.3-otp-22
 
-install_plugin nodejs
-install nodejs 18.7.0
-asdf global nodejs 18.7.0
+asdf plugin add nodejs
+install nodejs 22.17.1
+asdf set -u nodejs 22.17.1
 
-install_plugin python https://github.com/danhper/asdf-python.git
+install_plugin python https://github.com/asdf-community/asdf-python.git
 install python 2.7.18

@@ -49,7 +49,11 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 ## atuin
-eval "$(atuin init zsh)"
-# restore default up-arrow (atuin overrides it)
-bindkey '^[[A' up-line-or-history
-bindkey '^[OA' up-line-or-history
+export PATH="$HOME/.atuin/bin:$PATH"
+eval "$(atuin init zsh --disable-up-arrow)"
+
+. "$HOME/.cargo/env"
+export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
+
+unalias br 2>/dev/null  # br installer - remove conflicting alias
+export TESSDATA_PREFIX=/opt/homebrew/share/tessdata

@@ -1,5 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-ui-select.nvim'
+
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
@@ -176,4 +180,17 @@ nnoremap <leader>b :Buffer<cr>
 call plug#end()
 
 lua require("nvim-tree").setup()
+lua << EOF
+require('telescope').setup {
+  extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        width = 0.25,  -- 25% of window width
+        height = 0.4,  -- 40% of window height
+      }
+    }
+  }
+}
+require('telescope').load_extension('ui-select')
+EOF
 

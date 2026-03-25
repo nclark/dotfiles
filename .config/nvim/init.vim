@@ -51,3 +51,7 @@ augroup END
 
 source ~/.config/nvim/keymap.vim
 source ~/.config/nvim/ftkeymap.vim
+
+" Load todo.txt plugin for todo files
+autocmd BufRead,BufNewFile,BufEnter todo.txt,defer.txt,archive.txt lua dofile(vim.fn.expand('~/.config/nvim/ftplugin/todo.lua'))
+

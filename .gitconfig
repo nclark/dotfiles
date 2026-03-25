@@ -25,6 +25,9 @@
   sd = diff stash@{0}
   pop = !git reset HEAD^ && git status
   put = push origin HEAD
+  fpyolo = push origin HEAD --force-with-lease
+  mergedat = "!f() { target=$1; source=$2; git fetch origin $target:$target && git push origin ${source:-HEAD}:$target; }; f"
+
 [core]
   excludesfile = /Users/nclark/.gitignore
   editor = nvim

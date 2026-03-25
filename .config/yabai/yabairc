@@ -47,8 +47,8 @@ yabai -m rule --add app="^Microsoft Outlook$" title="^Settings$" manage=off
 yabai -m rule --add app="^Microsoft Outlook$" title="^About Microsoft Outlook$" manage=off
 
 # Ghostty tab workaround: native tabs report as separate windows, re-apply layout
-yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
-yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
+# yabai -m signal --add app='^Ghostty$' event=window_created action='yabai -m space --layout bsp'
+# yabai -m signal --add app='^Ghostty$' event=window_destroyed action='yabai -m space --layout bsp'
 
 # SketchyBar events
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
