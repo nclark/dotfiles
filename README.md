@@ -116,6 +116,12 @@ sudo reboot # launchctl is too confusing... just let it pick up the new service
 ### Amphetamine
 - Download Amphetamine Enhancer: https://github.com/x74353/Amphetamine-Enhancer
 
+### Documents/Desktop -> cloud storage symlink
+- Finder's FileProvider re-creates `~/Documents`/`~/Desktop` if missing, even with iCloud Drive fully off -- do the remove+symlink+lock as one uninterrupted script, not step by step, or Finder wins the race and you end up with a real directory again
+- `rm -rf ~/Documents && ln -s ~/ownCloud/Work/Documents ~/Documents && chflags -h uchg ~/Documents`
+- Verify: `stat -f "%p %f" ~/Documents` -> mode starts with `120` (symlink), flags is `2` (uchg/locked)
+- To undo or change the target later: `chflags nouchg ~/Documents` first
+
 ## Start on launch
 - Amphetamine
 - Bartender
