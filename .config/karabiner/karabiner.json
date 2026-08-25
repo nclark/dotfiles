@@ -1,0 +1,58 @@
+{
+    "global": { "check_for_updates": false },
+    "profiles": [
+        {
+            "complex_modifications": {
+                "rules": [
+                    {
+                        "description": "fn alone -> right_option (voice control)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "fn",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "fn" }],
+                                "to_if_alone": [{ "key_code": "right_option" }],
+                                "type": "basic"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "devices": [
+                {
+                    "identifiers": { "is_keyboard": true },
+                    "ignore": true
+                }
+            ],
+            "name": "Default profile",
+            "selected": true,
+            "simple_modifications": [
+                {
+                    "from": { "consumer_key_code": "dictation" },
+                    "to": [
+                        {
+                            "key_code": "v",
+                            "modifiers": ["left_command", "left_shift", "left_control"]
+                        }
+                    ]
+                },
+                {
+                    "from": { "key_code": "caps_lock" },
+                    "to": [{ "key_code": "left_control" }]
+                },
+                {
+                    "from": { "key_code": "f5" },
+                    "to": [
+                        {
+                            "key_code": "v",
+                            "modifiers": ["left_command", "left_shift", "left_control"]
+                        }
+                    ]
+                }
+            ],
+            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+        }
+    ]
+}

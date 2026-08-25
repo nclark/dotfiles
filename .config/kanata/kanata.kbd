@@ -1,0 +1,36 @@
+;; Home row mods — internal MacBook keyboard ONLY.
+;; The Advantage 360 Pro handles its own mods in ZMK firmware and is not intercepted.
+;;
+;; Arrangement:  A=opt  S=ctrl  D=cmd  F=shift  |  J=shift  K=cmd  L=ctrl  ;=opt
+
+(defcfg
+  process-unmapped-keys yes
+  concurrent-tap-hold yes
+  macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
+)
+
+(defsrc
+  caps a s d f j k l ; f5
+)
+
+(defvar
+  tap-time 200
+  hold-time 200
+)
+
+(defalias
+  a (tap-hold-release $tap-time $hold-time a lalt)
+  s (tap-hold-release $tap-time $hold-time s lctl)
+  d (tap-hold-release $tap-time $hold-time d lmet)
+  f (tap-hold-release $tap-time $hold-time f lsft)
+  j (tap-hold-release $tap-time $hold-time j rsft)
+  k (tap-hold-release $tap-time $hold-time k rmet)
+  l (tap-hold-release $tap-time $hold-time l rctl)
+  ; (tap-hold-release $tap-time $hold-time ; ralt)
+)
+
+;; caps -> ctrl and f5 -> ctrl+shift+cmd+V migrated from Karabiner-Elements,
+;; since KE no longer modifies events on the internal keyboard.
+(deflayer base
+  lctl @a @s @d @f @j @k @l @; C-S-M-v
+)
