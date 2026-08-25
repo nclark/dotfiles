@@ -6,6 +6,9 @@
 (defcfg
   process-unmapped-keys yes
   concurrent-tap-hold yes
+  ;; match ZMK require-prior-idle-ms on the Adv360: typing within 150ms
+  ;; before a home-row key resolves it as tap instantly (no hold buffering)
+  tap-hold-require-prior-idle 150
   macos-dev-names-include ("Apple Internal Keyboard / Trackpad")
 )
 
@@ -13,8 +16,10 @@
   caps a s d f j k l ; f5
 )
 
+;; tap-time = ZMK quick-tap-ms (re-press within N ms after tap = instant repeat)
+;; hold-time = ZMK tapping-term-ms
 (defvar
-  tap-time 200
+  tap-time 175
   hold-time 200
 )
 
