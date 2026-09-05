@@ -48,9 +48,12 @@ export DOCKER_HOST="unix:///Applications/Finch/lima/data/finch/sock/finch.sock"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-## atuin
+## atuin -- ctrl-r ONLY
+## --disable-up-arrow drops atuin's up-arrow (emacs/viins/vicmd) and vicmd 'k'
 export PATH="$HOME/.atuin/bin:$PATH"
 eval "$(atuin init zsh --disable-up-arrow)"
+## atuin still grabs '/' in vicmd; give it back to vi history search
+bindkey -M vicmd '/' vi-history-search-backward
 
 . "$HOME/.cargo/env"
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
