@@ -6,3 +6,5 @@ tags
 log/*
 NERD_tree*
 .envrc
+
+**/.claude/settings.local.json

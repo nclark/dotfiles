@@ -43,7 +43,7 @@
 [grep]
   lineNumber = true
 [init]
-  defaultBranch = master
+	defaultBranch = master
 
 [interactive]
   diffFilter = delta --color-only
