@@ -53,7 +53,6 @@ eval "$(atuin init zsh --disable-up-arrow --disable-ai)"
 ## Leaves only: ^r in emacs+viins, and '/' in vicmd. Take '/' back.
 bindkey -M vicmd '/' vi-history-search-backward
 
-. "$HOME/.cargo/env"
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
 unalias br 2>/dev/null  # br installer - remove conflicting alias
