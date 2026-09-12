@@ -33,8 +33,8 @@ eval `gdircolors ~/.dir_colors`
 export DIRENV_BASH="/opt/homebrew/bin/bash"
 eval "$(direnv hook zsh)"
 
-## asdf
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+## mise
+eval "$(mise activate zsh)"
 
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 

@@ -17,7 +17,6 @@ alias ag="ag -p ~/.agignore"
 # dotfiles
 alias vipkg='vimr $HOME/.config/bin/install-packages'
 alias vimacapp='vimr $HOME/.config/bin/install-macapps'
-alias viasdfpkg='vimr $HOME/.config/bin/install-asdf-packages'
 
 # misc unorganized 
 alias webshare='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
