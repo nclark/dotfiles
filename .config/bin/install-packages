@@ -2,6 +2,7 @@
 
 
 declare -a TAPS=(
+  asmvik/formulae
   felixkratz/formulae
   xwmx/taps
   heroku/brew
@@ -12,13 +13,13 @@ declare -a TAPS=(
 
 declare -a PACKAGES=(
   age
-  android-platform-tools
+  # android-platform-tools
   amazon-ecs-cli
   asdf
   awscli
   b2-tools
   bash-completion
-  basictex
+  # basictex
   bitwarden-cli
   broot
   busycal
@@ -27,9 +28,9 @@ declare -a PACKAGES=(
   colima
   coreutils
   direnv
-  dust
+  # dust
   fd
-  fx
+  # fx
   fzf
   gh
   delta
@@ -37,48 +38,50 @@ declare -a PACKAGES=(
   glow
   gnupg
   ifstat
-  inxi
+  # inxi
   ipcalc
-  jaq
-  jless
-  joplin-cli
+  # jaq
+  # jless
+  # joplin-cli
   jq
-  jqp
+  # jqp
   lazydocker
   localsend
   ntp
-  hugo
+  # hugo
   kopia
   lego
-  mas
+  # mas
   mdv
-  minikube
-  musikcube
-  neofetch
+  # minikube
+  # musikcube
+  fastfetch # neofetch replacement; neofetch was archived upstream and pulled from homebrew-core
   neovim
-  orbstack
+  # orbstack
   pandoc
-  pass
+  # pass
   progress
   pyenv
-  pillow
+  # pillow
   pipx
   pwgen
   qrencode
-  ranger
+  # ranger
+  rtk
   rust
   sf-symbols
   shellcheck
-  shortcat
+  # shortcat
   sketchybar
+  sox
   speedtest-cli
-  syncthing
+  # syncthing
   the_silver_searcher
   telnet
   terminal-notifier
   terraform
   terraform-ls
-  timg
+  # timg
   wireguard-tools
   wget
 )
@@ -89,56 +92,58 @@ declare -a PERSONAL_PACKAGES=(
 )
 
 declare -a WORK_PACKAGES=(
-  heroku
-  ical-buddy
-  oath-toolkit
+  # heroku
+  # ical-buddy
+  # oath-toolkit
   saml2aws
   session-manager-plugin
 )
 
 declare -a CASKS=(
   balenaetcher
-  bettertouchtool
-  biscuit
-  bitwarden
-  chatgpt
+  # bettertouchtool
+  # biscuit
+  # bitwarden
+  # chatgpt
   claude
   cleanshot
-  dash
+  # dash
   drawio
-  fantastical
-  finch
-  fluid
-  flux
+  # fantastical
+  # finch
+  # fluid
+  # flux
   font-anonymous-pro
   font-bitstream-vera-sans-mono-nerd-font
   font-hack-nerd-font
-  fork
-  freetube
-  iina
+  # fork
+  # freetube
+  # iina
   istat-menus
-  joplin
+  # joplin
+  karabiner-elements
   keyboardcleantool
   kitty
-  kopiaui
-  lagrange
-  meetingbar
+  # kopiaui
+  # lagrange
+  # meetingbar
   monodraw
-  nextcloud
+  # nextcloud
   numi
-  obsidian
-  orion
-  plexamp
-  postman
+  # obsidian
+  # orion
+  # plexamp
+  # postman
   qlvideo
   slack
   tableplus
   textmate
   the-unarchiver
-  time-out
-  tor-browser
+  # time-out
+  tolaria
+  # tor-browser
   transmit
-  vimr 
+  vimr
 )
 
 declare -a CASKS_NO_QUARANTINE=(
@@ -170,19 +175,26 @@ function install_if_missing {
 }
 
 function install_cask_if_missing {
-  if [[ -n "$2" && $2 == "no-quarantine" ]]; then
-    if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask --no-quarantine $1; fi
-  else
-    if ! echo $CASKS | grep $1 > /dev/null ; then brew install --cask $1; fi
+  if ! echo $INSTALLED_CASKS | grep $1 > /dev/null ; then
+    brew install --cask $1
+    # Homebrew dropped --no-quarantine (removed as of brew 4.7+); strip the
+    # quarantine xattr manually afterwards for casks that need it (unsigned/
+    # unnotarized apps that would otherwise be blocked by Gatekeeper).
+    if [[ -n "$2" && $2 == "no-quarantine" ]]; then
+      xattr -r -d com.apple.quarantine "$(brew --prefix)/Caskroom/$1" 2>/dev/null
+    fi
   fi
 }
 
 VERSIONS=$(brew ls --versions)
 
-CASKS=$(brew ls --casks)
+INSTALLED_CASKS=$(brew ls --casks)
 
 for i in ${TAPS[@]}; do
-  if ! [ -d /usr/local/Homebrew/Library/Taps/$(dirname $i) ]; then brew tap $i; fi
+  if ! [ -d "$(brew --prefix)/Library/Taps/$(dirname $i)" ]; then brew tap $i; fi
+  # Trust every tap we manage so brew's tap-trust check doesn't warn/block.
+  # Only trust taps you actually vetted and added to TAPS above.
+  brew trust --tap $i > /dev/null
 done
 
 for i in ${PACKAGES[@]}; do
