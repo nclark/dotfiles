@@ -1,9 +1,17 @@
 . $HOME/.zsh/host
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
+# Scripting addition no longer needed: yabai >= 7.1.19 does space focus,
+# window moves between spaces, and animation-skip with SIP fully enabled.
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
 
 yabai -m config layout stack
+# skip_window_focus_animation: DO NOT enable — it hijacks focus when a keybind
+# creates a new window for an app that already has a window on another space
+# (Ghostty cmd+ctrl+enter, browser cmd+ctrl+b): the new window opens on the
+# current space but focus yanks to the app's old window's space. Verified
+# empirically 2026-08-12; known conflict case in asmvik/yabai#2781.
+yabai -m config skip_window_focus_animation off
 yabai -m config window_shadow float
 
 yabai -m config window_opacity on
@@ -24,10 +32,14 @@ yabai -m config mouse_action2 resize
 # App specific rules
 ## grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 
+yabai -m rule --add label=claudes app="^kitty$" title="^claudes$" manage=off grid=40:40:2:3:36:34
 yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
 yabai -m rule --add title="^Quick Entry$" manage=off grid=6:4:1:1:2:2
+yabai -m rule --add label=corne-keymap app="^Google Chrome$" title="^Corne keymap$" scratchpad=corne-keymap manage=off sticky=on sub-layer=above grid=24:24:5:7:13:11
+yabai -m rule --add label=adv360-keymap app="^Google Chrome$" title="^Adv360 keymap$" manage=off sticky=on sub-layer=above grid=24:24:4:5:16:14
+yabai -m signal --add label=adv360-keymap-closed event=window_destroyed app="^Google Chrome$" title="^Adv360 keymap$" action="$HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap.sh --restore"
 # yabai -m rule --add app="^Mail$" manage=on
 yabai -m rule --add app="^Finder$" manage=on
 yabai -m rule --add app="^Finder$" title="^Copy$" manage=off
