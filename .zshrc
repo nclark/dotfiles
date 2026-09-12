@@ -57,3 +57,10 @@ export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 
 unalias br 2>/dev/null  # br installer - remove conflicting alias
 export TESSDATA_PREFIX=/opt/homebrew/share/tessdata
+
+# >>> open-knowledge cli >>>
+# ! Contents within this block are managed by OpenKnowledge. Do not edit.
+# ! Delete this whole block to opt out — OpenKnowledge will not re-add it.
+[ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
+# <<< open-knowledge cli <<<
+
