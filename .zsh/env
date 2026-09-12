@@ -16,5 +16,4 @@ export HOMEBREW_NO_ENV_HINTS=true
 export XDG_CONFIG_HOME=$HOME/.config
 export CONF=$XDG_CONFIG_HOME
 export AWS_CLI_AUTO_PROMPT=off
-# export DOCKER_HOST="unix://$HOME/.config/colima/default/docker.sock"
-export DOCKER_HOST="unix://$HOME/.colima/docker.sock"
+export DOCKER_HOST="unix://$HOME/.config/colima/default/docker.sock"
