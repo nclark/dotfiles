@@ -43,6 +43,7 @@ augroup AutoCommands
   autocmd BufWritePost ~/.config/nvim/plugins.vim source ~/.config/nvim/plugins.vim
   autocmd BufWritePost ~/.config/nvim/keymap.vim source ~/.config/nvim/keymap.vim
   autocmd BufWritePost ~/.config/nvim/ftkeymap.vim source ~/.config/nvim/ftkeymap.vim
+  autocmd BufWritePost ~/.config/nvim/lua/lsp_setup.lua luafile ~/.config/nvim/lua/lsp_setup.lua
   autocmd BufWritePost ~/.config/nvim/vimwiki.vim source ~/.config/nvim/vimwiki.vim
 augroup END
 
@@ -51,6 +52,8 @@ augroup END
 
 source ~/.config/nvim/keymap.vim
 source ~/.config/nvim/ftkeymap.vim
+
+lua require('lsp_setup')
 
 " Load todo.txt plugin for todo files
 autocmd BufRead,BufNewFile,BufEnter todo.txt,defer.txt,archive.txt lua dofile(vim.fn.expand('~/.config/nvim/ftplugin/todo.lua'))
