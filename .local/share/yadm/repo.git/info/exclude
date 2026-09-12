@@ -1,21 +1,8 @@
-# Note: If you use this file, be sure to add your patterns above
-# any yadm-auto-excludes line, as all lines below this can be overwritten
-# by yadm when encrypting data.
-#
-# https://yadm.io/docs/faq#directory-creation
-
+# Manual excludes -- keep these ABOVE the yadm-managed section below,
+# everything under "This section is managed by yadm" gets regenerated.
 .config/nicotine/*
 .config/neofetch/*
-.zsh/host
 .config/gh/hosts.yml
-.aws/*
-.ssh/*
-.private/*
-.zsh/private
-.zsh/host
-bin/panopticon
-bin/squanchy
-bin/bw-helper
 
 # git ls-files --others --exclude-from=.git/info/exclude
 # Lines that start with '#' are comments.
@@ -27,4 +14,15 @@ bin/bw-helper
 # This section is managed by yadm.
 # Any edits below will be lost.
 # yadm alt
-/Library/LaunchAgents/com.music.sync.plist /.zsh/host
+/.zsh/host# yadm encrypt
+/.aws/*
+/.ssh/*
+/.private/*
+/.zsh/private
+/.zsh/host##*
+/bin/panopticon
+/bin/squanchy
+/bin/bw-helper
+/bin/eno-vpn-helper
+/bin/aws-account-helper
+/bin/ident
