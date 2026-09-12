@@ -11,7 +11,7 @@ function install_plugin {
   fi
 
   if ! asdf plugin list | grep $NAME > /dev/null; then
-    asdf plugin-add $NAME $URL
+    asdf plugin add $NAME $URL
   fi
 }
 
@@ -24,8 +24,27 @@ function install {
   fi
 }
 
-export LDFLAGS="-L/opt/homebrew/opt/capstone/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/capstone/include"
+# Only needed for gems/tools that bind against capstone; skip if it's not
+# installed, otherwise the bogus -L path fails every ./configure LDFLAGS check.
+if [ -d /opt/homebrew/opt/capstone/lib ]; then
+  export LDFLAGS="-L/opt/homebrew/opt/capstone/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/capstone/include"
+fi
+
+# --enable-shared builds a libruby dylib; on this macOS/Xcode toolchain that
+# dylib ends up tagged arm64 while the ruby binary loading it expects arm64e,
+# which breaks building default gems (e.g. rbs) with a dyld arch-mismatch.
+# Static linking sidesteps it entirely.
+export RUBY_CONFIGURE_OPTS="--disable-shared"
+
+# Newer Clang (Xcode CLT on this macOS) flags Ruby's own bundled ruby.h with
+# -Wdefault-const-init-field-unsafe. mkmf's extconf checks compile with
+# -Werror, so that warning-as-error spuriously fails checks that merely
+# include ruby.h (e.g. ext/socket's IN6_IS_ADDR_UNSPECIFIED probe), which
+# then sends extconf down a broken macOS-header-patching fallback path and
+# ext/socket silently fails to build. Suppress it at Ruby's own build time so
+# it's baked into RbConfig::CONFIG['CFLAGS'] for every future gem/ext build.
+export CFLAGS="-Wno-default-const-init-field-unsafe"
 
 asdf plugin add ruby
 install ruby 2.7.7
@@ -46,3 +65,4 @@ asdf set -u nodejs 22.17.1
 
 install_plugin python https://github.com/asdf-community/asdf-python.git
 install python 2.7.18
+asdf set -u python 2.7.18
