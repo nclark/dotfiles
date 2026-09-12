@@ -91,28 +91,50 @@ s -m --add item title left                         \
                        space_change                \
                        title_change
 
+# note: sketchybar --query default_menu_items
+
+# Outlook, ownCloud, MeetingBar, and BusyCal's alias were all tried for the
+# calendar slot and all failed identically -- sketchybar's alias feature can
+# locate/size text-based menu items but never renders their captured
+# content (only works for plain icons, e.g. Amphetamine below). Replaced
+# with next_event.rb, which polls $ENOVIS_ICS_URL directly instead of
+# capturing anything.
+# Order added determines left-to-right position within the right-side
+# cluster (last added ends up leftmost), so clock goes first to land:
+# next_event, Amphetamine, Clock.
 s --add item  clock right                \
   --set clock update_freq=10             \
               script="$PLUGINS/clock.sh" \
               label.padding_left=0       \
               icon.padding_left=0
 
-# note: sketchybar --query default_menu_items
+# Amphetamine is a captured icon with no editable label of its own, so the
+# ┊ divider between it and the clock needs its own standalone item.
+s --add item  amphetamine_sep right     \
+  --set amphetamine_sep icon.drawing=off \
+                         label="┊"
 
-for i in \
-  "Control Center,Amphetamine"                         \
-  "Control Center,Item-0"                              \
-  "Control Center,Item-0"                              \
-  "Control Center,Item-0"
-  # "Control Center,Item-0"
-  # Note: iStat Menus, WireGuard, Tunnelblick show as generic "Control Center,Item-0" in macOS Tahoe
-  # macOS doesn't expose proper names for these menu items anymore
-  # BusyCal also shows as "Control Center,Item-0"
-do
-  s --add alias "$i" right          \
-    --set "$i" icon.padding_left=0  \
-               icon.padding_right=0 \
-               label.padding_left=0 \
-               label.padding_right=0
-done
+s --add alias "Control Center,Amphetamine" right          \
+  --set "Control Center,Amphetamine" icon.padding_left=0  \
+                                      icon.padding_right=0 \
+                                      label.padding_left=0 \
+                                      label.padding_right=0
+
+# CleanShot X and FluidVoice both link SwiftUI.framework (confirmed via
+# otool -L), unlike Amphetamine which has zero SwiftUI linkage. That's the
+# real dividing line: sketchybar's alias capture only works for classic
+# AppKit NSStatusItem icons, not SwiftUI MenuBarExtra ones -- same root
+# cause as Outlook/MeetingBar/BusyCal above, just confirmed definitively
+# this time. Not fixable from the config side; dropped both.
+
+s --add item  next_event right                         \
+  --set next_event update_freq=5                       \
+                    script="$PLUGINS/next_event.sh"     \
+                    click_script="$PLUGINS/next_event_click.sh" \
+                    label.padding_left=0                \
+                    icon.padding_left=0
+
+# update_freq only triggers on the next tick, not immediately -- without
+# this, the item sits blank for up to 60s after every sketchybar restart.
+NAME=next_event "$PLUGINS/next_event.sh" &
 
