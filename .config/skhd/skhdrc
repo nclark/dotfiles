@@ -65,16 +65,19 @@ cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser $WORK_MACHINE --invert # Alternate browser
 cmd + ctrl - e: open /Applications/Zed\ Preview.app
 cmd + alt + ctrl - n: open /Applications/Obsidian.app
-ctrl - x: /System/Applications/Mission\ Control.app/Contents/MacOS/Mission\ Control # Mission Control
+ctrl - x: open -a "Mission Control" # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
 cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
-cmd + ctrl - d: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/DeepSeek.app
-cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
+cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/cmux.app
+cmd + ctrl - t: $HOME/bin/claudes-tui # Claudes archive TUI (toggle)
 
 # Advantage360 keys
-ctrl + alt + cmd + shift - k : $HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap
+ctrl + alt + cmd + shift - k : $HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap.sh
+
+# Corne keys
+ctrl + alt + cmd + shift - c : $HOME/workspace/projects/corne_4_1/show_keymap.sh
 ctrl + alt + cmd + shift - y : shortcuts run 'Voice Control Toggle'
 
 
@@ -84,10 +87,10 @@ cmd + alt + ctrl - j: $HOME/bin/bw-helper --jumpcloud-otp # Copy Jumpcloud OTP
 
 #% ### Miscellaneous
 ctrl + alt + cmd - i: $HOME/bin/myip --notify # My IP
-ctrl + alt + cmd - r: $HOME/bin/restart-helper # Restart brew services
+ctrl + alt + cmd - r: $HOME/bin/retro-logger
 ctrl + alt + cmd - d: $HOME/bin/duo-helper # Restart brew services
 ctrl + cmd + shift + alt - y : launchctl kickstart -k "gui/$UID/homebrew.mxcl.yabai" # Restart yabai
 ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketchybar
 ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
 cmd + alt + ctrl - m: /Applications/EVERYBODY\ HATES\ TEAMS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
-cmd + alt + ctrl - t: $HOME/bin/newtodo --prompt
+cmd + alt + ctrl - t: $HOME/bin/daily-note # Open/create today's daily note
