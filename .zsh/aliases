@@ -41,8 +41,13 @@ alias ccusage="npx ccusage@latest"
 alias claude="~/.local/bin/claude"
 
 alias nm="~/workspace/projects/calc/bin/nm"
+alias claudes="/Users/nclark/claudes/bin/claudes"
 alias cl="claude --dangerously-skip-permissions"
 alias clr="claude --dangerously-skip-permissions --resume"
+alias clt="claudes tui"
 clrc() { claude remote-control --permission-mode bypassPermissions ${@:+--name} ${@:+"$*"} }
 alias dc=docker-compose
 alias load='sysctl -n vm.loadavg | awk '\''{printf "Load Avg: %s, %s, %s\n", $2, $3, $4}'\'''
+
+plannotate() { PLANNOTATOR_REMOTE=1 PLANNOTATOR_PORT=52894 plannotator annotate "$1" | tee "$1.plannotator" }
+pla() { PLANNOTATOR_REMOTE=1 PLANNOTATOR_PORT=52894 plannotator annotate "$1" | tee "$1.plannotator" }
