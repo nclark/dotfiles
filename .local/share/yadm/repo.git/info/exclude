@@ -15,7 +15,12 @@
 # Any edits below will be lost.
 # yadm alt
 /.zsh/host# yadm encrypt
-/.aws/*
+/.aws/**
+!/.aws/cli/cache/*
+!/.aws/sso/cache/*
+!/.aws/workbench/*.log
+!/.aws/shell/**
+!/.aws/model/*
 /.ssh/*
 /.private/*
 /.zsh/private
