@@ -4,7 +4,7 @@ require 'uri'
 
 origin = `git config --get remote.origin.url`.chomp
 
-`git push origin HEAD`
+system('git', 'push', 'origin', 'HEAD') or exit 1
 
 if origin =~ /github/
   branch = `git rev-parse --abbrev-ref HEAD`.chomp
