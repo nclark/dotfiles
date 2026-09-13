@@ -33,6 +33,7 @@ yabai -m config mouse_action2 resize
 ## grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
 
 yabai -m rule --add label=claudes app="^kitty$" title="^claudes$" manage=off grid=40:40:2:3:36:34
+yabai -m rule --add label=eno app="^kitty$" title="^eno$" manage=off grid=40:40:6:5:28:30
 yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off

@@ -26,3 +26,6 @@
 /bin/eno-vpn-helper
 /bin/aws-account-helper
 /bin/ident
+/bin/eno-tui
+/bin/eno-overlay
+/.config/kitty/eno.conf
