@@ -14,43 +14,43 @@ show_agent_labels_on_pane_borders = true
 key = "prefix+shift+o"
 type = "plugin_action"
 command = "annotate.last-newest"
-description = "review the agent's newest reply"
+description = "plannotator: review the agent's newest reply"
 
 [[keys.command]]
 key = "prefix+shift+m"
 type = "plugin_action"
 command = "annotate.open"
-description = "review documents in this folder"
+description = "plannotator: review documents in this folder"
 
 [[keys.command]]
 key = "prefix+a"
 type = "plugin_action"
 command = "annotate.capture"
-description = "annotate text"
+description = "plannotator: annotate text"
 
 [[keys.command]]
 key = "prefix+shift+a"
 type = "plugin_action"
 command = "annotate.copy-context"
-description = "copy annotations as context"
+description = "plannotator: copy annotations as context"
 
 [[keys.command]]
 key = "prefix+ctrl+s"
 type = "plugin_action"
 command = "annotate.send-archive"
-description = "send annotations to the agent and archive them"
+description = "plannotator: send annotations to the agent and archive them"
 
 [[keys.command]]
 key = "prefix+ctrl+v"
 type = "plugin_action"
 command = "annotate.paste-archive"
-description = "paste annotations into the agent prompt and archive them"
+description = "plannotator: paste annotations into the agent prompt and archive them"
 
 [[keys.command]]
 key = "prefix+m"
 type = "plugin_action"
 command = "annotate.manage"
-description = "manage annotations"
+description = "plannotator: manage annotations"
 
 # --- Pane helpers ---
 [[keys.command]]
