@@ -51,3 +51,4 @@ alias load='sysctl -n vm.loadavg | awk '\''{printf "Load Avg: %s, %s, %s\n", $2,
 
 plannotate() { PLANNOTATOR_REMOTE=1 PLANNOTATOR_PORT=52894 plannotator annotate "$1" | tee "$1.plannotator" }
 pla() { PLANNOTATOR_REMOTE=1 PLANNOTATOR_PORT=52894 plannotator annotate "$1" | tee "$1.plannotator" }
+alias c="/Users/nclark/claudes/bin/claudes"

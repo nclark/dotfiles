@@ -89,6 +89,11 @@ main() {
     temp_dir=$(mktemp -d)
     cd "$temp_dir"
 
+    # Pin the CWD in the terminal emulator (Ghostty) via OSC 7.
+    # Without this, opening a new tab/split can inherit Claude's CWD
+    # instead of the temp dir, because the claude binary may chdir internally.
+    printf '\033]7;file://%s%s\033\\' "$(hostname)" "$temp_dir"
+
     echo "Created temporary directory: $temp_dir"
 
     # Create symlink if path was provided

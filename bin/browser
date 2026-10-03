@@ -2,14 +2,43 @@
 
 source $HOME/.zsh/host
 
-WORK_BROWSER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-PERSONAL_BROWSER="/Applications/LibreWolf.app/Contents/MacOS/librewolf --browser --foreground"
+# --- Personal browser candidates ---
+# Swap which one PERSONAL_BROWSER points to (below) to change your default.
 
-if [ $WORK_MACHINE == true -a "$1" == "--invert" ]; then
+librewolf_browser() {
+  /Applications/LibreWolf.app/Contents/MacOS/librewolf --browser --foreground
+}
+
+# Orion: single-instance browser. Re-exec does nothing; we drive it via
+# AppleScript so a new window is created in the existing process. The
+# `is running` guard avoids double-windowing on cold start (activate will
+# launch Orion and its startup logic opens the first window).
+orion_browser() {
+  osascript <<'APPLESCRIPT'
+if application "Orion" is running then
+  tell application "Orion"
+    make new document
+    activate
+  end tell
+else
+  tell application "Orion" to activate
+end if
+APPLESCRIPT
+}
+
+# --- Assignments ---
+
+WORK_BROWSER="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+PERSONAL_BROWSER=orion_browser
+# PERSONAL_BROWSER=librewolf_browser   # flip to this to switch back to LibreWolf
+
+# --- Dispatch ---
+
+if [ "$WORK_MACHINE" = true ] && [ "$1" = "--invert" ]; then
   $PERSONAL_BROWSER
-elif [ $WORK_MACHINE == true ]; then
+elif [ "$WORK_MACHINE" = true ]; then
   "$WORK_BROWSER"
-elif [ "$1" == "--invert" ]; then
+elif [ "$1" = "--invert" ]; then
   "$WORK_BROWSER"
 else
   $PERSONAL_BROWSER

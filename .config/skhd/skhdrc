@@ -1,3 +1,16 @@
+# Applications that get the keyboard to themselves.
+#
+# skhd installs a CGEventTap that sits ahead of ordinary app key delivery, so a
+# hotkey here wins even when a VM or remote session has "captured" input —
+# UTM's own capture setting cannot outrank it. Blacklisting makes skhd pass
+# every key straight through while one of these apps is focused, which is what
+# lets the guest OS see ctrl-1, super, and the rest.
+#
+# Names are matched against the macOS application name.
+.blacklist [
+    "UTM"
+]
+
 # skhd modifiers and literals - https://github.com/koekeishiya/skhd/issues/1
 
 #% # Space navigation
@@ -61,16 +74,15 @@ cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
 cmd + ctrl - return: osascript -e 'tell application "Ghostty" to make new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
 cmd + ctrl - h: open ~
-cmd + ctrl - b: $HOME/bin/browser $WORK_MACHINE # Browser
-cmd + ctrl + shift - b: $HOME/bin/browser $WORK_MACHINE --invert # Alternate browser
+cmd + ctrl - b: $HOME/bin/browser # Browser
+cmd + ctrl + shift - b: $HOME/bin/browser --invert # Alternate browser
 cmd + ctrl - e: open /Applications/Zed\ Preview.app
 cmd + alt + ctrl - n: open /Applications/Obsidian.app
 ctrl - x: open -a "Mission Control" # Mission Control
 cmd + alt + ctrl - v: $HOME/bin/bw-helper --vpn # VPN menu
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
-cmd + ctrl - g: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
-cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/cmux.app
+cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - t: $HOME/bin/claudes-tui # Claudes archive TUI (toggle)
 cmd + ctrl + shift - e: $HOME/bin/eno-tui # eno AWS picker overlay (toggle)
 
