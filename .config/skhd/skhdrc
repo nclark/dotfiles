@@ -107,3 +107,6 @@ ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketch
 ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
 cmd + alt + ctrl - m: /Applications/EVERYBODY\ HATES\ TEAMS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
 cmd + alt + ctrl - t: $HOME/bin/daily-note # Open/create today's daily note
+
+# LG KVM: switch the monitor to DisplayPort (the Linux desktop). The Linux side sends the same chord back to Thunderbolt.
+ctrl + alt + cmd + shift - z : /opt/homebrew/bin/m1ddc set input-alt 208
