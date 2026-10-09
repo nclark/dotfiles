@@ -14,7 +14,16 @@ case $1 in
         yabai -m window --grid 10:10:0:0:5:10
         ;;
     center)
-        yabai -m window --grid 10:10:2:2:6:6
+        # Fixed size, centered on the window's display. Clamped so it
+        # never exceeds the display (e.g. the laptop screen alone).
+        W=1987
+        H=1115
+        read -r DX DY DW DH < <(yabai -m query --displays --window \
+            | jq -r '.frame | "\(.x|floor) \(.y|floor) \(.w|floor) \(.h|floor)"')
+        [ "$W" -gt "$DW" ] && W=$DW
+        [ "$H" -gt "$DH" ] && H=$DH
+        yabai -m window --resize abs:$W:$H
+        yabai -m window --move abs:$((DX + (DW - W) / 2)):$((DY + (DH - H) / 2))
         ;;
     *)
         exit
