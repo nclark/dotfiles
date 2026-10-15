@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# Pick a herdr session in choose-gui, then open it in a new Ghostty window.
+# Type a name that doesn't match any session to create a new one.
+
+set -o errexit
+set -o nounset
+set -o pipefail
+if [[ "${TRACE-0}" == "1" ]]; then
+    set -o xtrace
+fi
+
+if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
+    echo 'Usage: herdr-picker
+
+Lists herdr sessions in choose-gui and opens the selected one in a new
+Ghostty window. Type a new name to create a session with that name.
+'
+    exit
+fi
+
+# skhd runs us with launchd's bare PATH
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+
+list_sessions() {
+    herdr session list --json \
+        | jq -r '.sessions[] | "\(.name)\t\(if .running then "running" else "stopped" end)"' \
+        | column -t -s $'\t'
+}
+
+open_in_ghostty() {
+    local name="$1"
+    osascript - "$name" <<'APPLESCRIPT'
+on run argv
+  set sessionName to item 1 of argv
+  tell application "Ghostty"
+    set cfg to new surface configuration
+    set command of cfg to "/bin/zsh -lic 'exec herdr --session " & sessionName & "'"
+    new window with configuration cfg
+    activate
+  end tell
+end run
+APPLESCRIPT
+}
+
+main() {
+    local choice name
+    choice=$(list_sessions | choose \
+        -f "AnonymousPro" \
+        -s 24 \
+        -n 15 \
+        -w 40 \
+        -b FFFFFF \
+        -c 000000 \
+        -u \
+        -m \
+        -p "herdr session") || exit 0
+
+    name="${choice%% *}"
+    [[ -z "$name" ]] && exit 0
+
+    # The name goes into a shell command inside AppleScript; keep it plain.
+    if [[ ! "$name" =~ ^[A-Za-z0-9_-]+$ ]]; then
+        osascript -e "display alert \"herdr-picker\" message \"Bad session name: $name\""
+        exit 1
+    fi
+
+    open_in_ghostty "$name"
+}
+
+main "$@"

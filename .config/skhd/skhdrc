@@ -72,9 +72,10 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 #% # App launchers
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
-cmd + ctrl - return: osascript -e 'tell application "Ghostty" to make new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
+cmd - return: osascript -e 'tell application "Ghostty" to new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
+cmd + ctrl - return: $HOME/bin/herdr-picker # Open a herdr session in Ghostty
 cmd + ctrl - h: open ~
-cmd + ctrl - b: $HOME/bin/browser # Browser
+cmd + shift - b: $HOME/bin/browser # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser --invert # Alternate browser
 cmd + ctrl - e: open /Applications/Zed\ Preview.app
 cmd + alt + ctrl - n: open /Applications/Obsidian.app
