@@ -1,58 +1,170 @@
 {
-    "global": { "check_for_updates": false },
-    "profiles": [
-        {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "fn alone -> right_option (voice control)",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "fn",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "fn" }],
-                                "to_if_alone": [{ "key_code": "right_option" }],
-                                "type": "basic"
-                            }
-                        ]
-                    }
+  "global": {
+    "check_for_updates": false
+  },
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "fn alone -> right_option (voice control)",
+            "manipulators": [
+              {
+                "from": {
+                  "key_code": "fn",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "fn"
+                  }
+                ],
+                "to_if_alone": [
+                  {
+                    "key_code": "right_option"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Unimouse rear thumb button -> Enter",
+            "manipulators": [
+              {
+                "conditions": [
+                  {
+                    "identifiers": [
+                      {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 8193,
+                        "vendor_id": 2867
+                      }
+                    ],
+                    "type": "device_if"
+                  }
+                ],
+                "from": {
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  },
+                  "pointing_button": "button4"
+                },
+                "to": [
+                  {
+                    "key_code": "return_or_enter"
+                  }
+                ],
+                "type": "basic"
+              }
+            ]
+          },
+          {
+            "description": "Unimouse front thumb button -> Ctrl+Shift+Cmd+V",
+            "manipulators": [
+              {
+                "type": "basic",
+                "from": {
+                  "pointing_button": "button5",
+                  "modifiers": {
+                    "optional": [
+                      "any"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "key_code": "v",
+                    "modifiers": [
+                      "left_control",
+                      "left_shift",
+                      "left_command"
+                    ]
+                  }
+                ],
+                "conditions": [
+                  {
+                    "type": "device_if",
+                    "identifiers": [
+                      {
+                        "vendor_id": 2867,
+                        "product_id": 8193,
+                        "is_keyboard": true,
+                        "is_pointing_device": true
+                      }
+                    ]
+                  }
                 ]
-            },
-            "devices": [
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "ignore": true
-                }
-            ],
-            "name": "Default profile",
-            "selected": true,
-            "simple_modifications": [
-                {
-                    "from": { "consumer_key_code": "dictation" },
-                    "to": [
-                        {
-                            "key_code": "v",
-                            "modifiers": ["left_command", "left_shift", "left_control"]
-                        }
-                    ]
-                },
-                {
-                    "from": { "key_code": "caps_lock" },
-                    "to": [{ "key_code": "left_control" }]
-                },
-                {
-                    "from": { "key_code": "f5" },
-                    "to": [
-                        {
-                            "key_code": "v",
-                            "modifiers": ["left_command", "left_shift", "left_control"]
-                        }
-                    ]
-                }
-            ],
-            "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
+              }
+            ]
+          }
+        ]
+      },
+      "devices": [
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 8193,
+            "vendor_id": 2867
+          },
+          "ignore": false
         }
-    ]
+      ],
+      "name": "Default profile",
+      "selected": true,
+      "simple_modifications": [
+        {
+          "from": {
+            "consumer_key_code": "dictation"
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command",
+                "left_shift",
+                "left_control"
+              ]
+            }
+          ]
+        },
+        {
+          "from": {
+            "key_code": "caps_lock"
+          },
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ]
+        },
+        {
+          "from": {
+            "key_code": "f5"
+          },
+          "to": [
+            {
+              "key_code": "v",
+              "modifiers": [
+                "left_command",
+                "left_shift",
+                "left_control"
+              ]
+            }
+          ]
+        }
+      ],
+      "virtual_hid_keyboard": {
+        "keyboard_type_v2": "ansi"
+      }
+    }
+  ]
 }
