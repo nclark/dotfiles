@@ -45,11 +45,11 @@ s --bar height=33                            \
 if [ "${WORK_MACHINE}" = "true" ]; then
   SPACES="browser,1,
         slack,2,
-        code,3,, 
+        code,3,
         trello,4,
         personal,5,
-        prod,6,,
-        comm,7,,,"
+        prod,6,
+        comm,7,"
 else
   SPACES="browser,1,
         terminal,2,
@@ -130,19 +130,9 @@ s --add item  amphetamine_sep right     \
 # reshuffle N). Aliases draw 2 px wider than the real item, hence the
 # -1 paddings. (History: SwiftUI items rendered blank on older Tahoe /
 # sketchybar 2.24.0; they render fine on macOS 26.7.3 + 2.24.1.)
-alias_item() {
-  s --add alias "$1" right            \
-    --set "$1" padding_left=-1        \
-               padding_right=-1       \
-               icon.padding_left=0    \
-               icon.padding_right=0   \
-               label.padding_left=0   \
-               label.padding_right=0
-}
-
-alias_item "Control Center,Battery"
-
-alias_item "Control Center,Bluetooth"
+# The mirrored row itself (Battery, Time Machine, Bluetooth, Weather,
+# CleanShot, FluidVoice, Amphetamine, plus gaps for anything else) is built
+# by plugins/menubar_sync.sh at the bottom of this file, by position.
 
 # Sound: sits over WireGuard's slot in the real bar (WireGuard is only there
 # as a 38 px placeholder). Click for a popup of every output and input
@@ -157,16 +147,13 @@ s --add item  sound right                                   \
               icon.padding_right=0                          \
               script="$PLUGINS/sound.sh"                    \
               popup.align=right                             \
-              popup.background.color=0xf0222222             \
+              popup.background.color=0xff222222             \
               popup.background.corner_radius=8              \
               popup.background.border_width=1               \
               popup.background.border_color=0xff444444      \
   --subscribe sound mouse.clicked mouse.exited.global
 
 
-# Weather, CleanShot X, FluidVoice and Amphetamine are added by
-# plugins/menubar_sync.sh (bottom of this file), which looks up their current
-# "Item-0(N)" names by app and re-adds them whenever the numbering shifts.
 
 
 # OFF (calendar on e-ink display): s --add item  next_event right                         \

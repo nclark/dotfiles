@@ -90,8 +90,6 @@ cmd + ctrl + shift - e: $HOME/bin/eno-tui # eno AWS picker overlay (toggle)
 # Advantage360 keys
 ctrl + alt + cmd + shift - k : $HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap.sh
 
-# Corne keys
-ctrl + alt + cmd + shift - c : $HOME/workspace/projects/corne_4_1/show_keymap.sh
 ctrl + alt + cmd + shift - y : shortcuts run 'Voice Control Toggle'
 
 
