@@ -1,0 +1,8 @@
+# One regex per line, matched against the event summary/title.
+# Any match excludes the event from the calendar widget entirely.
+# Blank lines and lines starting with # are ignored.
+# Case sensitivity is up to you -- write (?i:pattern) for a case-insensitive
+# match, otherwise it's case-sensitive as written.
+^(?i:private)
+BLOCK
+Automation Standup

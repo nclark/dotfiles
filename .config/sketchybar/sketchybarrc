@@ -24,7 +24,7 @@ s -m --add event window_focus \
 s --bar height=33                            \
         position=top                         \
         padding_left=15                      \
-        padding_right=20                     \
+        padding_right=2                      \
         color=0xB3333333                     \
         border_color=0xff000000              \
         border_width=0                       \
@@ -108,33 +108,99 @@ s --add item  clock right                \
               label.padding_left=0       \
               icon.padding_left=0
 
-# Amphetamine is a captured icon with no editable label of its own, so the
-# ┊ divider between it and the clock needs its own standalone item.
+# ┊ divider between the clock and the icons. Clock + this divider = 199 px,
+# which with the bar's right edge at the screen edge (padding_right=2, margin
+# -2) ends exactly where the real Battery icon ends (x=1849 on the built-in
+# 2048-pt display). Keep it, or add a spacer of the difference.
 s --add item  amphetamine_sep right     \
   --set amphetamine_sep icon.drawing=off \
                          label="┊"
 
-s --add alias "Control Center,Amphetamine" right          \
-  --set "Control Center,Amphetamine" icon.padding_left=0  \
-                                      icon.padding_right=0 \
-                                      label.padding_left=0 \
-                                      label.padding_right=0
+# Mirror of the real (hidden) menu bar, so each icon sits exactly under the
+# real one when the menu bar slides down. Order and widths copied from the
+# real bar, right to left: Battery, Bluetooth, [WireGuard -> Sound popup], Weather,
+# CleanShot, Weather, FluidVoice, Amphetamine.
+#
+# Third-party items are reported as "Control Center,Item-0(N)"; N is the
+# item's rank counting right-to-left across the real menu bar (Clock=1).
+# The numbering shifts as apps quit/launch, so menubar_sync.sh resolves it
+# by app (via ~/.local/bin/menubar-map) instead of hard-coding N. Wi-Fi hidden. If icons swap or
+# drift, re-check with `sketchybar --query default_menu_items`
+# (cmd-dragging icons in the real menu bar or relaunching an app can
+# reshuffle N). Aliases draw 2 px wider than the real item, hence the
+# -1 paddings. (History: SwiftUI items rendered blank on older Tahoe /
+# sketchybar 2.24.0; they render fine on macOS 26.7.3 + 2.24.1.)
+alias_item() {
+  s --add alias "$1" right            \
+    --set "$1" padding_left=-1        \
+               padding_right=-1       \
+               icon.padding_left=0    \
+               icon.padding_right=0   \
+               label.padding_left=0   \
+               label.padding_right=0
+}
 
-# CleanShot X and FluidVoice both link SwiftUI.framework (confirmed via
-# otool -L), unlike Amphetamine which has zero SwiftUI linkage. That's the
-# real dividing line: sketchybar's alias capture only works for classic
-# AppKit NSStatusItem icons, not SwiftUI MenuBarExtra ones -- same root
-# cause as Outlook/MeetingBar/BusyCal above, just confirmed definitively
-# this time. Not fixable from the config side; dropped both.
+alias_item "Control Center,Battery"
 
-s --add item  next_event right                         \
-  --set next_event update_freq=5                       \
-                    script="$PLUGINS/next_event.sh"     \
-                    click_script="$PLUGINS/next_event_click.sh" \
-                    label.padding_left=0                \
-                    icon.padding_left=0
+alias_item "Control Center,Bluetooth"
+
+# Sound: sits over WireGuard's slot in the real bar (WireGuard is only there
+# as a 38 px placeholder). Click for a popup of every output and input
+# device; click one to switch.
+s --add item  sound right                                   \
+  --set sound icon="󰕾"                                      \
+              label.drawing=off                             \
+              width=38                                      \
+              icon.width=38                                 \
+              icon.align=center                             \
+              icon.padding_left=0                           \
+              icon.padding_right=0                          \
+              script="$PLUGINS/sound.sh"                    \
+              popup.align=right                             \
+              popup.background.color=0xf0222222             \
+              popup.background.corner_radius=8              \
+              popup.background.border_width=1               \
+              popup.background.border_color=0xff444444      \
+  --subscribe sound mouse.clicked mouse.exited.global
+
+
+# Weather, CleanShot X, FluidVoice and Amphetamine are added by
+# plugins/menubar_sync.sh (bottom of this file), which looks up their current
+# "Item-0(N)" names by app and re-adds them whenever the numbering shifts.
+
+
+# OFF (calendar on e-ink display): s --add item  next_event right                         \
+# OFF (calendar on e-ink display):   --set next_event update_freq=5                       \
+# OFF (calendar on e-ink display):                     script="$PLUGINS/next_event.sh"     \
+# OFF (calendar on e-ink display):                     click_script="$PLUGINS/next_event_click.sh" \
+# OFF (calendar on e-ink display):                     label.padding_left=0                \
+# OFF (calendar on e-ink display):                     icon.padding_left=0
+
+# Lock + app name while an app holds Secure Event Input (which blinds skhd).
+# Hidden otherwise. updates=on is required: the default when_shown would
+# never run the script again once the item is hidden.
+s --add item  secure_input right                        \
+  --set secure_input update_freq=2                      \
+                     updates=on                         \
+                     drawing=off                        \
+                     script="$PLUGINS/secure_input.sh"  \
+                     icon=""                           \
+                     icon.color=0xffeb6f92              \
+                     label.color=0xffeb6f92
 
 # update_freq only triggers on the next tick, not immediately -- without
 # this, the item sits blank for up to 60s after every sketchybar restart.
-NAME=next_event "$PLUGINS/next_event.sh" &
+# OFF (calendar on e-ink display): NAME=next_event "$PLUGINS/next_event.sh" &
 
+# Keep the mirrored icons pointing at the right real icons (see
+# plugins/menubar_sync.sh). Runs now, every 60 s, on wake, and when yabai
+# reports an app launching or quitting (`sketchybar --trigger menubar_changed`).
+rm -f "$HOME/.cache/sketchybar/menubar_sync.state"
+s --add event menubar_changed
+s --add item  menubar_sync right                     \
+  --set menubar_sync drawing=off                     \
+                     updates=on                      \
+                     update_freq=60                  \
+                     script="$PLUGINS/menubar_sync.sh" \
+  --subscribe menubar_sync menubar_changed system_woke
+"$PLUGINS/menubar_sync.sh"
