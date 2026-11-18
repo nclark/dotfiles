@@ -1,0 +1,81 @@
+#!/bin/sh
+# Toggle the claudes archive TUI (kitty window) as a floating overlay.
+# Bound to cmd+ctrl-t in skhd.
+#
+# No yabai scratchpad: show/hide needs the scripting addition, which needs SIP off.
+# Instead:  no window -> launch kitty, float + grid it, focus it
+#           hidden    -> unhide kitty (like Cmd+H in reverse) and focus it
+#           focused   -> hide kitty (Cmd+H), refocus the previously focused window
+#           background-> bring it to the front
+# kitty is dedicated to this TUI (macos_quit_when_last_window_closed), so hiding
+# the whole app is safe and keeps the TUI state. The window is found by kitty pid
+# (saved in $PIDFILE) because its title sometimes reads empty to yabai.
+
+KITTY_CLAUDES_PROFILE="$HOME/.config/kitty/claudes.conf"
+KITTY_TAB_TITLE="claudes"
+GRID="40:40:2:3:36:34"
+PIDFILE="${TMPDIR:-/tmp}/claudes-tui.pid"
+PREV="${TMPDIR:-/tmp}/claudes-tui.prev"
+
+# --- focus bookkeeping -------------------------------------------------------
+save_prev() {
+  yabai -m query --windows 2>/dev/null \
+    | jq -r '[.[] | select(."has-focus" and .app != "kitty")][0].id // empty' > "$PREV" 2>/dev/null
+  [ -s "$PREV" ] || osascript -e 'tell application "System Events" to get name of first process whose frontmost is true' > "$PREV" 2>/dev/null || rm -f "$PREV"
+}
+restore() {
+  if [ -s "$PREV" ]; then
+    prev=$(cat "$PREV")
+    case "$prev" in
+      *[!0-9]*) osascript -e "tell application \"$prev\" to activate" >/dev/null 2>&1 ;;
+      *)        yabai -m window --focus "$prev" >/dev/null 2>&1 ;;
+    esac
+  fi
+  rm -f "$PREV"
+}
+
+# --- find the existing window -------------------------------------------------
+# prints one JSON object for the claudes window, or nothing
+find_win() {
+  pid=$(cat "$PIDFILE" 2>/dev/null || echo 0)
+  yabai -m query --windows 2>/dev/null | jq -c --argjson pid "$pid" --arg t "$KITTY_TAB_TITLE" \
+    '[.[] | select(.app == "kitty" and (.pid == $pid or .title == $t))][0] // empty'
+}
+
+win=$(find_win)
+if [ -n "$win" ]; then
+  id=$(echo "$win" | jq -r .id)
+  if [ "$(echo "$win" | jq -r '."is-hidden"')" = "true" ]; then
+    save_prev
+    osascript -e 'tell application "System Events" to set visible of process "kitty" to true' >/dev/null 2>&1
+    yabai -m window --focus "$id"
+  elif [ "$(echo "$win" | jq -r '."has-focus"')" = "true" ]; then
+    osascript -e 'tell application "System Events" to set visible of process "kitty" to false' >/dev/null 2>&1
+    restore
+  else
+    save_prev
+    yabai -m window --focus "$id"
+  fi
+  exit 0
+fi
+
+# --- launch --------------------------------------------------------------------
+save_prev
+kitty \
+  --config "$KITTY_CLAUDES_PROFILE" \
+  -T "$KITTY_TAB_TITLE" \
+  "$HOME/claudes/bin/claudes" tui &
+KITTY_PID=$!
+echo "$KITTY_PID" > "$PIDFILE"
+
+for _ in $(seq 1 40); do
+  win=$(yabai -m query --windows 2>/dev/null | jq -c ".[] | select(.pid==$KITTY_PID)" | head -1)
+  if [ -n "$win" ]; then
+    id=$(echo "$win" | jq -r .id)
+    [ "$(echo "$win" | jq -r '."is-floating"')" = "false" ] && yabai -m window "$id" --toggle float
+    yabai -m window "$id" --grid "$GRID"
+    yabai -m window --focus "$id"
+    exit 0
+  fi
+  sleep 0.25
+done

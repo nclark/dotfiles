@@ -1,0 +1,87 @@
+#!/bin/sh
+# Toggle the nm (necromat) calculator (kitty window) as a floating overlay.
+# Bound to cmd+ctrl-n in skhd.
+#
+# Copy of eno-tui with a different profile, title, grid, and command; see eno-tui
+# for why it minimizes instead of hiding kitty, and why it finds the window by pid.
+#           no window -> launch kitty, float + grid it, focus it
+#           focused   -> minimize it, refocus the previously focused window
+#           otherwise -> pull it to the current space, focus it
+# nm keeps running while minimized, so the pad is exactly as you left it.
+# :q in nm closes the window; nm saves its session on quit.
+
+KITTY_NM_PROFILE="$HOME/.config/kitty/nm.conf"
+KITTY_TAB_TITLE="nm"
+GRID="40:40:11:8:18:24"
+PIDFILE="${TMPDIR:-/tmp}/nm-tui.pid"
+PREV="${TMPDIR:-/tmp}/nm-tui.prev"
+# Absolute path: kitty runs this directly, so $PATH is whatever skhd had.
+NM="$HOME/.cargo/bin/nm"
+
+# --- focus bookkeeping -------------------------------------------------------
+save_prev() {
+  yabai -m query --windows 2>/dev/null \
+    | jq -r '[.[] | select(."has-focus" and .app != "kitty")][0].id // empty' > "$PREV" 2>/dev/null
+  [ -s "$PREV" ] || osascript -e 'tell application "System Events" to get name of first process whose frontmost is true' > "$PREV" 2>/dev/null || rm -f "$PREV"
+}
+restore() {
+  if [ -s "$PREV" ]; then
+    prev=$(/bin/cat "$PREV")
+    case "$prev" in
+      *[!0-9]*) osascript -e "tell application \"$prev\" to activate" >/dev/null 2>&1 ;;
+      *)        yabai -m window --focus "$prev" >/dev/null 2>&1 ;;
+    esac
+  fi
+  rm -f "$PREV"
+}
+
+# --- find the existing window -------------------------------------------------
+find_win() {
+  pid=$(/bin/cat "$PIDFILE" 2>/dev/null || echo 0)
+  yabai -m query --windows 2>/dev/null | jq -c --argjson pid "$pid" --arg t "$KITTY_TAB_TITLE" \
+    '[.[] | select(.app == "kitty" and ."has-ax-reference"
+                   and (.pid == $pid or .title == $t))][0] // empty'
+}
+
+win=$(find_win)
+if [ -n "$win" ]; then
+  id=$(echo "$win" | jq -r .id)
+  if [ "$(echo "$win" | jq -r '."has-focus"')" = "true" ]; then
+    yabai -m window "$id" --minimize >/dev/null 2>&1
+    restore
+  else
+    save_prev
+    [ "$(echo "$win" | jq -r '."is-hidden"')" = "true" ] \
+      && osascript -e 'tell application "System Events" to set visible of process "kitty" to true' >/dev/null 2>&1
+    space=$(yabai -m query --spaces --space 2>/dev/null | jq -r '.index // empty')
+    if [ -n "$space" ] && [ "$(echo "$win" | jq -r .space)" != "$space" ]; then
+      yabai -m window "$id" --space "$space" >/dev/null 2>&1
+      yabai -m window --focus "$id"
+      yabai -m window "$id" --grid "$GRID" >/dev/null 2>&1
+    else
+      yabai -m window --focus "$id"
+    fi
+  fi
+  exit 0
+fi
+
+# --- launch --------------------------------------------------------------------
+save_prev
+kitty \
+  --config "$KITTY_NM_PROFILE" \
+  -T "$KITTY_TAB_TITLE" \
+  "$NM" &
+KITTY_PID=$!
+echo "$KITTY_PID" > "$PIDFILE"
+
+for _ in $(seq 1 40); do
+  win=$(yabai -m query --windows 2>/dev/null | jq -c ".[] | select(.pid==$KITTY_PID)" | head -1)
+  if [ -n "$win" ]; then
+    id=$(echo "$win" | jq -r .id)
+    [ "$(echo "$win" | jq -r '."is-floating"')" = "false" ] && yabai -m window "$id" --toggle float
+    yabai -m window "$id" --grid "$GRID"
+    yabai -m window --focus "$id"
+    exit 0
+  fi
+  sleep 0.25
+done
