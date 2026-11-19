@@ -40,6 +40,10 @@ yabai -m rule --add app="^Fantastical Helper$" manage=off
 yabai -m rule --add app="^choose$" manage=off
 yabai -m rule --add title="^Command Help$" manage=off
 yabai -m rule --add title="^Quick Entry$" manage=off grid=6:4:1:1:2:2
+# Claude Desktop lives on the Claude space (CLAUDE_SPACE in ~/.zsh/host);
+# its Quick Entry popup (above) stays wherever you are. The claudes TUI
+# moves itself there (bin/claudes-tui).
+yabai -m rule --add label=claude-space app="^Claude$" title!="^Quick Entry$" space=8
 yabai -m rule --add label=adv360-keymap app="^Google Chrome$" title="^Adv360 keymap$" manage=off sticky=on sub-layer=above grid=24:24:4:5:16:14
 yabai -m signal --add label=adv360-keymap-closed event=window_destroyed app="^Google Chrome$" title="^Adv360 keymap$" action="$HOME/workspace/projects/Adv360-Pro-ZMK/bin/show_keymap.sh --restore"
 # yabai -m rule --add app="^Mail$" manage=on

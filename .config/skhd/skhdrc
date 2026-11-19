@@ -85,7 +85,7 @@ cmd + ctrl - e: open /Applications/Zed\ Preview.app
 cmd + alt + ctrl - n: open /Applications/Obsidian.app
 ctrl - x: open -a "Mission Control" # Mission Control
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
-cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
+cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${CLAUDE_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - t: $HOME/bin/claudes-tui # Claudes archive TUI (toggle)
 cmd + ctrl + shift - e: $HOME/bin/eno-tui # eno AWS picker overlay (toggle)
 cmd + ctrl - n: $HOME/bin/nm-tui # nm calculator overlay (toggle)
@@ -132,6 +132,7 @@ leader < s : skhd -k escape; $HOME/bin/app-on-space Slack 2 # Slack (space 2)
 leader < o : skhd -k escape; $HOME/bin/app-on-space "Microsoft Outlook" 7 # Outlook (space 7)
 leader < t : skhd -k escape; $HOME/bin/app-on-space "Microsoft Teams" 5 # Teams (space 5)
 leader < k : skhd -k escape; $HOME/bin/app-on-space Trello 4 # Trello / Kanban (space 4)
+leader < c : skhd -k escape; $HOME/bin/app-on-space Claude 8 # Claude (space 8)
 
 # Window mode: cmd - y, then a key. Moving to a space or changing the
 # layout ends the mode; focus and swap (h j k l) keep it on so you can repeat.

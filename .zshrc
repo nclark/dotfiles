@@ -64,3 +64,13 @@ export TESSDATA_PREFIX=/opt/homebrew/share/tessdata
 [ -f "$HOME/.ok/env.sh" ] && . "$HOME/.ok/env.sh"
 # <<< open-knowledge cli <<<
 
+
+# Added by codebase-memory-mcp install
+export PATH="/Users/nclark/.local/bin:$PATH"
+
+# herdr-core was once started from inside Claude Code, so every Herdr pane
+# inherited CLAUDE_CODE_CHILD_SESSION=1 and each new `claude` thought it was a
+# sub-agent and turned transcript saving off. Interactive shells in a Herdr
+# pane drop it. (Claude's own tool shells aren't interactive, so they keep it.)
+# Harmless once herdr-core is restarted cleanly.
+[[ -o interactive && -n $HC_TERMINAL_ID ]] && unset CLAUDE_CODE_CHILD_SESSION

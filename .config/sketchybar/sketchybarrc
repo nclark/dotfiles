@@ -49,13 +49,14 @@ if [ "${WORK_MACHINE}" = "true" ]; then
         trello,4,
         personal,5,
         prod,6,
-        comm,7,"
+        comm,7,
+        claude,8,"
 else
   SPACES="browser,1,
         terminal,2,
         misc,3,
         prod,4,,
-        gpt,5,"
+        claude,5,"
 fi
 
 for i in $SPACES
@@ -83,6 +84,13 @@ do
     icon.highlight_color=$SPACE_HIGHLIGHT_ICON_COLOR   \
     click_script="$SPACE_CLICK $NUMBER"
 done
+
+# Claude space: the Claude logo (sketchybar-app-font, brew cask
+# font-sketchybar-app-font) after the number.
+s --set claude label=":claude:" label.font="sketchybar-app-font:Regular:15.0" \
+  label.highlight_color=$SPACE_HIGHLIGHT_ICON_COLOR \
+  script='sketchybar --set $NAME icon.highlight=$SELECTED label.highlight=$SELECTED'
+# (A space with a script loses the built-in highlight, so it sets both.)
 
 # Launch-mode glow: skhd leader mode (cmd - ;) lights up the bar and lists
 # the chords here. Fired by ~/bin/skhd-leader.

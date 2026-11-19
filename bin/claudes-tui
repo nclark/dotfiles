@@ -74,6 +74,10 @@ for _ in $(seq 1 40); do
     id=$(echo "$win" | jq -r .id)
     [ "$(echo "$win" | jq -r '."is-floating"')" = "false" ] && yabai -m window "$id" --toggle float
     yabai -m window "$id" --grid "$GRID"
+    # Live on the Claude space (CLAUDE_SPACE in ~/.zsh/host); focusing the
+    # window below switches there.
+    space=$(sed -n 's/^export CLAUDE_SPACE=//p' "$HOME/.zsh/host")
+    [ -n "$space" ] && yabai -m window "$id" --space "$space"
     yabai -m window --focus "$id"
     exit 0
   fi

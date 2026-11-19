@@ -13,7 +13,29 @@ SKHDRC="$HOME/.config/skhd/skhdrc"
 
 BAR_COLOR=0xB3333333        # keep in sync with `--bar color` in sketchybarrc
 HIDDEN="$HOME/.cache/sketchybar/skhd_mode.hidden"   # items we hid, to restore
+WANT="$HOME/.cache/sketchybar/skhd_mode.want"       # latest mode (bin/skhd-leader)
+LOCK="$HOME/.cache/sketchybar/skhd_mode.lock"
 mkdir -p "${HIDDEN%/*}"
+
+# One run at a time. Entering is slow (it asks each item whether it's
+# showing), so a quick "cmd - ; then s" fires the exit while the entry is
+# still hiding items; two overlapping runs left the bar half hidden with
+# nothing recorded to restore. Each run waits for the lock, then acts on the
+# latest mode from $WANT rather than the event that started it. A lock older
+# than 10 s is stale (a run that died) and gets cleared.
+for _ in $(seq 1 200); do
+  mkdir "$LOCK" 2>/dev/null && break
+  age=$(( $(date +%s) - $(stat -f %m "$LOCK" 2>/dev/null || date +%s) ))
+  [ "$age" -gt 10 ] && rmdir "$LOCK" 2>/dev/null
+  sleep 0.05
+done
+trap 'rmdir "$LOCK" 2>/dev/null' EXIT
+if [ "$SENDER" = skhd_mode ]; then
+  [ -s "$WANT" ] && MODE=$(/bin/cat "$WANT")
+else
+  MODE=default   # SketchyBar startup or reload: always the normal bar
+  echo default > "$WANT"
+fi
 
 case "$MODE" in
   leader) GLOW_BAR=0xE64a2a10 GLOW=0xfffaa968 ICON="󱓞" ;;   # amber: apps

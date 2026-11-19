@@ -13,6 +13,10 @@
 # current, so an old timer can't cut a newer one short.
 TIMEOUT=10
 STATE="${TMPDIR:-/tmp}/skhd-leader.token"
+# The mode SketchyBar should show. Written here, before the trigger, so the
+# bar plugin always acts on the latest mode even if its runs overlap.
+WANT="$HOME/.cache/sketchybar/skhd_mode.want"
+mkdir -p "${WANT%/*}"
 
 arm() {
   token="$$.$(date +%s)"
@@ -26,6 +30,7 @@ arm() {
 case "$1" in
   enter)
     arm
+    echo "${2:-leader}" > "$WANT"
     /opt/homebrew/bin/sketchybar --trigger skhd_mode MODE="${2:-leader}" &
     ;;
   poke)
@@ -33,6 +38,7 @@ case "$1" in
     ;;
   exit)
     : > "$STATE"
+    echo default > "$WANT"
     /opt/homebrew/bin/sketchybar --trigger skhd_mode MODE=default &
     ;;
 esac
