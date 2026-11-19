@@ -1,16 +1,36 @@
 #!/bin/sh
+# Print the skhd cheat sheet from ~/.config/skhd/skhdrc as rendered markdown.
+#   print-help            every documented bind (lines with a trailing # comment,
+#                         grouped by the `#%` markdown headings)
+#   print-help --leader   only the leader-key chords (cmd - ; then a key)
+SKHDRC="$HOME/.config/skhd/skhdrc"
+MDV="env PYTHONWARNINGS=ignore /opt/homebrew/bin/mdv -t 826.2742"   # theme from the old setup
 
-LINES_WITH_MARKDOWN='^#%'
-LINES_WITH_KEYBINDINGS='.*:.*#'
-MARKDOWN_SUB='s/^#.{2}//'
-KEYBINDING_SUB='s/^(.+):.+#/- `\1`:/'
-BACKTICK_SUB='s/0x32/`/'
-QUESTIONMARK_SUB='s/0x2C/?/'
-MARKDOWN_THEME='826.2742'
+# skhd writes some keys as hex keycodes; show them as the real key.
+keys='s/0x32/backtick/g; s/0x2C/\//g; s/0x29/;/g'
 
-grep -e $LINES_WITH_MARKDOWN -e $LINES_WITH_KEYBINDINGS $HOME/.config/skhd/skhdrc | \
-  sed -r "$KEYBINDING_SUB" | \
-  sed -r $MARKDOWN_SUB | \
-  sed -r $BACKTICK_SUB | \
-  sed -r $QUESTIONMARK_SUB | \
-  mdv -t $MARKDOWN_THEME -
+if [ "$1" = "--leader" ]; then
+  {
+    echo "# Leader keys"
+    echo
+    echo "Press \`cmd + ;\`, then:"
+    echo
+    rg '^leader < ([^ ]+) *:.*# *(.*)$' -or '- `$1`: $2' "$SKHDRC" | rg -v '`escape`'
+    echo
+    echo "# Window mode"
+    echo
+    echo "Press \`cmd + y\`, then:"
+    echo
+    rg '^#@ window +(.+?)  +(.+)$' -or '- `$1`: $2' "$SKHDRC"
+    echo
+    echo "\`escape\` cancels. A mode ends by itself after 10 s."
+  } | $MDV -
+  exit 0
+fi
+
+rg -e '^#%' -e '^[^#].*:.*#' "$SKHDRC" |
+  sed -E 's/^leader < ([^ ]+) *:.*# *(.*)$/- `cmd + ; then \1`: \2/' |
+  sed -E 's/^([^-#].+):.+# *(.*)$/- `\1`: \2/' |
+  sed -E 's/^#% ?//' |
+  sed -E "$keys" |
+  $MDV -

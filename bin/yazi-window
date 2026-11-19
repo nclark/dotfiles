@@ -1,0 +1,11 @@
+#!/bin/sh
+# Open Yazi in Yazi.app, a clone of Ghostty with its own name and icon (built by
+# ~/bin/yazi-app-build), so it can
+# be quit on its own without touching the main Ghostty. Quitting Yazi (q)
+# closes that instance too. Bound to cmd+shift-f in skhd.
+exec open -na "$HOME/Applications/Yazi.app" --args \
+  --title=Yazi \
+  --auto-update=off \
+  --quit-after-last-window-closed=true \
+  --working-directory=home \
+  --command="/bin/zsh -lic 'exec yazi'"

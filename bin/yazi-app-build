@@ -1,0 +1,45 @@
+#!/bin/sh
+# Build ~/Applications/Yazi.app: a clone of Ghostty.app with its own bundle
+# ID, name and icon, so the Yazi window (cmd+shift-f, ~/bin/yazi-window) is a
+# separate app in the Dock and Cmd+Tab, called "Yazi". It reads the normal
+# Ghostty config. Ghostty's updater doesn't touch it: re-run this after
+# updating Ghostty.
+set -eu
+
+SRC=/Applications/Ghostty.app
+APP="$HOME/Applications/Yazi.app"
+ICON_PNG="$HOME/.config/yazi/icon.png"   # Yazi logo (yazi-rs.github.io/webp/logo.webp)
+TMP=$(mktemp -d)
+trap 'rm -rf "$TMP"' EXIT
+
+pkill -f "$APP/Contents/MacOS/" 2>/dev/null || true
+mkdir -p "$HOME/Applications"
+rm -rf "$APP"
+cp -cR "$SRC" "$APP"                     # APFS clone: no extra disk space
+rm -f "$APP/$(printf 'Icon\r')"
+xattr -cr "$APP"
+
+# Icon: build an .icns from the PNG and put it where CFBundleIconFile points.
+# Drop CFBundleIconName so macOS doesn't take Ghostty's icon from Assets.car.
+ICONSET="$TMP/yazi.iconset"
+mkdir -p "$ICONSET"
+for s in 16 32 128 256 512; do
+  sips -z $s $s "$ICON_PNG" --out "$ICONSET/icon_${s}x${s}.png" >/dev/null
+  d=$((s * 2))
+  sips -z $d $d "$ICON_PNG" --out "$ICONSET/icon_${s}x${s}@2x.png" >/dev/null
+done
+iconutil -c icns "$ICONSET" -o "$APP/Contents/Resources/Ghostty.icns"
+
+PL="$APP/Contents/Info.plist"
+pb() { /usr/libexec/PlistBuddy -c "$1" "$PL" 2>/dev/null || true; }
+pb "Set :CFBundleIdentifier local.yazi.ghostty"
+pb "Set :CFBundleName Yazi"
+pb "Set :CFBundleDisplayName Yazi"
+pb "Delete :CFBundleIconName"
+pb "Delete :SUPublicEDKey"
+pb "Add :SUEnableAutomaticChecks bool false"
+
+# Changing Info.plist breaks Ghostty's signature; sign it locally instead.
+codesign --force --deep --sign - "$APP" 2>/dev/null
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "$APP"
+echo "built $APP"

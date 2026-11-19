@@ -7,4 +7,4 @@ kitty \
   --config $KITTY_HELP_PROFILE \
   -T "$KITTY_TAB_TITLE" \
   --hold \
-  $HOME/bin/print-help
+  $HOME/bin/print-help "$@"

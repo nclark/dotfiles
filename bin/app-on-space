@@ -1,0 +1,37 @@
+#!/bin/sh
+# app-on-space APP SPACE
+#
+# Bring APP up on yabai space SPACE (used by the skhd leader keys).
+#   - running: switch to SPACE and bring APP forward
+#   - not running: launch it, wait for its first window, move that window to
+#     SPACE, then switch there
+# APP is the macOS app name ("Slack", "Microsoft Teams").
+PATH="/opt/homebrew/bin:$PATH"
+APP=$1 SPACE=$2
+[ -n "$APP" ] && [ -n "$SPACE" ] || { echo "usage: app-on-space APP SPACE" >&2; exit 2; }
+
+windows() { # ids of APP's normal windows
+  yabai -m query --windows | jq -r --arg a "$APP" \
+    '.[] | select(.app == $a and .subrole == "AXStandardWindow") | .id'
+}
+
+if [ "$(osascript -e "application \"$APP\" is running" 2>/dev/null)" = true ]; then
+  yabai -m space --focus "$SPACE" 2>/dev/null
+  open -a "$APP"
+  exit 0
+fi
+
+open -a "$APP"
+# Slow apps (Teams, Outlook) can take a while to show a window.
+i=0
+while [ $i -lt 60 ]; do
+  ids=$(windows)
+  [ -n "$ids" ] && break
+  sleep 0.5; i=$((i + 1))
+done
+for id in $ids; do
+  yabai -m window "$id" --space "$SPACE" 2>/dev/null
+done
+yabai -m space --focus "$SPACE" 2>/dev/null
+[ -n "$ids" ] && yabai -m window --focus "$(echo "$ids" | head -1)" 2>/dev/null
+open -a "$APP"

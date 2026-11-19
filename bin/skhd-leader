@@ -1,0 +1,38 @@
+#!/bin/sh
+# Helper for the skhd chord modes (see "Leader keys" in skhdrc).
+#
+#   skhd-leader enter MODE   on entering MODE: light up SketchyBar, and back
+#                            out by itself after TIMEOUT seconds
+#   skhd-leader poke         restart the timeout (for keys that keep the
+#                            mode on, like moving focus in window mode)
+#   skhd-leader exit         on leaving (entering the default mode)
+#
+# The timeout leaves the mode by sending Escape, which every mode binds to
+# "go back to default", so skhd swallows it and no app sees it. Each entry or
+# poke writes a fresh token; a timer only fires if its token is still
+# current, so an old timer can't cut a newer one short.
+TIMEOUT=10
+STATE="${TMPDIR:-/tmp}/skhd-leader.token"
+
+arm() {
+  token="$$.$(date +%s)"
+  echo "$token" > "$STATE"
+  (
+    sleep "$TIMEOUT"
+    [ "$(/bin/cat "$STATE" 2>/dev/null)" = "$token" ] && /opt/homebrew/bin/skhd -k escape
+  ) >/dev/null 2>&1 &
+}
+
+case "$1" in
+  enter)
+    arm
+    /opt/homebrew/bin/sketchybar --trigger skhd_mode MODE="${2:-leader}" &
+    ;;
+  poke)
+    arm
+    ;;
+  exit)
+    : > "$STATE"
+    /opt/homebrew/bin/sketchybar --trigger skhd_mode MODE=default &
+    ;;
+esac

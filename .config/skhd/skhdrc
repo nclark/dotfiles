@@ -61,6 +61,7 @@ ctrl + shift + cmd - f : yabai -m window --toggle float # Toggle current window 
 
 #% ### Float currently focused window and move to
 ctrl + shift + cmd - c : $HOME/.config/yabai/float.sh center # Center
+ctrl + shift + cmd - m : $HOME/.config/yabai/float.sh middle # Middle (center, full height)
 ctrl + shift + cmd - l : $HOME/.config/yabai/float.sh left # Left
 ctrl + shift + cmd - r : $HOME/.config/yabai/float.sh right # Right
 
@@ -72,10 +73,11 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 #% # App launchers
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
+ctrl + cmd - 0x2C: $HOME/bin/help --leader # Leader keys only
 cmd - return: $HOME/bin/herdr-picker --default # Default herdr session in a new Ghostty window
 cmd + shift - return: $HOME/bin/herdr-picker # Pick (or name a new) herdr session
 cmd + ctrl - return: osascript -e 'tell application "Ghostty" to new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
-cmd + shift - h: open -a Herdr # Herdr desktop app
+cmd + shift - f: $HOME/bin/yazi-window # Yazi in its own Ghostty instance
 cmd + ctrl - h: open ~
 cmd + shift - b: $HOME/bin/browser # Browser
 cmd + ctrl + shift - b: $HOME/bin/browser --invert # Alternate browser
@@ -83,7 +85,6 @@ cmd + ctrl - e: open /Applications/Zed\ Preview.app
 cmd + alt + ctrl - n: open /Applications/Obsidian.app
 ctrl - x: open -a "Mission Control" # Mission Control
 cmd + alt + ctrl - a: $HOME/bin/aws-account-helper # Open AWS console in a given account
-cmd + ctrl - m: open /Applications/EVERYBODY\ HATES\ TEAMS.app
 cmd + ctrl - c: source $HOME/.zsh/host ; yabai -m space --focus ${GPT_SPACE} ; open /Applications/Claude.app
 cmd + ctrl - t: $HOME/bin/claudes-tui # Claudes archive TUI (toggle)
 cmd + ctrl + shift - e: $HOME/bin/eno-tui # eno AWS picker overlay (toggle)
@@ -106,8 +107,80 @@ ctrl + alt + cmd - d: $HOME/bin/duo-helper # Restart brew services
 ctrl + cmd + shift + alt - r : $HOME/bin/restart-helper # Pick a service to restart (sketchybar, skhd, yabai)
 ctrl + cmd + shift + alt - s : brew services restart sketchybar # Restart sketchybar
 ctrl + cmd + shift + alt - p: $HOME/bin/pihole --pause # Pause PiHole for 30 seconds
-cmd + alt + ctrl - m: /Applications/EVERYBODY\ HATES\ TEAMS.app/Contents/MacOS/Google\ Chrome --user-data-dir=$HOME/.teams/SUCKS
 cmd + alt + ctrl - t: $HOME/bin/daily-note # Open/create today's daily note
+
+#% # Leader keys
+# Chord modes: press a mode key, then a key. Inside a mode, keys run the
+# actions below; any other key is swallowed (the @), Escape backs out, and
+# the mode backs out by itself after 10 s (bin/skhd-leader). Actions that
+# end the mode send Escape first; ones that keep it on call `poke` to restart
+# the timeout. Global hotkeys don't work inside a mode. While a mode is on,
+# SketchyBar takes over the bar and shows its keys (plugins/skhd_mode.sh):
+# the `#@ MODE  KEY  TEXT` lines if the mode has any, otherwise each bind's
+# trailing comment.
+:: default : $HOME/bin/skhd-leader exit
+:: leader @ : $HOME/bin/skhd-leader enter leader
+:: window @ : $HOME/bin/skhd-leader enter window
+
+cmd - 0x29 ; leader
+leader < escape ; default
+cmd - y ; window
+window < escape ; default
+window < return ; default
+
+leader < s : skhd -k escape; $HOME/bin/app-on-space Slack 2 # Slack (space 2)
+leader < o : skhd -k escape; $HOME/bin/app-on-space "Microsoft Outlook" 7 # Outlook (space 7)
+leader < t : skhd -k escape; $HOME/bin/app-on-space "Microsoft Teams" 5 # Teams (space 5)
+leader < k : skhd -k escape; $HOME/bin/app-on-space Trello 4 # Trello / Kanban (space 4)
+
+# Window mode: cmd - y, then a key. Moving to a space or changing the
+# layout ends the mode; focus and swap (h j k l) keep it on so you can repeat.
+#@ window  1-9  move + follow
+#@ window  ⇧1-9  move, stay
+#@ window  hjkl  focus
+#@ window  ⇧hjkl  swap
+#@ window  f  float
+#@ window  c [ ]  float center/left/right
+#@ window  m  zoom
+#@ window  s  bsp/stack
+#@ window  r  rotate
+#@ window  =  balance
+#@ window  n  next in stack
+window < 1 : skhd -k escape; yabai -m window --space 1 && yabai -m space --focus 1
+window < 2 : skhd -k escape; yabai -m window --space 2 && yabai -m space --focus 2
+window < 3 : skhd -k escape; yabai -m window --space 3 && yabai -m space --focus 3
+window < 4 : skhd -k escape; yabai -m window --space 4 && yabai -m space --focus 4
+window < 5 : skhd -k escape; yabai -m window --space 5 && yabai -m space --focus 5
+window < 6 : skhd -k escape; yabai -m window --space 6 && yabai -m space --focus 6
+window < 7 : skhd -k escape; yabai -m window --space 7 && yabai -m space --focus 7
+window < 8 : skhd -k escape; yabai -m window --space 8 && yabai -m space --focus 8
+window < 9 : skhd -k escape; yabai -m window --space 9 && yabai -m space --focus 9
+window < shift - 1 : skhd -k escape; yabai -m window --space 1
+window < shift - 2 : skhd -k escape; yabai -m window --space 2
+window < shift - 3 : skhd -k escape; yabai -m window --space 3
+window < shift - 4 : skhd -k escape; yabai -m window --space 4
+window < shift - 5 : skhd -k escape; yabai -m window --space 5
+window < shift - 6 : skhd -k escape; yabai -m window --space 6
+window < shift - 7 : skhd -k escape; yabai -m window --space 7
+window < shift - 8 : skhd -k escape; yabai -m window --space 8
+window < shift - 9 : skhd -k escape; yabai -m window --space 9
+window < h : yabai -m window --focus west; $HOME/bin/skhd-leader poke
+window < j : yabai -m window --focus south; $HOME/bin/skhd-leader poke
+window < k : yabai -m window --focus north; $HOME/bin/skhd-leader poke
+window < l : yabai -m window --focus east; $HOME/bin/skhd-leader poke
+window < shift - h : yabai -m window --swap west; $HOME/bin/skhd-leader poke
+window < shift - j : yabai -m window --swap south; $HOME/bin/skhd-leader poke
+window < shift - k : yabai -m window --swap north; $HOME/bin/skhd-leader poke
+window < shift - l : yabai -m window --swap east; $HOME/bin/skhd-leader poke
+window < f : skhd -k escape; yabai -m window --toggle float
+window < c : skhd -k escape; $HOME/.config/yabai/float.sh center
+window < 0x21 : skhd -k escape; $HOME/.config/yabai/float.sh left
+window < 0x1E : skhd -k escape; $HOME/.config/yabai/float.sh right
+window < m : skhd -k escape; yabai -m window --toggle zoom-fullscreen
+window < s : skhd -k escape; $HOME/.config/yabai/toggle_stacked.sh
+window < r : yabai -m space --rotate 90; $HOME/bin/skhd-leader poke
+window < 0x18 : skhd -k escape; yabai -m space --balance
+window < n : yabai -m window --focus stack.next || yabai -m window --focus stack.first; $HOME/bin/skhd-leader poke
 
 # KVM (ASUS PA27JCV): switch the monitor to DisplayPort (the Linux desktop). The Linux side sends the same chord back to USB-C.
 ctrl + alt + cmd + shift - z : /opt/homebrew/bin/m1ddc set input 15

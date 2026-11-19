@@ -97,3 +97,14 @@ ssh() {
     fi
     command ssh "$@"
 }
+
+# y: run yazi, and cd to wherever you were when you quit it (q).
+# Q quits without changing directory.
+y() {
+  local tmp cwd
+  tmp="$(mktemp -t yazi-cwd.XXXXXX)"
+  yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+  rm -f -- "$tmp"
+}

@@ -1,0 +1,47 @@
+#:schema https://yazi-rs.github.io/schemas/keymap.json
+# Strata's shortcuts on top of Yazi's defaults (all defaults still work).
+
+[[mgr.prepend_keymap]]
+on   = "<C-k>"
+run  = "plugin fzf"
+desc = "Fuzzy-find a file or folder below here (Strata Ctrl+K)"
+
+[[mgr.prepend_keymap]]
+on   = "<C-f>"
+run  = "filter --smart"
+desc = "Filter this folder (Strata Ctrl+F)"
+
+[[mgr.prepend_keymap]]
+on   = "<C-l>"
+run  = "cd --interactive"
+desc = "Type a path to go to (Strata Ctrl+L)"
+
+[[mgr.prepend_keymap]]
+on   = "<F2>"
+run  = "rename --cursor=before_ext"
+desc = "Rename (Strata F2)"
+
+[[mgr.prepend_keymap]]
+on   = "l"
+run  = "plugin smart-enter"
+desc = "Enter the folder, or open the file"
+
+[[mgr.prepend_keymap]]
+on   = "<Enter>"
+run  = "plugin smart-enter"
+desc = "Enter the folder, or open the file"
+
+[[mgr.prepend_keymap]]
+on   = "T"
+run  = "plugin toggle-pane max-preview"
+desc = "Maximize / restore the preview (Strata Space)"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "w" ]
+run  = "cd ~/workspace"
+desc = "Go to ~/workspace"
+
+[[mgr.prepend_keymap]]
+on   = [ "g", "p" ]
+run  = "cd ~/Pictures"
+desc = "Go to ~/Pictures"

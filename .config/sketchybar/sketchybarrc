@@ -84,6 +84,19 @@ do
     click_script="$SPACE_CLICK $NUMBER"
 done
 
+# Launch-mode glow: skhd leader mode (cmd - ;) lights up the bar and lists
+# the chords here. Fired by ~/bin/skhd-leader.
+s --add event skhd_mode                                   \
+  --add item  skhd_mode center                            \
+  --set skhd_mode drawing=off                             \
+                  updates=on                              \
+                  script="$PLUGINS/skhd_mode.sh"          \
+                  icon="󱓞"                                \
+                  icon.color=0xfffaa968                   \
+                  label.color=0xfff6dcac                  \
+                  label.font="Hack Nerd Font:Bold:14.0"   \
+  --subscribe skhd_mode skhd_mode
+
 s -m --add item title left                         \
      --set title script="$PLUGINS/window_title.sh" \
      --subscribe title window_focus                \
