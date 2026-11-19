@@ -1,6 +1,6 @@
 onboarding = false
 [theme]
-name = "catppuccin"
+name = "kanagawa"
 auto_switch = false
 
 [ui.toast]
@@ -8,8 +8,10 @@ delivery = "herdr"
 
 [ui]
 show_agent_labels_on_pane_borders = true
+prompt_new_tab_name = false
 
 # --- Herdr Annotate (plannotator/herdr-annotate) ---
+status_indicators = "dots"
 [[keys.command]]
 key = "prefix+shift+o"
 type = "plugin_action"

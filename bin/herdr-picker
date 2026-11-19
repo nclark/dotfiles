@@ -11,10 +11,11 @@ if [[ "${TRACE-0}" == "1" ]]; then
 fi
 
 if [[ "${1-}" =~ ^-*h(elp)?$ ]]; then
-    echo 'Usage: herdr-picker
+    echo 'Usage: herdr-picker [--default]
 
 Lists herdr sessions in choose-gui and opens the selected one in a new
 Ghostty window. Type a new name to create a session with that name.
+With --default, skip the menu and open the default session.
 '
     exit
 fi
@@ -45,6 +46,10 @@ APPLESCRIPT
 
 main() {
     local choice name
+    if [[ "${1-}" == "--default" ]]; then
+        open_in_ghostty default
+        exit 0
+    fi
     choice=$(list_sessions | choose \
         -f "AnonymousPro" \
         -s 24 \

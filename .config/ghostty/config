@@ -1,0 +1,39 @@
+theme = retro-82
+# foreground = ffffff
+background-opacity = 1
+
+font-family = Hack Nerd Font
+font-size = 16
+
+# quick terminal retired 2026-08-05 — claudes tui now lives in a kitty
+# scratchpad (cmd+ctrl-t via skhd, see ~/bin/claudes-tui)
+# keybind = global:ctrl+grave_accent=toggle_quick_terminal
+# quick-terminal-position = center
+# quick-terminal-size = 90%,85%
+# quick-terminal-animation-duration = 0
+
+# TRIAL 2026-11-18: tmux windows instead of native tabs. Native tabs show up
+# in yabai as phantom windows (asmvik/yabai#68), so map the tab shortcuts to
+# tmux's default prefix (Ctrl+B = \x02) instead.
+keybind = cmd+t=text:\x02c
+keybind = cmd+w=text:\x02&
+keybind = cmd+shift+bracket_right=text:\x02n
+keybind = cmd+shift+bracket_left=text:\x02p
+keybind = cmd+digit_1=text:\x021
+keybind = cmd+digit_2=text:\x022
+keybind = cmd+digit_3=text:\x023
+keybind = cmd+digit_4=text:\x024
+keybind = cmd+digit_5=text:\x025
+keybind = cmd+digit_6=text:\x026
+keybind = cmd+digit_7=text:\x027
+keybind = cmd+digit_8=text:\x028
+keybind = cmd+digit_9=text:\x029
+
+# No title bar (traffic lights, proxy icon, title): tmux does tabs now.
+macos-titlebar-style = hidden
+
+# Breathing room now that the title bar is gone.
+window-padding-x = 10
+window-padding-y = 8
+window-padding-balance = true
+window-padding-color = extend

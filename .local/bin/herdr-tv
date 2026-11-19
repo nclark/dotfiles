@@ -1,0 +1,69 @@
+#!/usr/bin/env python3
+"""Pick a herdr session with the arrow keys and Enter, then attach to it. Made for the living-room TV's
+terminal (D-pad up/down/OK over ssh); works in any terminal. Python standard library only.
+
+Keys: up/down (or j/k) move, Enter attaches, q or Esc quits. Stopped sessions are started by herdr itself.
+"""
+import curses, os, subprocess, sys
+
+
+def sessions():
+    out = subprocess.run(["herdr", "session", "list"], capture_output=True, text=True, check=True).stdout
+    rows = []
+    for line in out.splitlines()[1:]:
+        parts = line.split()
+        if len(parts) >= 3:
+            rows.append((parts[0], parts[1], parts[2]))
+    return rows
+
+
+def pick(stdscr, rows):
+    curses.curs_set(0)
+    curses.use_default_colors()
+    if curses.has_colors():
+        curses.init_pair(1, curses.COLOR_BLACK, curses.COLOR_YELLOW)
+        curses.init_pair(2, curses.COLOR_GREEN, -1)
+    sel = 0
+    while True:
+        stdscr.erase()
+        h, w = stdscr.getmaxyx()
+        stdscr.addstr(1, 2, "herdr session  (up/down, OK to attach, Back to quit)", curses.A_BOLD)
+        for i, (name, status, directory) in enumerate(rows):
+            y = 3 + i
+            if y >= h - 1:
+                break
+            line = f" {name:<18} {status:<8} {directory}"[: w - 4]
+            if i == sel:
+                stdscr.addstr(y, 2, line.ljust(w - 4), curses.color_pair(1) | curses.A_BOLD)
+            else:
+                attr = curses.color_pair(2) if status == "running" else 0
+                stdscr.addstr(y, 2, line, attr)
+        stdscr.refresh()
+        k = stdscr.getch()
+        if k in (curses.KEY_UP, ord("k")):
+            sel = (sel - 1) % len(rows)
+        elif k in (curses.KEY_DOWN, ord("j")):
+            sel = (sel + 1) % len(rows)
+        elif k in (curses.KEY_ENTER, 10, 13):
+            return rows[sel][0]
+        elif k in (27, ord("q")):
+            return None
+
+
+def main():
+    try:
+        rows = sessions()
+    except (OSError, subprocess.CalledProcessError) as e:
+        print(f"herdr session list failed: {e}", file=sys.stderr)
+        return 1
+    if not rows:
+        print("no herdr sessions", file=sys.stderr)
+        return 1
+    name = curses.wrapper(pick, rows)
+    if name is None:
+        return 0
+    os.execvp("herdr", ["herdr", "--session", name])
+
+
+if __name__ == "__main__":
+    sys.exit(main())
