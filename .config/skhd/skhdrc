@@ -74,9 +74,9 @@ cmd - 0x32 : yabai -m window --focus stack.next || yabai -m window --focus stack
 cmd - space: $HOME/bin/launcher # Launcher
 ctrl - 0x2C: $HOME/bin/help # This help screen
 ctrl + cmd - 0x2C: $HOME/bin/help --leader # Leader keys only
-cmd - return: $HOME/bin/herdr-picker --default # Default herdr session in a new Ghostty window
+cmd - return: osascript -e 'tell application "Ghostty" to new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
+cmd + ctrl - return: $HOME/bin/herdr-picker --default # Default herdr session in a new Ghostty window
 cmd + shift - return: $HOME/bin/herdr-picker # Pick (or name a new) herdr session
-cmd + ctrl - return: osascript -e 'tell application "Ghostty" to new window' -e 'tell application "Ghostty" to activate' # New terminal (Ghostty)
 cmd + shift - f: $HOME/bin/yazi-window # Yazi in its own Ghostty instance
 cmd + ctrl - h: open ~
 cmd + shift - b: $HOME/bin/browser # Browser
